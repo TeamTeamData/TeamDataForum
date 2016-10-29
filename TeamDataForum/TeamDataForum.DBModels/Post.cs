@@ -27,5 +27,10 @@
         /// Reference to Topic model
         /// </summary>
         public virtual Topic Topic { get; set; }
+
+        /// <summary>
+        /// Reference to PostText
+        /// </summary>
+        public virtual PostText Text { get; set; }
     }
 }
