@@ -51,6 +51,11 @@
         public virtual User Creator { get; set; }
 
         /// <summary>
+        /// Reference to subforum
+        /// </summary>
+        public virtual Subforum Subforum { get; set; }
+
+        /// <summary>
         /// All topic posts
         /// </summary>
         public virtual ISet<Post> Posts
