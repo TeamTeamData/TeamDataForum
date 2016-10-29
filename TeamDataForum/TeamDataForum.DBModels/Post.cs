@@ -1,5 +1,6 @@
 ﻿namespace TeamDataForum.DBModels
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     /// <summary>
@@ -7,6 +8,13 @@
     /// </summary>
     public class Post
     {
+        private ISet<Like> likes;
+
+        public Post()
+        {
+            this.likes = new HashSet<Like>();
+        }
+        
         /// <summary>
         /// Primary key
         /// </summary>
@@ -32,5 +40,15 @@
         /// Reference to PostText
         /// </summary>
         public virtual PostText Text { get; set; }
+
+        /// <summary>
+        /// Post likes
+        /// </summary>
+        public virtual ISet<Like> Likes
+        {
+            get { return this.likes; }
+
+            set { this.likes = value; }
+        }
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TeamDataForum.DBModels.Country">
-    <Position X="10.5" Y="4.75" Width="1.5" />
+    <Position X="10" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAACAgAAABARAAAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Country.cs</FileName>
@@ -10,12 +10,12 @@
   <Class Name="TeamDataForum.DBModels.Post">
     <Position X="5.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgEAAACSAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAiEAAACSAAAAA=</HashCode>
       <FileName>Post.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Topic" />
       <Property Name="Creator" />
+      <Property Name="Topic" />
     </ShowAsAssociation>
   </Class>
   <Class Name="TeamDataForum.DBModels.PostText">
@@ -45,12 +45,12 @@
       <FileName>Topic.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Subforum" />
       <Property Name="Creator" />
+      <Property Name="Subforum" />
     </ShowAsAssociation>
   </Class>
   <Class Name="TeamDataForum.DBModels.Town">
-    <Position X="7.75" Y="4.75" Width="1.5" />
+    <Position X="8" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAgAACAAAAAAAAAAAAQAAAIAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Town.cs</FileName>
@@ -60,13 +60,24 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="TeamDataForum.DBModels.User">
-    <Position X="4.75" Y="4.5" Width="1.5" />
+    <Position X="5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAEAAAgAAAAAIAAAAAAAAAAAAAAAAACAAkAAAAAA=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Town" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="TeamDataForum.DBModels.Like">
+    <Position X="7.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAAAAAAAAACAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Like.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Post" />
+      <Property Name="User" />
     </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
