@@ -1,5 +1,6 @@
 ﻿namespace TeamDataForum.DBModels
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,6 +14,13 @@
         private const string ErrorCountryName = "Country name is required.";
         private const string ErrorCountryNameMaxLength = "Country name cannot be more than 100 symbols.";
         private const string CountryNameIndex = "UQ_CountryName";
+
+        private ISet<Town> towns;
+
+        public Country()
+        {
+            this.towns = new HashSet<Town>();
+        }
         
         /// <summary>
         /// Primary key
@@ -27,5 +35,12 @@
         [MaxLength(CountryMaxLength, ErrorMessage = ErrorCountryNameMaxLength)]
         [Index(CountryNameIndex)]
         public string Name { get; set; }
+
+        public ISet<Town> Towns
+        {
+            get { return this.towns; }
+
+            set { this.towns = value; }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace TeamDataForum.DBModels
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Security.Claims;
     using System.Threading.Tasks;
@@ -17,6 +18,17 @@
         private const string FirstnameError = "First name is required.";
         private const string LastnameError = "Last name is required.";
         private const string NameLengthError = "Name cannot be more than 50 symbols.";
+
+        private ISet<Like> likes;
+        private ISet<Post> posts;
+        private ISet<Subforum> subforums;
+
+        public User()
+        {
+            this.likes = new HashSet<Like>();
+            this.posts = new HashSet<Post>();
+            this.subforums = new HashSet<Subforum>();
+        }
 
         /// <summary>
         /// First name - required
@@ -36,6 +48,27 @@
         /// Reference to Town model
         /// </summary>
         public virtual Town Town { get; set; }
+
+        public ISet<Like> Likes
+        {
+            get { return this.likes; }
+
+            set { this.likes = value; }
+        }
+
+        public ISet<Post> Posts
+        {
+            get { return this.posts; }
+
+            set { this.posts = value; }
+        }
+
+        public ISet<Subforum> Subforums
+        {
+            get { return this.subforums; }
+
+            set { this.subforums = value; }
+        }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
         {
