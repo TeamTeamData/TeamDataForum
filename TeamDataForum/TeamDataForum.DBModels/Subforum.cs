@@ -10,6 +10,11 @@
     /// </summary>
     public class Subforum
     {
+        private const int SubforumMaxLength = 300;
+
+        private const string SubforumError = "Sub forum title is required.";
+        private const string SubforumMaxLengthError = "Sub forum title cannot be more than 300 symbols.";
+
         private ISet<Topic> topics;
 
         public Subforum()
@@ -26,8 +31,8 @@
         /// <summary>
         /// Title - required, unique
         /// </summary>
-        [Required(AllowEmptyStrings = false)]
-        [MaxLength(300, ErrorMessage = "Sub forum title is required.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = SubforumError)]
+        [MaxLength(SubforumMaxLength, ErrorMessage = SubforumMaxLengthError)]
         [Index]
         public string Title { get; set; }
 

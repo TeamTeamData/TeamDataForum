@@ -9,6 +9,12 @@
     /// </summary>
     public class Topic
     {
+        private const int TopicMaxLength = 300;
+
+        private const string TopicTitleError = "Topic title is required.";
+        private const string TopicMaxLengthError = "Topic title cannot be more than 300 symbols.";
+        private const string TopicDateError = "Topic date is required.";
+
         private ISet<Post> posts;
 
         public Topic()
@@ -25,14 +31,14 @@
         /// <summary>
         /// Topic title
         /// </summary>
-        [Required(AllowEmptyStrings = false)]
-        [MaxLength(300, ErrorMessage = "Topic name is required.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = TopicTitleError)]
+        [MaxLength(TopicMaxLength, ErrorMessage = TopicMaxLengthError)]
         public string Title { get; set; }
 
         /// <summary>
         /// Creation date
         /// </summary>
-        [Required(ErrorMessage = "Topic date is required.")]
+        [Required(ErrorMessage = TopicDateError)]
         public DateTime Date { get; set; }
 
         public int TimesSeen { get; set; }

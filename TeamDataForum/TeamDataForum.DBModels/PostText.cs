@@ -7,6 +7,8 @@
     /// </summary>
     public class PostText
     {
+        private const string PostTextError = "Post text is required.";
+        
         /// <summary>
         /// Primary key
         /// </summary>
@@ -17,7 +19,7 @@
         /// Post text
         /// Required
         /// </summary>
-        [Required(AllowEmptyStrings = false)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = PostTextError)]
         public string Text { get; set; }
 
         /// <summary>

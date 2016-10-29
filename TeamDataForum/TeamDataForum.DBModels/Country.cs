@@ -8,6 +8,12 @@
     /// </summary>
     public class Country
     {
+        private const int CountryMaxLength = 100;
+
+        private const string ErrorCountryName = "Country name is required.";
+        private const string ErrorCountryNameMaxLength = "Country name cannot be more than 100 symbols.";
+        private const string CountryNameIndex = "UQ_CountryName";
+        
         /// <summary>
         /// Primary key
         /// </summary>
@@ -17,9 +23,9 @@
         /// <summary>
         /// Country name - required
         /// </summary>
-        [Required]
-        [MaxLength(100, ErrorMessage = "Country name is required.")]
-        [Index()]
+        [Required(AllowEmptyStrings = false, ErrorMessage = ErrorCountryName)]
+        [MaxLength(CountryMaxLength, ErrorMessage = ErrorCountryNameMaxLength)]
+        [Index(CountryNameIndex)]
         public string Name { get; set; }
     }
 }

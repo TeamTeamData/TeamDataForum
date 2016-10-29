@@ -7,6 +7,11 @@
     /// </summary>
     public class Town
     {
+        private const int TownNameMaxLength = 100;
+
+        private const string TownNameError = "Town name is required.";
+        private const string TownNameMaxLengthError = "Town name cannot be more than 100 symbols.";
+        
         /// <summary>
         /// Primary key
         /// </summary>
@@ -16,8 +21,8 @@
         /// <summary>
         /// Town name - required
         /// </summary>
-        [Required]
-        [MaxLength(100)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = TownNameError)]
+        [MaxLength(TownNameMaxLength, ErrorMessage = TownNameMaxLengthError)]
         public string Name { get; set; }
 
         /// <summary>
