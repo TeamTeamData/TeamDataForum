@@ -12,7 +12,7 @@
         /// Primary key
         /// </summary>
         [Key]
-        public int CountryID { get; set; }
+        public int CountryId { get; set; }
 
         /// <summary>
         /// Country name - required
