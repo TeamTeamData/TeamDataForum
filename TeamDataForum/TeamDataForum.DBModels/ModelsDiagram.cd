@@ -3,23 +3,32 @@
   <Class Name="TeamDataForum.DBModels.Country">
     <Position X="10.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAACAgAAABARAAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAACAgAAABARAAAAQAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Country.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TeamDataForum.DBModels.Post">
-    <Position X="5.75" Y="0.5" Width="1.5" />
+    <Position X="6" Y="0.5" Width="1.5" />
+    <AssociationLine Name="Responses" Type="TeamDataForum.DBModels.Post">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.473" Y="0.07" />
+      </MemberNameLabel>
+    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAiEAAACSAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAABAAAEAAAAAAAAACAIAAAACEAAACSAAAAA=</HashCode>
       <FileName>Post.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Creator" />
       <Property Name="Topic" />
+      <Property Name="ResponseTo" />
     </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Responses" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="TeamDataForum.DBModels.PostText">
-    <Position X="8.25" Y="0.5" Width="1.5" />
+    <Position X="11.75" Y="0.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAACACAAAAAAAAIAACAAAAAA=</HashCode>
       <FileName>PostText.cs</FileName>
@@ -62,7 +71,7 @@
   <Class Name="TeamDataForum.DBModels.User">
     <Position X="5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAEAAAgAAAAAIAAAAAAAAAAAAAAAAACAAkAAAAAA=</HashCode>
+      <HashCode>QgAAAEAACgAEAAAIBAAAAAAAAAIAAAACACAAkAIAAAA=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
