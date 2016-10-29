@@ -8,7 +8,7 @@ namespace TeamDataForum.DB
     /// <summary>
     /// Forum context
     /// </summary>
-    public class TeamDataForumContext : IdentityDbContext<User>
+    public class TeamDataForumContext : DbContext
     {
         public TeamDataForumContext()
             : base("name=TeamDataForumContext")
