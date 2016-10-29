@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.DBModels", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.DB", "TeamDataForum.DB\TeamDataForum.DB.csproj", "{4AC8BB64-623A-4A44-8E09-56D73F2B4886}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.Web", "TeamDataForum\TeamDataForum.Web.csproj", "{DBE3FD9E-68E8-40B5-A502-7C515894BA96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.Web", "TeamDataForum.Web\TeamDataForum.Web.csproj", "{DBE3FD9E-68E8-40B5-A502-7C515894BA96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
