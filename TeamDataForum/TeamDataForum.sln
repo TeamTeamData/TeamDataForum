@@ -5,7 +5,11 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.DBModels", "TeamDataForum.DBModels\TeamDataForum.DBModels.csproj", "{18190A3F-0FC7-4CCD-AB9B-88580887E458}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.DB", "TeamDataForum.DB\TeamDataForum.DB.csproj", "{4AC8BB64-623A-4A44-8E09-56D73F2B4886}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum", "TeamDataForum\TeamDataForum.csproj", "{DBE3FD9E-68E8-40B5-A502-7C515894BA96}"
+>>>>>>> origin/master
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +21,17 @@ Global
 		{18190A3F-0FC7-4CCD-AB9B-88580887E458}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18190A3F-0FC7-4CCD-AB9B-88580887E458}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18190A3F-0FC7-4CCD-AB9B-88580887E458}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{4AC8BB64-623A-4A44-8E09-56D73F2B4886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4AC8BB64-623A-4A44-8E09-56D73F2B4886}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AC8BB64-623A-4A44-8E09-56D73F2B4886}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AC8BB64-623A-4A44-8E09-56D73F2B4886}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{DBE3FD9E-68E8-40B5-A502-7C515894BA96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBE3FD9E-68E8-40B5-A502-7C515894BA96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBE3FD9E-68E8-40B5-A502-7C515894BA96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBE3FD9E-68E8-40B5-A502-7C515894BA96}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> origin/master
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
