@@ -1,10 +1,9 @@
 namespace TeamDataForum.DB
 {
-    using System;
     using System.Data.Entity;
-    using System.Linq;
     using Microsoft.AspNet.Identity.EntityFramework;
     using DBModels;
+    using Migrations;
 
     /// <summary>
     /// Forum context
@@ -14,6 +13,7 @@ namespace TeamDataForum.DB
         public TeamDataForumContext()
             : base("name=TeamDataForumContext")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<TeamDataForumContext, Configuration>());
         }
 
         /// <summary>
