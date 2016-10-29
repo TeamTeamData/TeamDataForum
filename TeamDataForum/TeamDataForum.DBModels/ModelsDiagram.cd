@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="TeamDataForum.DBModels.Country">
-    <Position X="7" Y="4.5" Width="1.5" />
+    <Position X="10.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAACAgAAABARAAAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Country.cs</FileName>
@@ -15,6 +15,7 @@
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Topic" />
+      <Property Name="Creator" />
     </ShowAsAssociation>
   </Class>
   <Class Name="TeamDataForum.DBModels.PostText">
@@ -30,7 +31,7 @@
   <Class Name="TeamDataForum.DBModels.Subforum">
     <Position X="0.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAIAAAgAAAAAAgAgAABEAAAAQAAAAA=</HashCode>
+      <HashCode>IAAAAAAAAAAAAEAIAAAgAAAAAAgAgAABEAAAASAAAAA=</HashCode>
       <FileName>Subforum.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -49,7 +50,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="TeamDataForum.DBModels.Town">
-    <Position X="4.75" Y="4.5" Width="1.5" />
+    <Position X="7.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAgAACAAAAAAAAAAAAQAAAIAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Town.cs</FileName>
@@ -59,7 +60,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="TeamDataForum.DBModels.User">
-    <Position X="2.5" Y="4.5" Width="1.5" />
+    <Position X="4.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAEAAAgAAAAAIAAAAAAAAAAAAAAAAACAAkAAAAAA=</HashCode>
       <FileName>User.cs</FileName>
