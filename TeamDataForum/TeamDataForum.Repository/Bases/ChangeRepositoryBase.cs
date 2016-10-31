@@ -35,6 +35,11 @@
         /// <returns>Deleted element</returns>
         public T Remove(T element)
         {
+            if (this.Context.Entry(element).State == EntityState.Detached)
+            {
+                this.DbSet.Attach(element);
+            }
+
             this.DbSet.Remove(element);
 
             return element;
