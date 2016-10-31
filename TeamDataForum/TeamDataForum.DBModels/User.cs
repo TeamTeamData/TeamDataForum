@@ -22,13 +22,13 @@
         private ISet<Like> likes;
         private ISet<Post> posts;
         private ISet<Subforum> subforums;
-        private ISet<Roles> roles;
+        private ISet<Role> roles;
 
         public int UserID { get; set; }
 
         public User()
         {
-            this.roles = new HashSet<Roles>();
+            this.roles = new HashSet<Role>();
             this.likes = new HashSet<Like>();
             this.posts = new HashSet<Post>();
             this.subforums = new HashSet<Subforum>();
@@ -59,7 +59,7 @@
         /// </summary>
         public virtual Town Town { get; set; }
 
-        public ISet<Roles> Roles
+        public ISet<Role> Roles
         {
             get { return this.roles; }
 

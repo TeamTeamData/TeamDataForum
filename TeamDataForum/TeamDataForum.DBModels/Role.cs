@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TeamDataForum.DBModels
 {
-    public class Roles
+    public class Role
     {
         private ISet<User> user;
 
-        public int RolesID { get; set; }
+        public int RoleId { get; set; }
 
-        public Roles()
+        public Role()
         {
             this.user = new HashSet<User>();
         }

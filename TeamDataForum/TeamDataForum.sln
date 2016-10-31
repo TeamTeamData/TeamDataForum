@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.Web", "TeamDa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.Repository", "TeamDataForum.Repository\TeamDataForum.Repository.csproj", "{8FF94A34-ADE4-4D4A-B7FE-79CF3927BAC0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.UnitOfWork", "TeamDataForum.UnitOfWork\TeamDataForum.UnitOfWork.csproj", "{AFF3342C-612B-43A4-AED1-398F27D28D3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8FF94A34-ADE4-4D4A-B7FE-79CF3927BAC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FF94A34-ADE4-4D4A-B7FE-79CF3927BAC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FF94A34-ADE4-4D4A-B7FE-79CF3927BAC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFF3342C-612B-43A4-AED1-398F27D28D3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFF3342C-612B-43A4-AED1-398F27D28D3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFF3342C-612B-43A4-AED1-398F27D28D3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFF3342C-612B-43A4-AED1-398F27D28D3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
