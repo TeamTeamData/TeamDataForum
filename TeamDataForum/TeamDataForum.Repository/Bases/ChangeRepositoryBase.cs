@@ -16,6 +16,11 @@
         {
         }
 
+        /// <summary>
+        /// Updates element in database
+        /// </summary>
+        /// <param name="element">Element to be updated</param>
+        /// <returns>Updated element</returns>
         public T Add(T element)
         {
             this.DbSet.Add(element);
@@ -23,6 +28,11 @@
             return element;
         }
 
+        /// <summary>
+        /// Deletes element from database
+        /// </summary>
+        /// <param name="element">Element to be deleted</param>
+        /// <returns>Deleted element</returns>
         public T Remove(T element)
         {
             this.DbSet.Remove(element);
@@ -30,11 +40,19 @@
             return element;
         }
 
+        /// <summary>
+        /// Context save changes to database
+        /// </summary>
         public void SaveChanges()
         {
             this.Context.SaveChanges();
         }
 
+        /// <summary>
+        /// Updates element
+        /// </summary>
+        /// <param name="element">Element to be updated</param>
+        /// <returns>Updated element</returns>
         public T Update(T element)
         {
             this.DbSet.Attach(element);

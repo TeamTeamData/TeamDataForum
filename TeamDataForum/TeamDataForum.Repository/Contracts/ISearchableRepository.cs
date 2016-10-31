@@ -40,6 +40,12 @@
         T Find(object id);
 
         /// <summary>
+        /// Returns all results
+        /// </summary>
+        /// <returns>List of T</returns>
+        List<T> Select();
+
+        /// <summary>
         /// Sql select with where
         /// </summary>
         /// <param name="where">Usage: Property => Property.PropertyName == Value</param>

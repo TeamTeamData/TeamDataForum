@@ -7,6 +7,9 @@
     using DBModels;
     using Repository;
 
+    /// <summary>
+    /// Combines all repositories into one unit of work
+    /// </summary>
     public class UnitOfWork : IUnitOfWork
     {
         private const string ContextNullError = "Context cannot be null.";

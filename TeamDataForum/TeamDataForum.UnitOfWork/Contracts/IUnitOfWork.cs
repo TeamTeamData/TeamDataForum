@@ -3,6 +3,9 @@
     using DBModels;
     using Repository;
 
+    /// <summary>
+    /// Interface for unit of work
+    /// </summary>
     public interface IUnitOfWork
     {
         Repository<Country> CountryRepository { get; }
