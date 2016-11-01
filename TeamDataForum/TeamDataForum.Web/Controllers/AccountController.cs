@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using TeamDataForum.DB;
-using TeamDataForum.Web.Models;
-
-namespace TeamDataForum.Web.Content
+﻿namespace TeamDataForum.Web.Controllers
 {
-    public class AccountController : Controller
+    using System.Web.Mvc;
+    using Bases;
+    using Models;
+    using UnitOfWork.Contracts;
+
+    public class AccountController : ForumBaseController
     {
+        public AccountController(IUnitOfWork unitOfWork) 
+            : base(unitOfWork)
+        {
+        }
+
         // GET: Account
         [HttpPost]
         public ActionResult SignUp(UserLog user)
         {
-            TeamDataForumContext db = new TeamDataForumContext();
-            db.Countries.Count();
+            int count = this.UnitOfWork
+                .CountryRepository
+                .Count();
+
             return View();
         }
         [HttpGet]
