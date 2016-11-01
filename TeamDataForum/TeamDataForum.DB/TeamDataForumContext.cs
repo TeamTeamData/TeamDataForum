@@ -53,11 +53,13 @@ namespace TeamDataForum.DB
             modelBuilder.Entity<Like>()
                 .HasRequired(l => l.User)
                 .WithMany(u => u.Likes)
+                .HasForeignKey(l => l.UserId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Like>()
                 .HasRequired(l => l.Post)
                 .WithMany(p => p.Likes)
+                .HasForeignKey(l => l.PostId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Post>()
