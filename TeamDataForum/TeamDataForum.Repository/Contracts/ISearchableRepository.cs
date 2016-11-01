@@ -36,8 +36,9 @@
         /// Return specific DBModel with Id 
         /// </summary>
         /// <param name="id">Id to search for</param>
+        /// <param name="properties">List of additional properties to return like "Town.Country"</param>
         /// <returns>T</returns>
-        T Find(object id);
+        T Find(object id, List<string> properties = null);
 
         /// <summary>
         /// Returns all results

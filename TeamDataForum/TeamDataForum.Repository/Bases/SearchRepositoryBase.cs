@@ -88,14 +88,22 @@
         }
 
         /// <summary>
-        /// Return specific DBModel with Id 
+        /// Return specific DBModel with Id
         /// </summary>
         /// <param name="id">Id to search for</param>
+        /// <param name="properties">List of additional properties to return like "Town.Country"</param>
         /// <returns>T</returns>
-        public T Find(object id)
+        public T Find(object id, List<string> properties = null)
         {
-            return this.DbSet
-                .Find(id);
+            if (properties != null && properties.Count > 0)
+            {
+                foreach (string property in properties)
+                {
+                    this.DbSet.Include(property);
+                }
+            }
+
+            return this.DbSet.Find(id);
         }
 
         /// <summary>
