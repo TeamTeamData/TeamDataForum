@@ -14,6 +14,8 @@
 
         private const string SubforumError = "Sub forum title is required.";
         private const string SubforumMaxLengthError = "Sub forum title cannot be more than 300 symbols.";
+        private const string DescriptionError = "Subforum description is required.";
+        private const string DescriptionMaxError = "Subforum description cannot be more than 300 symbols.";
 
         private ISet<Topic> topics;
 
@@ -35,6 +37,13 @@
         [MaxLength(SubforumMaxLength, ErrorMessage = SubforumMaxLengthError)]
         [Index]
         public string Title { get; set; }
+
+        /// <summary>
+        /// Description of subforum - required
+        /// </summary>
+        [Required(AllowEmptyStrings = false, ErrorMessage = DescriptionError)]
+        [MaxLength(300, ErrorMessage = DescriptionMaxError)]
+        public string Description { get; set; }
 
         /// <summary>
         /// Creation date
@@ -59,5 +68,4 @@
             set { this.topics = value; }
         }
     }
-
 }
