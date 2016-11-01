@@ -108,15 +108,18 @@
         }
 
         /// <summary>
-        /// Sql select with where
+        ///  Sql select with where
         /// </summary>
         /// <param name="where">Usage: Property => Property.PropertyName == Value</param>
+        /// <param name="properties">List of additional properties to return like "Town.Country"</param>
         /// <returns>List of T</returns>
-        public List<T> Select(Expression<Func<T, bool>> where)
+        public List<T> Select(
+            Expression<Func<T, bool>> where,
+            List<string> properties = null)
         {
-            return this.DbSet
-                .Where(where)
-                .ToList();
+            IQueryable<T> query = this.BuildQuery(where, null, properties);
+
+            return query.ToList();
         }
 
         /// <summary>
@@ -125,14 +128,14 @@
         /// <param name="where">Usage: Property => Property.PropertyName == Value</param>
         /// <param name="orderBy">Usage: Query => Query.OrderBy(Property => Property.PropertyName) or 
         /// Query => Query.OrderByDescending(Property => Property.PropertyName)</param>
+        /// <param name="properties">List of additional properties to return like "Town.Country"</param>
         /// <returns>List of T</returns>
-        public List<T> Select(Expression<Func<T, bool>> where,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy)
+        public List<T> Select(
+            Expression<Func<T, bool>> where,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy,
+            List<string> properties = null)
         {
-            IQueryable<T> query = this.DbSet
-                .Where(where);
-
-            query = orderBy(query);
+            IQueryable<T> query = this.BuildQuery(where, orderBy, properties);
 
             return query.ToList();
         }
@@ -145,21 +148,52 @@
         /// Query => Query.OrderByDescending(Property => Property.PropertyName)</param>
         /// <param name="skip">Count elements to skip</param>
         /// <param name="take">Count elements to take</param>
+        /// <param name="properties">List of additional properties to return like "Town.Country"</param>
         /// <returns>List of T</returns>
-        public List<T> Select(Expression<Func<T, bool>> where,
+        public List<T> Select(
+            Expression<Func<T, bool>> where,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy,
             int skip,
-            int take)
+            int take,
+            List<string> properties = null)
         {
-            IQueryable<T> query = this.DbSet
-                .Where(where);
-
-            query = orderBy(query);
+            IQueryable<T> query = this.BuildQuery(where, orderBy, properties);
 
             return query
                 .Skip(skip)
                 .Take(take)
                 .ToList();
+        }
+
+        /// <summary>
+        /// Query builder
+        /// </summary>
+        /// <param name="where">Usage: Property => Property.PropertyName == Value</param>
+        /// <param name="orderBy">Usage: Query => Query.OrderBy(Property => Property.PropertyName) or 
+        /// Query => Query.OrderByDescending(Property => Property.PropertyName)</param>
+        /// <param name="properties">List of additional properties to return like "Town.Country"</param>
+        /// <returns>Query of T</returns>
+        private IQueryable<T> BuildQuery(
+            Expression<Func<T, bool>> where,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            List<string> properties = null)
+        {
+            IQueryable<T> query = this.DbSet.Where(where);
+
+            if (properties != null && properties.Count > 0)
+            {
+                foreach (string property in properties)
+                {
+                    query.Include(property);
+                }
+            }
+
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+
+            return query;
         }
     }
 }
