@@ -143,6 +143,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Bases\ForumBaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -184,6 +185,10 @@
     <ProjectReference Include="..\TeamDataForum.DB\TeamDataForum.DB.csproj">
       <Project>{4AC8BB64-623A-4A44-8E09-56D73F2B4886}</Project>
       <Name>TeamDataForum.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamDataForum.UnitOfWork\TeamDataForum.UnitOfWork.csproj">
+      <Project>{aff3342c-612b-43a4-aed1-398f27d28d3b}</Project>
+      <Name>TeamDataForum.UnitOfWork</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
