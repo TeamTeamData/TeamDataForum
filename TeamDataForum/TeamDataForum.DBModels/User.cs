@@ -23,8 +23,6 @@
         private ISet<Post> posts;
         private ISet<Subforum> subforums;
 
-        public int UserID { get; set; }
-
         public User()
         {
             this.likes = new HashSet<Like>();
@@ -51,6 +49,9 @@
         /// </summary>
         public virtual Town Town { get; set; }
 
+        /// <summary>
+        /// All user likes
+        /// </summary>
         public ISet<Like> Likes
         {
             get { return this.likes; }
@@ -58,6 +59,9 @@
             set { this.likes = value; }
         }
 
+        /// <summary>
+        /// All user posts
+        /// </summary>
         public ISet<Post> Posts
         {
             get { return this.posts; }
@@ -65,6 +69,9 @@
             set { this.posts = value; }
         }
 
+        /// <summary>
+        /// All subforums created by user
+        /// </summary>
         public ISet<Subforum> Subforums
         {
             get { return this.subforums; }
@@ -76,12 +83,6 @@
         {
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
 
-            return userIdentity;
-        }
-
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
-        {
-            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
             return userIdentity;
         }
     }

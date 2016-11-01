@@ -1,5 +1,6 @@
 ﻿namespace TeamDataForum.DBModels
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
@@ -27,6 +28,11 @@
         /// Is post deleted
         /// </summary>
         public bool IsDeleted { get; set; }
+
+        /// <summary>
+        /// Post creation date
+        /// </summary>
+        public DateTime PostDate { get; set; }
 
         /// <summary>
         /// Reference to User model
