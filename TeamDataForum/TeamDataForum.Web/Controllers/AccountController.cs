@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TeamDataForum.DB;
-using TeamDataForum.Models;
+using TeamDataForum.Web.Models;
 
-namespace TeamDataForum.Content
+namespace TeamDataForum.Web.Content
 {
     public class AccountController : Controller
     {

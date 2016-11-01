@@ -8,7 +8,7 @@ namespace TeamDataForum.DB
     /// <summary>
     /// Forum context
     /// </summary>
-    public class TeamDataForumContext : DbContext
+    public class TeamDataForumContext : IdentityDbContext<User>
     {
         public TeamDataForumContext()
             : base("name=TeamDataForumContext")
@@ -32,6 +32,11 @@ namespace TeamDataForum.DB
         public virtual DbSet<Topic> Topics { get; set; }
 
         public virtual DbSet<Town> Towns { get; set; }
+
+        public static TeamDataForumContext Create()
+        {
+            return new TeamDataForumContext();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

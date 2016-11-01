@@ -11,7 +11,7 @@
     /// User model for entity framework
     /// to do add inheritance to identity user
     /// </summary>
-    public class User
+    public class User : IdentityUser
     {
         private const int NameMaxLength = 50;
 
@@ -22,13 +22,11 @@
         private ISet<Like> likes;
         private ISet<Post> posts;
         private ISet<Subforum> subforums;
-        private ISet<Role> roles;
 
         public int UserID { get; set; }
 
         public User()
         {
-            this.roles = new HashSet<Role>();
             this.likes = new HashSet<Like>();
             this.posts = new HashSet<Post>();
             this.subforums = new HashSet<Subforum>();
@@ -48,23 +46,10 @@
         [MaxLength(NameMaxLength, ErrorMessage = NameLengthError)]
         public string Lastname { get; set; }
 
-        public string Telephone { get; set; }
-
-        public string Username { get; set; }
-
-        public string Password { get; set; }
-
         /// <summary>
         /// Reference to Town model
         /// </summary>
         public virtual Town Town { get; set; }
-
-        public ISet<Role> Roles
-        {
-            get { return this.roles; }
-
-            set { this.roles = value; }
-        }
 
         public ISet<Like> Likes
         {
@@ -87,6 +72,17 @@
             set { this.subforums = value; }
         }
 
-       
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
+        {
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+
+            return userIdentity;
+        }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager, string authenticationType)
+        {
+            var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
+            return userIdentity;
+        }
     }
 }
