@@ -16,8 +16,6 @@
 
         Repository<PostText> PostTextRepository { get; }
 
-        Repository<Role> RoleRepository { get; }
-
         Repository<Subforum> SubforumRepository { get; }
 
         Repository<Topic> TopicRepository { get; }

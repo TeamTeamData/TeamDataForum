@@ -98,8 +98,8 @@ namespace TeamDataForum.DB
                 .WithMany(u => u.SubforumsModerator)
                 .Map(m =>
                 {
-                    m.MapLeftKey("UserId");
-                    m.MapRightKey("SubforumId");
+                    m.MapLeftKey("SubforumId");
+                    m.MapRightKey("UserId");
                     m.ToTable("SubforumsModerators");
                 });
 

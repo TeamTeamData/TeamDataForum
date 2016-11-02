@@ -59,11 +59,6 @@
             get { return this.GetRepository<PostText>(); }
         }
 
-        public Repository<Role> RoleRepository
-        {
-            get { return this.GetRepository<Role>(); }
-        }
-
         public Repository<Subforum> SubforumRepository
         {
             get { return this.GetRepository<Subforum>(); }
