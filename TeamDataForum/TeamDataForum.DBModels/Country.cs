@@ -36,7 +36,7 @@
         [Index(CountryNameIndex)]
         public string Name { get; set; }
 
-        public ISet<Town> Towns
+        public virtual ISet<Town> Towns
         {
             get { return this.towns; }
 

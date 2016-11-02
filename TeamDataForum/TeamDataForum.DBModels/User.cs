@@ -22,12 +22,14 @@
         private ISet<Like> likes;
         private ISet<Post> posts;
         private ISet<Subforum> subforums;
+        private ISet<Subforum> subforumsModerator;
 
         public User()
         {
             this.likes = new HashSet<Like>();
             this.posts = new HashSet<Post>();
             this.subforums = new HashSet<Subforum>();
+            this.subforumsModerator = new HashSet<Subforum>();
         }
 
         /// <summary>
@@ -52,7 +54,7 @@
         /// <summary>
         /// All user likes
         /// </summary>
-        public ISet<Like> Likes
+        public virtual ISet<Like> Likes
         {
             get { return this.likes; }
 
@@ -62,7 +64,7 @@
         /// <summary>
         /// All user posts
         /// </summary>
-        public ISet<Post> Posts
+        public virtual ISet<Post> Posts
         {
             get { return this.posts; }
 
@@ -72,11 +74,21 @@
         /// <summary>
         /// All subforums created by user
         /// </summary>
-        public ISet<Subforum> Subforums
+        public virtual ISet<Subforum> Subforums
         {
             get { return this.subforums; }
 
             set { this.subforums = value; }
+        }
+
+        /// <summary>
+        /// All subforums moderate by the user
+        /// </summary>
+        public virtual ISet<Subforum> SubforumsModerator
+        {
+            get { return this.subforumsModerator; }
+
+            set { this.subforumsModerator = value; }
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)

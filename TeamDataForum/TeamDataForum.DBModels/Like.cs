@@ -24,7 +24,7 @@
         /// <summary>
         /// Reference to User model
         /// </summary>
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         /// <summary>
         /// Foreign key to posts
@@ -35,6 +35,6 @@
         /// <summary>
         /// Reference to Post model
         /// </summary>
-        public Post Post { get; set; }
+        public virtual Post Post { get; set; }
     }
 }

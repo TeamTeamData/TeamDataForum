@@ -93,6 +93,16 @@ namespace TeamDataForum.DB
                 .WithMany(u => u.Subforums)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<Subforum>()
+                .HasMany(s => s.Moderators)
+                .WithMany(u => u.SubforumsModerator)
+                .Map(m =>
+                {
+                    m.MapLeftKey("UserId");
+                    m.MapRightKey("SubforumId");
+                    m.ToTable("SubforumsModerators");
+                });
+
             base.OnModelCreating(modelBuilder);
         }
     }

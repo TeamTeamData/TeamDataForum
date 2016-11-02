@@ -18,10 +18,12 @@
         private const string DescriptionMaxError = "Subforum description cannot be more than 300 symbols.";
 
         private ISet<Topic> topics;
+        private ISet<User> moderators;
 
         public Subforum()
         {
             this.topics = new HashSet<Topic>();
+            this.moderators = new HashSet<User>();
         }
 
         /// <summary>
@@ -56,16 +58,26 @@
         /// <summary>
         /// Creator
         /// </summary>
-        public User Creator { get; set; }
+        public virtual User Creator { get; set; }
 
         /// <summary>
         /// All topics in subforum
         /// </summary>
-        public ISet<Topic> Topics
+        public virtual ISet<Topic> Topics
         {
             get { return this.topics; }
 
             set { this.topics = value; }
+        }
+
+        /// <summary>
+        /// Moderators for subforum
+        /// </summary>
+        public virtual ISet<User> Moderators
+        {
+            get { return this.moderators; }
+
+            set { this.moderators = value; }
         }
     }
 }
