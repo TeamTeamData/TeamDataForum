@@ -36,9 +36,9 @@
         /// Return specific DBModel with Id 
         /// </summary>
         /// <param name="id">Id to search for</param>
-        /// <param name="properties">List of additional properties to return like "Town.Country"</param>
+        /// <param name="properties">Enumerable of additional properties to return like "Town.Country"</param>
         /// <returns>T</returns>
-        T Find(object id, List<string> properties = null);
+        T Find(object id, IEnumerable<string> properties = null);
 
         /// <summary>
         /// Returns all results
@@ -50,9 +50,9 @@
         ///  Sql select with where
         /// </summary>
         /// <param name="where">Usage: Property => Property.PropertyName == Value</param>
-        /// <param name="properties">List of additional properties to return like "Town.Country"</param>
+        /// <param name="properties">Enumerable of additional properties to return like "Town.Country"</param>
         /// <returns>List of T</returns>
-        List<T> Select(Expression<Func<T, bool>> where, List<string> properties = null);
+        List<T> Select(Expression<Func<T, bool>> where, IEnumerable<string> properties = null);
 
         /// <summary>
         /// Sql select with where
@@ -60,12 +60,12 @@
         /// <param name="where">Usage: Property => Property.PropertyName == Value</param>
         /// <param name="orderBy">Usage: Query => Query.OrderBy(Property => Property.PropertyName) or 
         /// Query => Query.OrderByDescending(Property => Property.PropertyName)</param>
-        /// <param name="properties">List of additional properties to return like "Town.Country"</param>
+        /// <param name="properties">Enumerable of additional properties to return like "Town.Country"</param>
         /// <returns>List of T</returns>
         List<T> Select(
             Expression<Func<T, bool>> where,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy,
-            List<string> properties = null);
+            IEnumerable<string> properties = null);
 
         /// <summary>
         /// Sql select with where
@@ -75,13 +75,13 @@
         /// Query => Query.OrderByDescending(Property => Property.PropertyName)</param>
         /// <param name="skip">Count elements to skip</param>
         /// <param name="take">Count elements to take</param>
-        /// <param name="properties">List of additional properties to return like "Town.Country"</param>
+        /// <param name="properties">Enumerable of additional properties to return like "Town.Country"</param>
         /// <returns>List of T</returns>
         List<T> Select(
             Expression<Func<T, bool>> where,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy,
             int skip,
             int take,
-            List<string> properties = null);
+            IEnumerable<string> properties = null);
     }
 }
