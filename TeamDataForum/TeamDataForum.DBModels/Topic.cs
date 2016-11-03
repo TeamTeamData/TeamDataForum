@@ -43,6 +43,14 @@
 
         public int TimesSeen { get; set; }
 
+        /// <summary>
+        /// If topic is locked
+        /// </summary>
+        public bool IsLocked { get; set; }
+
+        /// <summary>
+        /// If topic is deleted
+        /// </summary>
         public bool IsDeleted { get; set; }
 
         /// <summary>
