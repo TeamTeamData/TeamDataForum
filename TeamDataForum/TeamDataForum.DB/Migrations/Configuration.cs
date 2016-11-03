@@ -2,6 +2,8 @@ namespace TeamDataForum.DB.Migrations
 {
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using DBModels;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TeamDataForumContext>
@@ -14,26 +16,65 @@ namespace TeamDataForum.DB.Migrations
 
         protected override void Seed(TeamDataForumContext context)
         {
-            this.CreateTowns(context);
+            User user = this.CreateUser(context);
+            // to do seed additional models
         }
 
-        private void CreateTowns(TeamDataForumContext context)
+        /// <summary>
+        /// Create administrator
+        /// </summary>
+        /// <param name="context">TeamDataForumContext</param>
+        /// <returns>Returns created administrator</returns>
+        private User CreateUser(TeamDataForumContext context)
         {
-            string sofia = "Sofia";
+            string admin = "Administrator";
 
-            if (!context.Towns.Any(t => t.Name == sofia))
+            if (!context.Users.Any(u => u.UserName == admin))
             {
-                context.Towns.Add(new Town()
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
+
+                IdentityRole adminRole = new IdentityRole()
                 {
-                    Name = sofia,
-                    Country = new Country()
+                    Name = "Administrator"
+                };
+
+                IdentityRole moderatorRole = new IdentityRole()
+                {
+                    Name = "Moderator"
+                };
+
+                context.Roles.Add(adminRole);
+                context.Roles.Add(moderatorRole);
+
+                var userMananger = new UserManager<User>(new UserStore<User>());
+                var passwordHashers = new PasswordHasher();
+
+                User user = new User()
+                {
+                    Firstname = "Jojo",
+                    Lastname = "Mojo",
+                    UserName = admin,
+                    Town = new Town()
                     {
-                        Name = "Bulgaria"
-                    }
-                });
+                        Name = "Sofia",
+                        Country = new Country() { Name = "Bulgaria" }
+                    },
+                    PasswordHash = passwordHashers.HashPassword("123456")
+                };
+
+                context.Users.Add(user);
+
+                user.Roles.Add(new IdentityUserRole() { UserId = user.Id, RoleId = adminRole.Id });
+                user.Roles.Add(new IdentityUserRole() { UserId = user.Id, RoleId = moderatorRole.Id });
 
                 context.SaveChanges();
+
+                return user;
             }
+
+            return context.Users
+                .Where(u => u.UserName == admin)
+                .FirstOrDefault();
         }
     }
 }
