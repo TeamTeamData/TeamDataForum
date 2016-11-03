@@ -9,7 +9,6 @@
 
     /// <summary>
     /// User model for entity framework
-    /// to do add inheritance to identity user
     /// </summary>
     public class User : IdentityUser
     {
@@ -18,6 +17,7 @@
         private const string FirstnameError = "First name is required.";
         private const string LastnameError = "Last name is required.";
         private const string NameLengthError = "Name cannot be more than 50 symbols.";
+        private const string UserImageMaxError = "Image path cannot be more than 500 sumbols.";
 
         private ISet<Like> likes;
         private ISet<Post> posts;
@@ -45,6 +45,12 @@
         [Required(AllowEmptyStrings = false, ErrorMessage = LastnameError)]
         [MaxLength(NameMaxLength, ErrorMessage = NameLengthError)]
         public string Lastname { get; set; }
+
+        /// <summary>
+        /// Avatar of user
+        /// </summary>
+        [MaxLength(500, ErrorMessage = UserImageMaxError)]
+        public string Image { get; set; }
 
         /// <summary>
         /// Reference to Town model
