@@ -192,7 +192,7 @@
             {
                 foreach (string property in properties)
                 {
-                    query.Include(property);
+                    query = query.Include(property);
                 }
             }
 
