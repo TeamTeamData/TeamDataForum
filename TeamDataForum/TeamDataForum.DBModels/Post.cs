@@ -34,6 +34,9 @@
         /// </summary>
         public DateTime PostDate { get; set; }
 
+        /// <summary>
+        /// Modified date
+        /// </summary>
         public DateTime? ModifiedOn { get; set; }
 
         /// <summary>
