@@ -34,6 +34,8 @@
         /// </summary>
         public DateTime PostDate { get; set; }
 
+        public DateTime? ModifiedOn { get; set; }
+
         /// <summary>
         /// Reference to User model
         /// </summary>
