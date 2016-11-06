@@ -7,7 +7,7 @@
     /// <summary>
     /// Topic model for Entity framework
     /// </summary>
-    public class Topic
+    public class Thread
     {
         private const int TopicMaxLength = 300;
 
@@ -17,7 +17,7 @@
 
         private ISet<Post> posts;
 
-        public Topic()
+        public Thread()
         {
             this.posts = new HashSet<Post>();
         }

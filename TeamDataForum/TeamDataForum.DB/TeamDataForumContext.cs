@@ -29,7 +29,7 @@ namespace TeamDataForum.DB
 
         public virtual DbSet<Subforum> Subforums { get; set; }   
 
-        public virtual DbSet<Topic> Topics { get; set; }
+        public virtual DbSet<Thread> Topics { get; set; }
 
         public virtual DbSet<Town> Towns { get; set; }
 

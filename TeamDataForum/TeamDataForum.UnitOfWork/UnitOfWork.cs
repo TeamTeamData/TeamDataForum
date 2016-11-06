@@ -64,9 +64,9 @@
             get { return this.GetRepository<Subforum>(); }
         }
 
-        public Repository<Topic> TopicRepository
+        public Repository<Thread> TopicRepository
         {
-            get { return this.GetRepository<Topic>(); }
+            get { return this.GetRepository<Thread>(); }
         }
 
         public Repository<Town> TownRespository

@@ -25,7 +25,7 @@ namespace TeamDataForum.DB.Migrations
             this.CreateSubforum(context, user, "Gaming", "Everything about your favourite games.");
             this.CreateSubforum(context, user, "Off Topic", "Off topic.");
 
-            Topic topicRules = this.CreateTopic(context, user, subforumRules, "Rules", true);
+            Thread topicRules = this.CreateTopic(context, user, subforumRules, "Rules", true);
 
             if (topicRules.Posts.Count == 0)
             {
@@ -123,7 +123,7 @@ namespace TeamDataForum.DB.Migrations
                 .FirstOrDefault();
         }
 
-        private Topic CreateTopic(
+        private Thread CreateTopic(
             TeamDataForumContext context,
             User user,
             Subforum subforum,
@@ -132,7 +132,7 @@ namespace TeamDataForum.DB.Migrations
         {
             if (!context.Topics.Any(t => t.Title == topicTitle))
             {
-                Topic topic = new Topic()
+                Thread topic = new Thread()
                 {
                     Title = topicTitle,
                     Date = DateTime.Now,
@@ -156,7 +156,7 @@ namespace TeamDataForum.DB.Migrations
         public Post CreatePost(
             TeamDataForumContext context,
             User user,
-            Topic topic,
+            Thread topic,
             string postText)
         {
             Post post = new Post()
