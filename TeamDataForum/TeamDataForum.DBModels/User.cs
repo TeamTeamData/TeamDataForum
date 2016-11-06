@@ -21,6 +21,7 @@
 
         private ISet<Like> likes;
         private ISet<Post> posts;
+        private ISet<Thread> threads;
         private ISet<Subforum> subforums;
         private ISet<Subforum> subforumsModerator;
 
@@ -28,6 +29,7 @@
         {
             this.likes = new HashSet<Like>();
             this.posts = new HashSet<Post>();
+            this.threads = new HashSet<Thread>();
             this.subforums = new HashSet<Subforum>();
             this.subforumsModerator = new HashSet<Subforum>();
         }
@@ -75,6 +77,16 @@
             get { return this.posts; }
 
             set { this.posts = value; }
+        }
+
+        /// <summary>
+        /// All user created threads
+        /// </summary>
+        public virtual ISet<Thread> Threads
+        {
+            get { return this.threads; }
+
+            set { this.threads = value; }
         }
 
         /// <summary>

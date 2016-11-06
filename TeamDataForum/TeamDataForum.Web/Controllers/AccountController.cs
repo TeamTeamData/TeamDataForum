@@ -7,7 +7,7 @@
 
     public class AccountController : ForumBaseController
     {
-        public AccountController(IUnitOfWork unitOfWork) 
+        public AccountController(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
         }

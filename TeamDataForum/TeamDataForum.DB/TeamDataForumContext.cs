@@ -71,7 +71,7 @@ namespace TeamDataForum.DB
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Post>()
-                .HasRequired(p => p.Topic)
+                .HasRequired(p => p.Thread)
                 .WithMany(t => t.Posts)
                 .WillCascadeOnDelete(false);
 
@@ -102,6 +102,11 @@ namespace TeamDataForum.DB
                     m.MapRightKey("UserId");
                     m.ToTable("SubforumsModerators");
                 });
+
+            modelBuilder.Entity<Thread>()
+                .HasRequired(t => t.Creator)
+                .WithMany(u => u.Threads)
+                .WillCascadeOnDelete(false);
 
             base.OnModelCreating(modelBuilder);
         }

@@ -37,6 +37,14 @@ namespace TeamDataForum.DB.Migrations
                 "Aenean nec risus eget libero vestibulum vestibulum non id diam. In posuere massa id semper rhoncus." +
                 "Sed malesuada, mauris a tempor malesuada, sapien metus dictum purus, at congue neque massa eu urna." +
                 "Nullam ornare ligula leo, sit amet sollicitudin urna pharetra sed. ");
+
+                this.CreatePost(context, user, topicRules, "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit vitae mauris a auctor." +
+                    "Quisque in tincidunt odio. Integer tincidunt lobortis lacus, a viverra ante vestibulum sed. Proin varius porta odio sit amet sollicitudin." +
+                    "Vestibulum risus arcu, elementum eget aliquet eget, pharetra ut lorem. Suspendisse vitae eros ac quam dapibus fringilla nec vitae nibh." +
+                    "Cras posuere ut nunc at interdum. Aliquam arcu dolor, sollicitudin in neque quis, dapibus rutrum nisl. Sed at facilisis risus." +
+                    "Nullam faucibus tortor ut libero maximus facilisis. Aenean urna lorem, facilisis tincidunt pellentesque nec, dignissim at nunc." +
+                    "Sed fermentum tempus ex, quis laoreet nisl finibus non. In eget sapien lectus. Aliquam pharetra fringilla nisi non eleifend." +
+                    "Vestibulum euismod tincidunt elementum. Nullam pretium lorem sed ornare commodo.");
             } 
         }
 
@@ -164,7 +172,7 @@ namespace TeamDataForum.DB.Migrations
                 Creator = user,
                 PostDate = DateTime.Now,
                 Text = new PostText() { Text = postText },
-                Topic = topic
+                Thread = topic
             };
 
             context.Posts.Add(post);

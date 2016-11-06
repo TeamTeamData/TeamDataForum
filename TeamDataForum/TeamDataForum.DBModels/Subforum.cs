@@ -17,12 +17,12 @@
         private const string DescriptionError = "Subforum description is required.";
         private const string DescriptionMaxError = "Subforum description cannot be more than 300 symbols.";
 
-        private ISet<Thread> topics;
+        private ISet<Thread> threads;
         private ISet<User> moderators;
 
         public Subforum()
         {
-            this.topics = new HashSet<Thread>();
+            this.threads = new HashSet<Thread>();
             this.moderators = new HashSet<User>();
         }
 
@@ -63,11 +63,11 @@
         /// <summary>
         /// All topics in subforum
         /// </summary>
-        public virtual ISet<Thread> Topics
+        public virtual ISet<Thread> Threads
         {
-            get { return this.topics; }
+            get { return this.threads; }
 
-            set { this.topics = value; }
+            set { this.threads = value; }
         }
 
         /// <summary>

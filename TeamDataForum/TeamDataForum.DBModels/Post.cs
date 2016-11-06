@@ -17,7 +17,7 @@
             this.likes = new HashSet<Like>();
             this.responses = new HashSet<Post>();
         }
-        
+
         /// <summary>
         /// Primary key
         /// </summary>
@@ -37,7 +37,12 @@
         /// <summary>
         /// Modified date
         /// </summary>
-        public DateTime? ModifiedOn { get; set; }
+        public DateTime? ChangeDate { get; set; }
+
+        /// <summary>
+        /// The user who changed the post
+        /// </summary>
+        public virtual User Changer { get; set; }
 
         /// <summary>
         /// Reference to User model
@@ -47,7 +52,7 @@
         /// <summary>
         /// Reference to Topic model
         /// </summary>
-        public virtual Thread Topic { get; set; }
+        public virtual Thread Thread { get; set; }
 
         /// <summary>
         /// Reference to PostText
