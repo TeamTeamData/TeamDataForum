@@ -26,7 +26,7 @@
         /// Primary key
         /// </summary>
         [Key]
-        public int TopicId { get; set; }
+        public int ThreadId { get; set; }
 
         /// <summary>
         /// Topic title
