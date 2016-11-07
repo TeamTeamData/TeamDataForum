@@ -64,12 +64,12 @@
             get { return this.GetRepository<Subforum>(); }
         }
 
-        public Repository<Thread> TopicRepository
+        public Repository<Thread> ThreadRepository
         {
             get { return this.GetRepository<Thread>(); }
         }
 
-        public Repository<Town> TownRespository
+        public Repository<Town> TownRepository
         {
             get { return this.GetRepository<Town>(); }
         }

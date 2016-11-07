@@ -18,9 +18,9 @@
 
         Repository<Subforum> SubforumRepository { get; }
 
-        Repository<Thread> TopicRepository { get; }
+        Repository<Thread> ThreadRepository { get; }
 
-        Repository<Town> TownRespository { get; }
+        Repository<Town> TownRepository { get; }
 
         Repository<User> UserRepository { get; }
     }
