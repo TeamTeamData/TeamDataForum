@@ -60,6 +60,7 @@
     <Compile Include="Bases\ChangeRepositoryBase.cs" />
     <Compile Include="Bases\SearchRepositoryBase.cs" />
     <Compile Include="Contracts\IChangeableRepository.cs" />
+    <Compile Include="Contracts\IForumQueryable.cs" />
     <Compile Include="Contracts\IRepository.cs" />
     <Compile Include="Contracts\ISearchableRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

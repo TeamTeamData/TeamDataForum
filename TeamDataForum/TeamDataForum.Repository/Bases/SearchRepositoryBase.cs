@@ -12,7 +12,7 @@
     /// Base class for Repository
     /// </summary>
     /// <typeparam name="T">T is class from DBModels</typeparam>
-    public abstract class SearchRepositoryBase<T> : ISearchableRepository<T>
+    public abstract class SearchRepositoryBase<T> : ISearchableRepository<T>, IForumQueryable<T>
         where T : class
     {
         private const string ContextNullError = "Context cannot be null.";
@@ -31,6 +31,14 @@
         {
             this.Context = context;
             this.DbSet = this.Context.Set<T>();
+        }
+
+        public IQueryable<T> Query
+        {
+            get
+            {
+                return this.DbSet;
+            }
         }
 
         protected TeamDataForumContext Context
