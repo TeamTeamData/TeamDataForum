@@ -1,13 +1,15 @@
-﻿
+﻿@using TeamDataForum.Web.Models.ViewModels.Subforums
+@model IEnumerable<SubforumViewModel>
+
 @{
     ViewBag.Title = "Home";
 }
 <link href="~/Content/Login-style.css" rel="stylesheet" />
 <div class="container">
     <div class="card card-container">
-
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <p id="profile-name" class="profile-name-card"></p>
+
         @using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
         {
             <span id="reauth-email" class="reauth-email"></span>

@@ -2,7 +2,7 @@
 {
     using System.Web.Mvc;
     using Bases;
-    using Models;
+    using Models.BindingModels.Users;
     using UnitOfWork.Contracts;
 
     public class AccountController : ForumBaseController

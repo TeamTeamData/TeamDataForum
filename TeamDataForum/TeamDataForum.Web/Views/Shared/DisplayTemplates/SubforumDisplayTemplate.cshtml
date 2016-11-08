@@ -1,0 +1,13 @@
+﻿@using TeamDataForum.Web.Models.ViewModels.Subforums,
+@model SubforumViewModel
+
+<div>
+    <div style="border: 1px solid black">
+        <div>@Model.Title</div>
+        <div>@Model.Description</div>
+        <div>@Model.Date.ToString("dd.MM.yyyy")</div>
+        <div>@string.Join(", ", Model.Moderators)</div>
+    </div>
+    <div>Total threads: @Model.Threads</div>
+    <div>Total posts: @Model.Posts</div>
+</div>
