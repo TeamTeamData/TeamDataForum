@@ -1,13 +1,14 @@
 ﻿@using TeamDataForum.Web.Models.ViewModels.Subforums
 @model SubforumViewModel
 
-<div style="border: 1px solid black">
-    <div>
-        <div>@Model.Title</div>
+<tr>
+    <td>
+        <div>@Html.ActionLink(Model.Title, "Threads", new { Id = Model.Id })</div>
         <div>@Model.Description</div>
         <div>@Model.Date.ToString("dd.MM.yyyy")</div>
         <div>@string.Join(", ", Model.Moderators)</div>
-    </div>
-    <div>Total threads: @Model.Threads</div>
-    <div>Total posts: @Model.Posts</div>
-</div>
+    </td>
+    <td>@Html.DisplayFor(m => m.LatestPost)</td>
+    <td>@Model.Threads</td>
+    <td>@Model.Posts</td>
+</tr>

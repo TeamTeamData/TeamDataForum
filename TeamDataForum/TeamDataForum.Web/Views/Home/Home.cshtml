@@ -1,13 +1,10 @@
 ﻿@using TeamDataForum.Web.Models.ViewModels.Subforums
-@model IEnumerable<SubforumViewModel>
+@model ForumViewModel
 
 @{
     ViewBag.Title = "Home";
 }
 <link href="~/Content/Login-style.css" rel="stylesheet" />
 <div class="container">
-    @foreach (var t in Model)
-    {
-        <div>@Html.DisplayFor(m => t, "SubforumDisplayTemplate")</div>
-    }
+    @Html.DisplayForModel()
 </div>

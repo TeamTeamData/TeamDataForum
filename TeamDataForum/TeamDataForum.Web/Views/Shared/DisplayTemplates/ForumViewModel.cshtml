@@ -1,0 +1,16 @@
+﻿@using TeamDataForum.Web.Models.ViewModels.Subforums
+@model ForumViewModel
+
+<table>
+    <thead>
+        <tr>
+            <th>Forum</th>
+            <th>Latest Post</th>
+            <th>Threads</th>
+            <th>Posts</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.DisplayFor(m => m.Subforums)
+    </tbody>
+</table>
