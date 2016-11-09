@@ -1,0 +1,12 @@
+﻿@using TeamDataForum.Web.Models.BindingModels.Users
+@model UserLogBindingModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+@Html.EditorForModel("UserLogEditorTemplate");
+

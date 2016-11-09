@@ -14,7 +14,7 @@
 
         // GET: Account
         [HttpPost]
-        public ActionResult SignUp(UserLog user)
+        public ActionResult SignUp(UserLogBindingModel user)
         {
             int count = this.UnitOfWork
                 .CountryRepository
@@ -22,13 +22,20 @@
 
             return View();
         }
+
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
-        public ActionResult Register(UserLog user)
+        public ActionResult Register(UserLogBindingModel user)
+        {
+            return View();
+        }
+
+        public ActionResult Login()
         {
             return View();
         }

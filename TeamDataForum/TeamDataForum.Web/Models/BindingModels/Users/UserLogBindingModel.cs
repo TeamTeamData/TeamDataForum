@@ -1,6 +1,6 @@
 ﻿namespace TeamDataForum.Web.Models.BindingModels.Users
 {
-    public class UserLog
+    public class UserLogBindingModel
     {
         public string Username { get; set; }
 
