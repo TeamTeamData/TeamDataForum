@@ -3,7 +3,7 @@
 
 <tr>
     <td>
-        <div>@Html.ActionLink(Model.Title, "Threads", new { Id = Model.Id })</div>
+        <div>@Html.ActionLink(Model.Title, "", "Thread", new { Id = Model.Id }, null)</div>
         <div>@Model.Description</div>
         <div>@Model.Date.ToString("dd.MM.yyyy")</div>
         <div>@string.Join(", ", Model.Moderators)</div>

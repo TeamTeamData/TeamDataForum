@@ -1,0 +1,11 @@
+﻿@using TeamDataForum.Web.Models.ViewModels.Threads
+@model ThreadViewModel
+
+<tr>
+    <td>
+        <div>@Html.ActionLink(@Model.Title, "View", new { id = Model.Id })</div>
+    </td>
+    <td>@Html.DisplayFor(m => m.LastPost)</td>
+    <td>@Model.Replies</td>
+    <td>@Model.TimesSeen</td>
+</tr>
