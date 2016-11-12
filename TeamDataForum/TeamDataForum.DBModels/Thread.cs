@@ -61,7 +61,7 @@
         /// <summary>
         /// Reference to subforum
         /// </summary>
-        public virtual Subforum Subforum { get; set; }
+        public virtual Forum Forum { get; set; }
 
         /// <summary>
         /// All topic posts

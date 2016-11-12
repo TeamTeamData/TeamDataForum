@@ -29,7 +29,7 @@
                 .Where(s => !s.IsDeleted)
                 .Select(s => new SubforumViewModel()
                 {
-                    Id = s.SubforumId,
+                    Id = s.ForumId,
                     Title = s.Title,
                     Description = s.Description,
                     Date = s.Date,

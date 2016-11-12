@@ -32,7 +32,7 @@
             var threads = this.UnitOfWork
                 .ThreadRepository
                 .Query
-                .Where(t => t.Subforum.SubforumId == id && !t.IsDeleted)
+                .Where(t => t.Forum.ForumId == id && !t.IsDeleted)
                 .Select(t => new ThreadViewModel()
                 {
                     Id = t.ThreadId,

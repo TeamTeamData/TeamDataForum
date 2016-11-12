@@ -8,19 +8,19 @@
     /// <summary>
     /// Subforum model for Entity framework
     /// </summary>
-    public class Subforum
+    public class Forum
     {
         private const int SubforumMaxLength = 300;
 
-        private const string SubforumError = "Sub forum title is required.";
-        private const string SubforumMaxLengthError = "Sub forum title cannot be more than 300 symbols.";
-        private const string DescriptionError = "Subforum description is required.";
-        private const string DescriptionMaxError = "Subforum description cannot be more than 300 symbols.";
+        private const string ForumError = "Forum title is required.";
+        private const string ForumMaxLengthError = "Forum title cannot be more than 300 symbols.";
+        private const string DescriptionError = "Forum description is required.";
+        private const string DescriptionMaxError = "Forum description cannot be more than 300 symbols.";
 
         private ISet<Thread> threads;
         private ISet<User> moderators;
 
-        public Subforum()
+        public Forum()
         {
             this.threads = new HashSet<Thread>();
             this.moderators = new HashSet<User>();
@@ -30,13 +30,13 @@
         /// Primary key
         /// </summary>
         [Key]
-        public int SubforumId { get; set; }
+        public int ForumId { get; set; }
 
         /// <summary>
         /// Title - required, unique
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = SubforumError)]
-        [MaxLength(SubforumMaxLength, ErrorMessage = SubforumMaxLengthError)]
+        [Required(AllowEmptyStrings = false, ErrorMessage = ForumError)]
+        [MaxLength(SubforumMaxLength, ErrorMessage = ForumMaxLengthError)]
         [Index]
         public string Title { get; set; }
 

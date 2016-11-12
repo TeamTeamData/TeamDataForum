@@ -27,7 +27,7 @@ namespace TeamDataForum.DB
 
         public virtual DbSet<PostText> PostTexts { get; set; }
 
-        public virtual DbSet<Subforum> Subforums { get; set; }   
+        public virtual DbSet<Forum> Subforums { get; set; }   
 
         public virtual DbSet<Thread> Topics { get; set; }
 
@@ -85,17 +85,17 @@ namespace TeamDataForum.DB
                 .WithRequiredDependent(pt => pt.Post)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Subforum>()
-                .HasKey(s => s.SubforumId);
+            modelBuilder.Entity<Forum>()
+                .HasKey(s => s.ForumId);
 
-            modelBuilder.Entity<Subforum>()
+            modelBuilder.Entity<Forum>()
                 .HasRequired(s => s.Creator)
-                .WithMany(u => u.Subforums)
+                .WithMany(u => u.Forums)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Subforum>()
+            modelBuilder.Entity<Forum>()
                 .HasMany(s => s.Moderators)
-                .WithMany(u => u.SubforumsModerator)
+                .WithMany(u => u.ForumModerators)
                 .Map(m =>
                 {
                     m.MapLeftKey("SubforumId");

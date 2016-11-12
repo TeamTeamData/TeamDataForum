@@ -19,7 +19,7 @@ namespace TeamDataForum.DB.Migrations
         {
             User user = this.CreateUser(context);
 
-            Subforum subforumRules = this.CreateSubforum(context, user, "Forum Rules", "Team Data Forum forum rules.");
+            Forum subforumRules = this.CreateSubforum(context, user, "Forum Rules", "Team Data Forum forum rules.");
             this.CreateSubforum(context, user, "Forum News", "Forum news.");
             this.CreateSubforum(context, user, "Programming", "Everything about C#, Java, JavaScript and other programming languages.");
             this.CreateSubforum(context, user, "Gaming", "Everything about your favourite games.");
@@ -105,11 +105,11 @@ namespace TeamDataForum.DB.Migrations
                 .FirstOrDefault();
         }
 
-        private Subforum CreateSubforum(TeamDataForumContext context, User user, string subforumTitle, string subforumDescription)
+        private Forum CreateSubforum(TeamDataForumContext context, User user, string subforumTitle, string subforumDescription)
         {
             if (!context.Subforums.Any(s => s.Title == subforumTitle))
             {
-                Subforum subforum = new Subforum()
+                Forum subforum = new Forum()
                 {
                     Title = subforumTitle,
                     Date = DateTime.Now,
@@ -134,7 +134,7 @@ namespace TeamDataForum.DB.Migrations
         private Thread CreateTopic(
             TeamDataForumContext context,
             User user,
-            Subforum subforum,
+            Forum subforum,
             string topicTitle,
             bool isLocked)
         {
@@ -145,7 +145,7 @@ namespace TeamDataForum.DB.Migrations
                     Title = topicTitle,
                     Date = DateTime.Now,
                     Creator = user,
-                    Subforum = subforum,
+                    Forum = subforum,
                     IsLocked = isLocked
                 };
 
