@@ -2,10 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
-    using Posts;
+    using Threads;
     using Users;
 
-    public class SubforumViewModel
+    public class ForumFullViewModel
     {
         public int Id { get; set; }
 
@@ -17,10 +17,6 @@
 
         public IEnumerable<UserViewModel> Moderators { get; set; }
 
-        public int Threads { get; set; }
-
-        public int Posts { get; set; }
-
-        public PostViewModel LatestPost { get; set; }
+        public IEnumerable<ThreadViewModel> Threads { get; set; }
     }
 }

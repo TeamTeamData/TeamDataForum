@@ -1,0 +1,23 @@
+﻿@using TeamDataForum.Web.Models.ViewModels.Forums
+@model ForumFullViewModel
+
+<div>
+    <div>@Model.Title</div>
+    <div>@Model.Description</div>
+    <div>@Model.Date</div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Thread</td>
+                    <td>Last Post</td>
+                    <td>Replies</td>
+                    <td>Times seen</td>
+                </tr>
+            </thead>
+            <tbody>
+                @Html.DisplayFor(m => m.Threads)
+            </tbody>
+        </table>
+    </div>
+</div>

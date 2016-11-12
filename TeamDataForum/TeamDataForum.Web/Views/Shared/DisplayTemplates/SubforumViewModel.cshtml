@@ -1,12 +1,12 @@
-﻿@using TeamDataForum.Web.Models.ViewModels.Subforums
+﻿@using TeamDataForum.Web.Models.ViewModels.Forums
 @model SubforumViewModel
 
 <tr>
     <td>
-        <div>@Html.ActionLink(Model.Title, "", "Thread", new { Id = Model.Id }, null)</div>
+        <div>@Html.ActionLink(Model.Title, "View", "", new { Id = Model.Id }, null)</div>
         <div>@Model.Description</div>
         <div>@Model.Date.ToString("dd.MM.yyyy")</div>
-        <div>@string.Join(", ", Model.Moderators)</div>
+        <div>@Html.DisplayFor(m => m.Moderators)</div>
     </td>
     <td>@Html.DisplayFor(m => m.LatestPost)</td>
     <td>@Model.Threads</td>

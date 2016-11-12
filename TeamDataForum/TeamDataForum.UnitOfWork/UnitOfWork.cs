@@ -59,7 +59,7 @@
             get { return this.GetRepository<PostText>(); }
         }
 
-        public Repository<Forum> SubforumRepository
+        public Repository<Forum> ForumRepository
         {
             get { return this.GetRepository<Forum>(); }
         }

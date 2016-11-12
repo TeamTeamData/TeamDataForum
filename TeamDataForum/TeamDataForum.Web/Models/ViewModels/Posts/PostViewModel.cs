@@ -1,8 +1,9 @@
 ﻿namespace TeamDataForum.Web.Models.ViewModels.Posts
 {
     using System;
+    using Users;
 
-    public class LatestPostViewModel
+    public class PostViewModel
     {
         public int Id { get; set; }
 
@@ -10,7 +11,7 @@
 
         public string Title { get; set; }
 
-        public string Author { get; set; }
+        public UserViewModel Author { get; set; }
 
         public DateTime Date { get; set; }
     }

@@ -27,36 +27,7 @@
         /// <returns>View of ThreadsViewModel</returns>
         public ActionResult Home(int id)
         {
-            int threadId = id;
-
-            var threads = this.UnitOfWork
-                .ThreadRepository
-                .Query
-                .Where(t => t.Forum.ForumId == id && !t.IsDeleted)
-                .Select(t => new ThreadViewModel()
-                {
-                    Id = t.ThreadId,
-                    Title = t.Title,
-                    TimesSeen = t.TimesSeen,
-                    IsLocked = t.IsLocked,
-                    Replies = t.Posts.Count,
-                    LastPost = t.Posts.OrderByDescending(p => p.PostId).Select(p => new LatestPostViewModel()
-                    {
-                        Id = p.PostId,
-                        ThreadId = p.Thread.ThreadId,
-                        Title = p.Thread.Title,
-                        Author = p.Creator.UserName,
-                        Date = p.PostDate
-                    })
-                    .FirstOrDefault()
-                })
-                .OrderBy(t => t.Id)
-                .ToList();
-
-            ThreadsViewModel threadsViewModel = new ThreadsViewModel();
-            threadsViewModel.Threads = threads;
-
-            return View(threadsViewModel);
+            return this.View(id);
         }
 
         /// <summary>
