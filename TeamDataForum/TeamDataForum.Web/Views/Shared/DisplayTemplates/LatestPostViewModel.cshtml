@@ -3,7 +3,9 @@
 
 @if (Model != null)
 {
-    <div>@Html.ActionLink(Model.Title, "Threads", new { Id = Model.ThreadId })</div>
+    var postPath = $"#{Model.Id}";
+    
+    <div>@Html.ActionLink(Model.Title, "Threads", new { Id = Model.ThreadId + postPath })</div>
     <div>@Model.Author</div>
     <div>@Model.Date</div>
 }

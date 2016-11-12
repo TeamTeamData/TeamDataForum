@@ -39,7 +39,8 @@
                     LatestPost = s.Threads
                     .Select(t => t.Posts.OrderByDescending(p => p.PostId).FirstOrDefault()).Select(p => new LatestPostViewModel
                     {
-                        ThreadId = p.PostId,
+                        Id = p.PostId,
+                        ThreadId = p.Thread.ThreadId,
                         Title = p.Thread.Title,
                         Author = p.Creator.UserName,
                         Date = p.PostDate

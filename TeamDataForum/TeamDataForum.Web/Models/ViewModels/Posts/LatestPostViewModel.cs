@@ -4,6 +4,8 @@
 
     public class LatestPostViewModel
     {
+        public int Id { get; set; }
+
         public int ThreadId { get; set; }
 
         public string Title { get; set; }
