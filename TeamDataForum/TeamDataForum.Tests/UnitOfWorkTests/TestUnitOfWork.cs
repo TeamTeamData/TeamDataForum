@@ -22,7 +22,7 @@
             Assert.AreEqual(typeof(Repository<Like>), unitOfWork.LikeRepository.GetType());
             Assert.AreEqual(typeof(Repository<Post>), unitOfWork.PostRepository.GetType());
             Assert.AreEqual(typeof(Repository<PostText>), unitOfWork.PostTextRepository.GetType());
-            Assert.AreEqual(typeof(Repository<Subforum>), unitOfWork.SubforumRepository.GetType());
+            Assert.AreEqual(typeof(Repository<Forum>), unitOfWork.SubforumRepository.GetType());
             Assert.AreEqual(typeof(Repository<Thread>), unitOfWork.ThreadRepository.GetType());
             Assert.AreEqual(typeof(Repository<Town>), unitOfWork.TownRepository.GetType());
             Assert.AreEqual(typeof(Repository<User>), unitOfWork.UserRepository.GetType());

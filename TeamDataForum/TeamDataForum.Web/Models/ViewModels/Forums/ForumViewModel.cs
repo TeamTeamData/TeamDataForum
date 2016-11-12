@@ -1,4 +1,4 @@
-﻿namespace TeamDataForum.Web.Models.ViewModels.Subforums
+﻿namespace TeamDataForum.Web.Models.ViewModels.Forums
 {
     using System.Collections.Generic;
 

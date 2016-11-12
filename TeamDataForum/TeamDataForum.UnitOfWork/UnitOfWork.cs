@@ -59,9 +59,9 @@
             get { return this.GetRepository<PostText>(); }
         }
 
-        public Repository<Subforum> SubforumRepository
+        public Repository<Forum> SubforumRepository
         {
-            get { return this.GetRepository<Subforum>(); }
+            get { return this.GetRepository<Forum>(); }
         }
 
         public Repository<Thread> ThreadRepository

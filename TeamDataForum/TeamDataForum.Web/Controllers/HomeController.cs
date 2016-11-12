@@ -4,7 +4,7 @@
     using System.Web.Mvc;
     using Bases;
     using Models.ViewModels.Posts;
-    using Models.ViewModels.Subforums;
+    using Models.ViewModels.Forums;
     using UnitOfWork.Contracts;
 
     public class HomeController : ForumBaseController

@@ -16,7 +16,7 @@
 
         Repository<PostText> PostTextRepository { get; }
 
-        Repository<Subforum> SubforumRepository { get; }
+        Repository<Forum> SubforumRepository { get; }
 
         Repository<Thread> ThreadRepository { get; }
 
