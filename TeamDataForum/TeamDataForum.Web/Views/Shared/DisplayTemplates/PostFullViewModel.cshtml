@@ -1,0 +1,11 @@
+﻿@using TeamDataForum.Web.Models.ViewModels.Posts
+@model PostFullViewModel
+
+<div>
+    <div>@Model.Number</div>
+    <div>@Html.DisplayFor(m => m.Author)</div>
+    <div>@Model.Date</div>
+    <div>@Model.Text</div>
+    <div>@Model.ChangeDate</div>
+    <div>@Model.Changer</div>
+</div>

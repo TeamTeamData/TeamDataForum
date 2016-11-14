@@ -3,7 +3,7 @@
 
 <tr>
     <td>
-        <div>@Html.ActionLink(@Model.Title, "View", new { id = Model.Id })</div>
+        <div>@Html.ActionLink(@Model.Title, "Home", "Thread", new { id = Model.Id }, null)</div>
     </td>
     <td>@Html.DisplayFor(m => m.LastPost)</td>
     <td>@Model.Replies</td>

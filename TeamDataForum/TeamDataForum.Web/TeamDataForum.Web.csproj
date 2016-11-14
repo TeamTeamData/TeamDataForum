@@ -205,6 +205,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BindingModels\Users\UserLogBindingModel.cs" />
+    <Compile Include="Models\ViewModels\Threads\ThreadFullViewModel.cs" />
     <Compile Include="Models\ViewModels\Users\UserViewModel.cs" />
     <Compile Include="Models\ViewModels\Forums\ForumFullViewModel.cs" />
     <Compile Include="Models\ViewModels\Posts\PostViewModel.cs" />
@@ -241,6 +242,8 @@
     <Content Include="Views\Shared\DisplayTemplates\UserViewModel.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ForumFullViewModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ThreadFullViewModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PostFullViewModel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -26,7 +26,7 @@
 
             while (i <= Model.Pages)
             {
-                @Html.ActionLink("1", "View", "Home", new { Id = Model.Id, Page = i }, null);
+                @Html.ActionLink(i.ToString(), "View", "Home", new { Id = Model.Id, Page = i }, null);
                 i++;
             }
         }
