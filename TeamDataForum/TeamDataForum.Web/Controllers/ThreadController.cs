@@ -60,7 +60,7 @@
                         Id = p.PostId,
                         Date = p.PostDate,
                         Text = p.Text.Text,
-                        Author = new UserViewModel() { Id = p.Creator.Id, Username = p.Creator.UserName },
+                        Author = new PostUserViewModel() { Id = p.Creator.Id, Username = p.Creator.UserName, Image = p.Creator.Image },
                         ChangeDate = p.ChangeDate,
                         Changer = p.Changer.UserName
                     })

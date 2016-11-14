@@ -9,7 +9,7 @@
 
         public string Text { get; set; }
 
-        public UserViewModel Author { get; set; }
+        public PostUserViewModel Author { get; set; }
 
         public DateTime Date { get; set; }
 

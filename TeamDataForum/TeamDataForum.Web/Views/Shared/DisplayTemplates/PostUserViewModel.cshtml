@@ -1,0 +1,11 @@
+﻿@using TeamDataForum.Web.Models.ViewModels.Users
+@model PostUserViewModel
+
+@{ 
+    var imagePath = string.IsNullOrWhiteSpace(Model.Image) ? "//ssl.gstatic.com/accounts/ui/avatar_2x.png" : Model.Image;
+}
+
+<div>
+    <div><img src="@imagePath" alt="@Model.Username" /></div>
+    <div>@Html.ActionLink(Model.Username, "User", "View", new { Id = Model.Id }, null)</div>
+</div>
