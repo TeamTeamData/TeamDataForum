@@ -211,7 +211,6 @@
     <Compile Include="Models\ViewModels\Posts\PostFullViewModel.cs" />
     <Compile Include="Models\ViewModels\Forums\ForumViewModel.cs" />
     <Compile Include="Models\ViewModels\Forums\SubforumViewModel.cs" />
-    <Compile Include="Models\ViewModels\Threads\ThreadsViewModel.cs" />
     <Compile Include="Models\ViewModels\Threads\ThreadViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -238,7 +237,6 @@
     <Content Include="Views\Shared\DisplayTemplates\ForumViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PostViewModel.cshtml" />
     <Content Include="Views\Thread\Home.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\ThreadsViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ThreadViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\UserViewModel.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
