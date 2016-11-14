@@ -9,10 +9,10 @@
         <table>
             <thead>
                 <tr>
-                    <td>Thread</td>
-                    <td>Last Post</td>
-                    <td>Replies</td>
-                    <td>Times seen</td>
+                    <th>Thread</th>
+                    <th>Last Post</th>
+                    <th>Replies</th>
+                    <th>Times seen</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,4 +20,15 @@
             </tbody>
         </table>
     </div>
+    <nav>
+        @{
+            var i = 1;
+
+            while (i <= Model.Pages)
+            {
+                @Html.ActionLink("1", "View", "Home", new { Id = Model.Id, Page = i }, null);
+                i++;
+            }
+        }
+    </nav>
 </div>

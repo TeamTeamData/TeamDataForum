@@ -15,6 +15,8 @@
 
         public DateTime Date { get; set; }
 
+        public int Pages { get; set; }
+
         public IEnumerable<UserViewModel> Moderators { get; set; }
 
         public IEnumerable<ThreadViewModel> Threads { get; set; }

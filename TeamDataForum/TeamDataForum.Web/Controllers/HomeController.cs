@@ -11,6 +11,8 @@
 
     public class HomeController : ForumBaseController
     {
+        private const int ThreadsToTake = 50;
+
         public HomeController(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
@@ -37,9 +39,9 @@
                     Date = f.Date,
                     Moderators = f.Moderators.Select(u => new UserViewModel() { Id = u.Id, Username = u.UserName }),
                     Threads = f.Threads.Count,
-                    Posts = f.Threads.SelectMany(t => t.Posts).Count(),
+                    Posts = f.Threads.Where(p => !p.IsDeleted).SelectMany(t => t.Posts).Count(),
                     LatestPost = f.Threads
-                    .Select(t => t.Posts.OrderByDescending(p => p.PostId).FirstOrDefault()).Select(p => new PostViewModel
+                    .Select(t => t.Posts.Where(p => !p.IsDeleted).OrderByDescending(p => p.PostId).FirstOrDefault()).Select(p => new PostViewModel
                     {
                         Id = p.PostId,
                         ThreadId = p.Thread.ThreadId,
@@ -65,9 +67,25 @@
         /// </summary>
         /// <param name="id">Forum Id</param>
         /// <returns></returns>
-        public ActionResult View(int id)
+        public ActionResult View(int id, int? page)
         {
             int forumId = id;
+            int currentPage = (page ?? 1) - 1;
+
+            if (currentPage < 0)
+            {
+                currentPage = 0;
+            }
+
+            var threadsCount = this.UnitOfWork
+                .ThreadRepository
+                .Count(t => t.Forum.ForumId == id);
+
+            int threadsToSkip = currentPage * ThreadsToTake;
+
+            int threadsToTake = threadsToSkip + ThreadsToTake > threadsCount ?
+                threadsCount - threadsToSkip :
+                ThreadsToTake;
 
             var forum = this.UnitOfWork
                 .ForumRepository
@@ -80,14 +98,14 @@
                     Description = f.Description,
                     Date = f.Date,
                     Moderators = f.Moderators.Select(u => new UserViewModel() { Id = u.Id, Username = u.UserName }),
-                    Threads = f.Threads.Select(t => new ThreadViewModel()
+                    Threads = f.Threads.Where(t => !t.IsDeleted).Select(t => new ThreadViewModel()
                     {
                         Id = t.ThreadId,
                         Title = t.Title,
                         IsLocked = t.IsLocked,
                         Replies = t.Posts.Count,
                         TimesSeen = t.TimesSeen,
-                        LastPost = t.Posts.Select(p => new PostViewModel
+                        LastPost = t.Posts.Where(p => !p.IsDeleted).Select(p => new PostViewModel
                         {
                             Id = p.PostId,
                             ThreadId = p.Thread.ThreadId,
@@ -98,8 +116,13 @@
                         .OrderByDescending(p => p.Id)
                         .FirstOrDefault()
                     })
+                    .OrderBy(tvm => tvm.Id)
+                    .Skip(threadsToSkip)
+                    .Take(threadsToTake)
                 })
                 .FirstOrDefault();
+
+            forum.Pages = (threadsCount / ThreadsToTake) + 1;
 
             return View(forum);
         }
