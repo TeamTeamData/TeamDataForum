@@ -23,15 +23,20 @@
             return View();
         }
 
-        [HttpGet]
-        public ActionResult Register()
+        public ActionResult Registration()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Register(UserLogBindingModel user)
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(UserRegistrationBindingModel user)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Registration", "Account", null);
+            }
+
             return View();
         }
 

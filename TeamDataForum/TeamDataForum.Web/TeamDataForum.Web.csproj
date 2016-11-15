@@ -247,6 +247,8 @@
     <Content Include="Views\Shared\DisplayTemplates\ThreadFullViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PostFullViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PostUserViewModel.cshtml" />
+    <Content Include="Views\Account\Registration.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\UserRegistrationBindingModel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

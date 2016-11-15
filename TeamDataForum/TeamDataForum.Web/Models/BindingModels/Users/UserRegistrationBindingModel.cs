@@ -31,7 +31,7 @@
         [Required]
         [DataType(DataType.Password)]
         [MinLength(6, ErrorMessage = "Confirm password cannot be less than 6 symbols.")]
-        [MaxLength(50, ErrorMessage = "Confirm password cannot be more than 50 sumbols.")]
+        [MaxLength(50, ErrorMessage = "Confirm password cannot be more than 50 symbols.")]
         [Compare("Password", ErrorMessage = "Confirm password does not match password.")]
         public string ConfirmPassword { get; set; }
     }

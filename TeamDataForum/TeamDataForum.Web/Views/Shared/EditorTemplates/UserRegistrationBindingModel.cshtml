@@ -1,0 +1,18 @@
+﻿@using TeamDataForum.Web.Models.BindingModels.Users
+@model UserRegistrationBindingModel
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    <label>First name</label>
+    @Html.EditorFor(m => m.Firstname)
+    <label>Last name</label>
+    @Html.EditorFor(m => m.Lastname)
+    <label>Username</label>
+    @Html.EditorFor(m => m.Username)
+    <label>Password</label>
+    @Html.EditorFor(m => m.Password)
+    <label>Confirm password</label>
+    @Html.EditorFor(m => m.ConfirmPassword)
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Register" />
+}
