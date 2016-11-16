@@ -1,5 +1,11 @@
-﻿@{
+﻿@using TeamDataForum.Web.Models.BindingModels.Users
+@model UserRegistrationBindingModel
+
+@{
     ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Register</h2>
+<h2>Registration</h2>
+
+@Html.EditorForModel()

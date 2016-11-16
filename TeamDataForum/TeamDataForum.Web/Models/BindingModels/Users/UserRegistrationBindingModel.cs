@@ -22,13 +22,19 @@
         [Display(Name = "Username")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Email is required.")]
+        [DataType(DataType.EmailAddress)]
+        [MinLength(5, ErrorMessage = "Email cannot be less than 5 symbols.")]
+        [MaxLength(50, ErrorMessage = "Email cannot be more than 50 symbols.")]
+        public string Email { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Password is required.")]
         [DataType(DataType.Password)]
         [MinLength(6, ErrorMessage = "Password cannot be less than 6 symbols.")]
         [MaxLength(50, ErrorMessage = "Password cannot be more than 50 sumbols.")]
         public string Password { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Confirm password is required.")]
         [DataType(DataType.Password)]
         [MinLength(6, ErrorMessage = "Confirm password cannot be less than 6 symbols.")]
         [MaxLength(50, ErrorMessage = "Confirm password cannot be more than 50 symbols.")]

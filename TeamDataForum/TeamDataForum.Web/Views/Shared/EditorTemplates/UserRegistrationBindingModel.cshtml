@@ -5,14 +5,22 @@
 {
     <label>First name</label>
     @Html.EditorFor(m => m.Firstname)
+    @Html.ValidationMessageFor(m => m.Firstname)
     <label>Last name</label>
     @Html.EditorFor(m => m.Lastname)
+    @Html.ValidationMessageFor(m => m.Lastname)
     <label>Username</label>
     @Html.EditorFor(m => m.Username)
+    @Html.ValidationMessageFor(m => m.Username)
+    <label>Email</label>
+    @Html.EditorFor(m => m.Email)
+    @Html.ValidationMessageFor(m => m.Email)
     <label>Password</label>
     @Html.EditorFor(m => m.Password)
+    @Html.ValidationMessageFor(m => m.Password)
     <label>Confirm password</label>
     @Html.EditorFor(m => m.ConfirmPassword)
+    @Html.ValidationMessageFor(m => m.ConfirmPassword)
     @Html.AntiForgeryToken()
     <input type="submit" value="Register" />
 }

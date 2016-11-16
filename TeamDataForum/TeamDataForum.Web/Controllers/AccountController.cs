@@ -11,7 +11,7 @@
 
     public class AccountController : ForumBaseController
     {
-        public AccountController(IUnitOfWork unitOfWork) 
+        public AccountController(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
         }
@@ -26,18 +26,37 @@
             get { return HttpContext.GetOwinContext().GetUserManager<ApplicationSignInManager>(); }
         }
 
-        // GET: Account
-        [HttpPost]
-        public ActionResult SignUp(UserLogBindingModel user)
+        public ActionResult Login()
         {
-            int count = this.UnitOfWork
-                .CountryRepository
-                .Count();
-
             return View();
         }
 
-        public ActionResult Registration()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(UserLogBindingModel user)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid user or password.");
+                return View(user);
+            }
+
+            var result = await SignInManager.PasswordSignInAsync(
+                user.Username,
+                user.Password,
+                false,
+                shouldLockout: false);
+
+            if (result != SignInStatus.Success)
+            {
+                ModelState.AddModelError(string.Empty, "Invalid user or password.");
+                return View(user);
+            }
+
+            return RedirectToAction("Home", "Home");
+        }
+
+        public ActionResult Register()
         {
             return View();
         }
@@ -48,7 +67,7 @@
         {
             if (!ModelState.IsValid)
             {
-                return RedirectToAction("Registration", "Account", null);
+                return View(user);
             }
 
             User newUser = new User()
@@ -56,23 +75,19 @@
                 Firstname = user.Firstname,
                 Lastname = user.Lastname,
                 UserName = user.Username,
+                Email = user.Email
             };
 
             var result = await this.UserManager.CreateAsync(newUser, user.Password);
 
             if (!result.Succeeded)
             {
-                return RedirectToAction("Registration", "Account", null);
+                return View(user);
             }
 
             await this.SignInManager.SignInAsync(newUser, false, false);
 
             return RedirectToAction("Home", "Home", null);
-        }
-
-        public ActionResult Login()
-        {
-            return View();
         }
     }
 }
