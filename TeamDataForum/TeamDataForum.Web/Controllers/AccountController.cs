@@ -2,18 +2,28 @@
 {
     using System.Threading.Tasks;
     using System.Web.Mvc;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using Bases;
     using DBModels;
     using Models.BindingModels.Users;
     using UnitOfWork.Contracts;
-    using System.Net;
+    using System.Web;
+    using Microsoft.AspNet.Identity.Owin;
 
     public class AccountController : ForumBaseController
     {
-        public AccountController(IUnitOfWork unitOfWork)
+        public AccountController(IUnitOfWork unitOfWork) 
             : base(unitOfWork)
         {
+        }
+
+        private ApplicationUserManager UserManager
+        {
+            get { return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+        }
+
+        private ApplicationSignInManager SignInManager
+        {
+            get { return HttpContext.GetOwinContext().GetUserManager<ApplicationSignInManager>(); }
         }
 
         // GET: Account
@@ -48,18 +58,16 @@
                 UserName = user.Username,
             };
 
-            // to do
+            var result = await this.UserManager.CreateAsync(newUser, user.Password);
 
-            var userManager = new ApplicationUserManager(new UserStore<User>());
-
-            var result = await userManager.CreateAsync(newUser, user.Password);
-
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
-               // to do
+                return RedirectToAction("Registration", "Account", null);
             }
 
-            return View();
+            await this.SignInManager.SignInAsync(newUser, false, false);
+
+            return RedirectToAction("Home", "Home", null);
         }
 
         public ActionResult Login()
