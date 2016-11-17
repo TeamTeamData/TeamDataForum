@@ -1,0 +1,12 @@
+﻿@using TeamDataForum.Web.Models.BindingModels.Forums
+@model ForumBindingModel
+
+@using (Html.BeginForm("Create", "Forum", FormMethod.Post))
+{
+    @Html.EditorFor(m => m.Title)
+    @Html.ValidationMessageFor(m => m.Title)
+    @Html.EditorFor(m => m.Description)
+    @Html.ValidationMessageFor(m => m.Description)
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Create" />
+}
