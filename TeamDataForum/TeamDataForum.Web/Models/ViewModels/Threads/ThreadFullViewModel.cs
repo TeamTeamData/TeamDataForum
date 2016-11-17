@@ -17,6 +17,8 @@
 
         public int Pages { get; set; }
 
+        public int Page { get; set; }
+
         public IEnumerable<PostFullViewModel> Posts { get; set; }
     }
 }

@@ -83,6 +83,12 @@
 
             int threadsToSkip = currentPage * ThreadsToTake;
 
+            if (threadsToSkip > threadsCount)
+            {
+                threadsToSkip = 0;
+                page = 1;
+            }
+
             int threadsToTake = threadsToSkip + ThreadsToTake > threadsCount ?
                 threadsCount - threadsToSkip :
                 ThreadsToTake;
@@ -123,6 +129,7 @@
                 .FirstOrDefault();
 
             forum.Pages = (threadsCount / ThreadsToTake) + 1;
+            forum.Page = page ?? 1;
 
             return View(forum);
         }

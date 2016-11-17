@@ -41,6 +41,12 @@
 
             int postsToSkip = currentPage * PostsToTake;
 
+            if (postsToSkip > postsCount)
+            {
+                postsToSkip = 0;
+                page = 1;
+            }
+
             int postsToTake = postsToSkip + PostsToTake > postsCount ?
                 postsCount - postsToSkip :
                 PostsToTake;
@@ -71,6 +77,7 @@
                 .FirstOrDefault();
 
             thread.Pages = (postsCount / PostsToTake) + 1;
+            thread.Page = page ?? 1;
 
             int counter = postsToSkip + 1;
 

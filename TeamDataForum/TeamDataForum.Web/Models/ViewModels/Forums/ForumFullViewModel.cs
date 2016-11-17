@@ -17,6 +17,8 @@
 
         public int Pages { get; set; }
 
+        public int Page { get; set; }
+
         public IEnumerable<UserViewModel> Moderators { get; set; }
 
         public IEnumerable<ThreadViewModel> Threads { get; set; }
