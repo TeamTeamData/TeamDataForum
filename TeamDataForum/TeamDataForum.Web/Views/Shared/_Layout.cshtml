@@ -18,7 +18,15 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-brand">TeamData</div>
-        @Html.ActionLink("Login", "Login", "Account") or @Html.ActionLink("Register", "Register", "Account")
+        @if (User.Identity.IsAuthenticated)
+        {
+            <span>Hello @User.Identity.Name @Html.ActionLink("Sign out", "Signout", "Account")</span>
+        }
+        else
+        {
+            <span>@Html.ActionLink("Login", "Login", "Account") or @Html.ActionLink("Register", "Register", "Account")</span>
+        }
+        
     </div>
     @RenderBody()
 </body>

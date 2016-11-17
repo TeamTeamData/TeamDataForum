@@ -1,13 +1,14 @@
 ﻿namespace TeamDataForum.Web.Controllers
 {
     using System.Threading.Tasks;
+    using System.Web;
     using System.Web.Mvc;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
     using Bases;
     using DBModels;
     using Models.BindingModels.Users;
     using UnitOfWork.Contracts;
-    using System.Web;
-    using Microsoft.AspNet.Identity.Owin;
 
     public class AccountController : ForumBaseController
     {
@@ -26,11 +27,28 @@
             get { return HttpContext.GetOwinContext().GetUserManager<ApplicationSignInManager>(); }
         }
 
+        private IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+
+        /// <summary>
+        /// Empty login for first time
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Login()
         {
             return View();
         }
 
+        /// <summary>
+        /// Login for checking user, also for errors
+        /// </summary>
+        /// <param name="user">User to be logged</param>
+        /// <returns>View or redirects to home</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(UserLogBindingModel user)
@@ -56,11 +74,20 @@
             return RedirectToAction("Home", "Home");
         }
 
+        /// <summary>
+        /// Empty register controller for first time
+        /// </summary>
+        /// <returns>View</returns>
         public ActionResult Register()
         {
             return View();
         }
 
+        /// <summary>
+        /// Register controller for register, also shows error data
+        /// </summary>
+        /// <param name="user">User to be register</param>
+        /// <returns>View or redirects to home</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(UserRegistrationBindingModel user)
@@ -86,6 +113,17 @@
             }
 
             await this.SignInManager.SignInAsync(newUser, false, false);
+
+            return RedirectToAction("Home", "Home", null);
+        }
+
+        /// <summary>
+        /// Controller for sign out
+        /// </summary>
+        /// <returns>Redirects to home</returns>
+        public ActionResult Signout()
+        {
+            this.AuthenticationManager.SignOut();
 
             return RedirectToAction("Home", "Home", null);
         }
