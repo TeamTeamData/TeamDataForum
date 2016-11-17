@@ -82,6 +82,7 @@ namespace TeamDataForum.DB.Migrations
                     Firstname = "Jojo",
                     Lastname = "Mojo",
                     UserName = admin,
+                    SecurityStamp = Guid.NewGuid().ToString(),
                     Town = new Town()
                     {
                         Name = "Sofia",

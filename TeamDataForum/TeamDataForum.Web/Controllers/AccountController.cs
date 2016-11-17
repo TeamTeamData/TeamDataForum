@@ -55,11 +55,11 @@
         {
             if (!ModelState.IsValid)
             {
-                ModelState.AddModelError(string.Empty, "Invalid user or password.");
+                this.ModelState.AddModelError(string.Empty, "Invalid user or password.");
                 return View(user);
             }
 
-            var result = await SignInManager.PasswordSignInAsync(
+            var result = await this.SignInManager.PasswordSignInAsync(
                 user.Username,
                 user.Password,
                 false,
