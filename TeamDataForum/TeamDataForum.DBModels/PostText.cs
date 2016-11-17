@@ -5,10 +5,8 @@
     /// <summary>
     /// PostText model for Entity framework
     /// </summary>
-    public class PostText
+    public partial class PostText
     {
-        private const string PostTextError = "Post text is required.";
-        
         /// <summary>
         /// Primary key
         /// </summary>

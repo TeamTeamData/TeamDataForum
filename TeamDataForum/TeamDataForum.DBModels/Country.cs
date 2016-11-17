@@ -7,14 +7,8 @@
     /// <summary>
     /// Country model for Entity framework
     /// </summary>
-    public class Country
+    public partial class Country
     {
-        private const int CountryMaxLength = 100;
-
-        private const string ErrorCountryName = "Country name is required.";
-        private const string ErrorCountryNameMaxLength = "Country name cannot be more than 100 symbols.";
-        private const string CountryNameIndex = "UQ_CountryName";
-
         private ISet<Town> towns;
 
         public Country()

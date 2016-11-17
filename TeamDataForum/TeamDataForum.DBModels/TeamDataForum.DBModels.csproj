@@ -59,6 +59,13 @@
   <ItemGroup>
     <Compile Include="Country.cs" />
     <Compile Include="Like.cs" />
+    <Compile Include="Helpers\Country.cs" />
+    <Compile Include="Helpers\Forum.cs" />
+    <Compile Include="Helpers\Like.cs" />
+    <Compile Include="Helpers\PostText.cs" />
+    <Compile Include="Helpers\Thread.cs" />
+    <Compile Include="Helpers\Town.cs" />
+    <Compile Include="Helpers\User.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="PostText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
