@@ -3,13 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Resources;
 
     /// <summary>
     /// Topic model for Entity framework
     /// </summary>
-    public partial class Thread
+    public class Thread
     {
-        private ISet<Post> posts;
+        private ICollection<Post> posts;
 
         public Thread()
         {
@@ -25,14 +26,19 @@
         /// <summary>
         /// Topic title
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = TopicTitleError)]
-        [MaxLength(TopicMaxLength, ErrorMessage = TopicMaxLengthError)]
+        [Required(AllowEmptyStrings = false,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorThreadTitleRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.TextMaxLength, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorThreadTitleMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Title { get; set; }
 
         /// <summary>
         /// Creation date
         /// </summary>
-        [Required(ErrorMessage = TopicDateError)]
+        [Required(ErrorMessageResourceName = nameof(ModelsRes.ErrorThreadDateRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public DateTime Date { get; set; }
 
         public int TimesSeen { get; set; }
@@ -60,7 +66,7 @@
         /// <summary>
         /// All topic posts
         /// </summary>
-        public virtual ISet<Post> Posts
+        public virtual ICollection<Post> Posts
         {
             get { return this.posts; }
 

@@ -6,17 +6,18 @@
     using System.Threading.Tasks;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Resources;
 
     /// <summary>
     /// User model for entity framework
     /// </summary>
-    public partial class User : IdentityUser
+    public class User : IdentityUser
     {
-        private ISet<Like> likes;
-        private ISet<Post> posts;
-        private ISet<Thread> threads;
-        private ISet<Forum> forums;
-        private ISet<Forum> forumModerators;
+        private ICollection<Like> likes;
+        private ICollection<Post> posts;
+        private ICollection<Thread> threads;
+        private ICollection<Forum> forums;
+        private ICollection<Forum> forumModerators;
 
         public User()
         {
@@ -30,21 +31,31 @@
         /// <summary>
         /// First name - required
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = FirstnameError)]
-        [MaxLength(NameMaxLength, ErrorMessage = NameLengthError)]
+        [Required(AllowEmptyStrings = false,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserFirstnameRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.NameMaxLength, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserNameMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Firstname { get; set; }
 
         /// <summary>
         /// Last name - required
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = LastnameError)]
-        [MaxLength(NameMaxLength, ErrorMessage = NameLengthError)]
+        [Required(AllowEmptyStrings = false,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserLastnameRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.NameMaxLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserNameMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Lastname { get; set; }
 
         /// <summary>
         /// Avatar of user
         /// </summary>
-        [MaxLength(ImageMaxLength, ErrorMessage = UserImageMaxError)]
+        [MaxLength(NumericValues.ImagePathMaxLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserImagePathLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Image { get; set; }
 
         /// <summary>
@@ -55,7 +66,7 @@
         /// <summary>
         /// All user likes
         /// </summary>
-        public virtual ISet<Like> Likes
+        public virtual ICollection<Like> Likes
         {
             get { return this.likes; }
 
@@ -65,7 +76,7 @@
         /// <summary>
         /// All user posts
         /// </summary>
-        public virtual ISet<Post> Posts
+        public virtual ICollection<Post> Posts
         {
             get { return this.posts; }
 
@@ -75,7 +86,7 @@
         /// <summary>
         /// All user created threads
         /// </summary>
-        public virtual ISet<Thread> Threads
+        public virtual ICollection<Thread> Threads
         {
             get { return this.threads; }
 
@@ -85,7 +96,7 @@
         /// <summary>
         /// All subforums created by user
         /// </summary>
-        public virtual ISet<Forum> Forums
+        public virtual ICollection<Forum> Forums
         {
             get { return this.forums; }
 
@@ -95,7 +106,7 @@
         /// <summary>
         /// All subforums moderate by the user
         /// </summary>
-        public virtual ISet<Forum> ForumModerators
+        public virtual ICollection<Forum> ForumModerators
         {
             get { return this.forumModerators; }
 

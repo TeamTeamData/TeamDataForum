@@ -1,11 +1,12 @@
 ﻿namespace TeamDataForum.DBModels
 {
     using System.ComponentModel.DataAnnotations;
+    using Resources;
 
     /// <summary>
     /// Town model for Entity framework
     /// </summary>
-    public partial class Town
+    public class Town
     {
         /// <summary>
         /// Primary key
@@ -16,8 +17,12 @@
         /// <summary>
         /// Town name - required
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = TownNameError)]
-        [MaxLength(TownNameMaxLength, ErrorMessage = TownNameMaxLengthError)]
+        [Required(AllowEmptyStrings = false,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorTownNameRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.PlaceNameMaxLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorTownNameMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Name { get; set; }
 
         /// <summary>

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.UnitOfWork", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.Tests", "TeamDataForum.Tests\TeamDataForum.Tests.csproj", "{DF3B6075-1853-4135-9F5F-518E8ECAAD32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamDataForum.Resources", "TeamDataForum.Resources\TeamDataForum.Resources.csproj", "{FD5A11CC-7E1D-4A53-91D5-85A17F2A7C28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{DF3B6075-1853-4135-9F5F-518E8ECAAD32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF3B6075-1853-4135-9F5F-518E8ECAAD32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF3B6075-1853-4135-9F5F-518E8ECAAD32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD5A11CC-7E1D-4A53-91D5-85A17F2A7C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD5A11CC-7E1D-4A53-91D5-85A17F2A7C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD5A11CC-7E1D-4A53-91D5-85A17F2A7C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD5A11CC-7E1D-4A53-91D5-85A17F2A7C28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,11 +1,12 @@
 ﻿namespace TeamDataForum.DBModels
 {
     using System.ComponentModel.DataAnnotations;
+    using Resources;
 
     /// <summary>
     /// PostText model for Entity framework
     /// </summary>
-    public partial class PostText
+    public class PostText
     {
         /// <summary>
         /// Primary key
@@ -17,7 +18,9 @@
         /// Post text
         /// Required
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = PostTextError)]
+        [Required(AllowEmptyStrings = false,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorPostTextTextRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Text { get; set; }
 
         /// <summary>

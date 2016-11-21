@@ -280,6 +280,10 @@
       <Project>{8ff94a34-ade4-4d4a-b7fe-79cf3927bac0}</Project>
       <Name>TeamDataForum.Repository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TeamDataForum.Resources\TeamDataForum.Resources.csproj">
+      <Project>{fd5a11cc-7e1d-4a53-91d5-85a17f2a7c28}</Project>
+      <Name>TeamDataForum.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TeamDataForum.UnitOfWork\TeamDataForum.UnitOfWork.csproj">
       <Project>{aff3342c-612b-43a4-aed1-398f27d28d3b}</Project>
       <Name>TeamDataForum.UnitOfWork</Name>

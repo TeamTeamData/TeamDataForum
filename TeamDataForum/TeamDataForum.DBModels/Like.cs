@@ -7,7 +7,7 @@
     /// Like model for Entity framework
     /// Likes for post
     /// </summary>
-    public partial class Like
+    public class Like
     {
         /// <summary>
         /// Primary key
@@ -18,7 +18,7 @@
         /// <summary>
         /// Foreign key to Users
         /// </summary>
-        [Index(LikeIndex, IsUnique = true, Order = 1)]
+        [Index("UQ_Like", IsUnique = true, Order = 1)]
         public string UserId { get; set; }
         
         /// <summary>
@@ -29,7 +29,7 @@
         /// <summary>
         /// Foreign key to posts
         /// </summary>
-        [Index(LikeIndex, IsUnique = true, Order = 2)]
+        [Index("UQ_Like", IsUnique = true, Order = 2)]
         public int PostId { get; set; }
 
         /// <summary>

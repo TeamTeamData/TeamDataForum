@@ -4,14 +4,15 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Resources;
 
     /// <summary>
     /// Subforum model for Entity framework
     /// </summary>
-    public partial class Forum
+    public class Forum
     {
-        private ISet<Thread> threads;
-        private ISet<User> moderators;
+        private ICollection<Thread> threads;
+        private ICollection<User> moderators;
 
         public Forum()
         {
@@ -28,22 +29,31 @@
         /// <summary>
         /// Title - required, unique
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = ForumError)]
-        [MaxLength(ForumMaxLength, ErrorMessage = ForumMaxLengthError)]
+        [Required(AllowEmptyStrings = false,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorForumTitleRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.TextMaxLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorCountryNameMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         [Index]
         public string Title { get; set; }
 
         /// <summary>
         /// Description of subforum - required
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = DescriptionError)]
-        [MaxLength(ForumMaxLength, ErrorMessage = DescriptionMaxError)]
+        [Required(AllowEmptyStrings = false,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorForumDescriptionRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.TextMaxLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorForumDescriptionMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Description { get; set; }
 
         /// <summary>
         /// Creation date
         /// </summary>
-        [Required]
+        [Required(ErrorMessageResourceName = nameof(ModelsRes.ErrorForumDateRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public DateTime Date { get; set; }
 
         public bool IsDeleted { get; set; }
@@ -56,7 +66,7 @@
         /// <summary>
         /// All topics in subforum
         /// </summary>
-        public virtual ISet<Thread> Threads
+        public virtual ICollection<Thread> Threads
         {
             get { return this.threads; }
 
@@ -66,7 +76,7 @@
         /// <summary>
         /// Moderators for subforum
         /// </summary>
-        public virtual ISet<User> Moderators
+        public virtual ICollection<User> Moderators
         {
             get { return this.moderators; }
 

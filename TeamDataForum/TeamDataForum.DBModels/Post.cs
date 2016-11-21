@@ -9,8 +9,8 @@
     /// </summary>
     public class Post
     {
-        private ISet<Like> likes;
-        private ISet<Post> responses;
+        private ICollection<Like> likes;
+        private ICollection<Post> responses;
 
         public Post()
         {
@@ -67,7 +67,7 @@
         /// <summary>
         /// Post likes
         /// </summary>
-        public virtual ISet<Like> Likes
+        public virtual ICollection<Like> Likes
         {
             get { return this.likes; }
 
@@ -77,7 +77,7 @@
         /// <summary>
         /// Responses to Post
         /// </summary>
-        public virtual ISet<Post> Responses
+        public virtual ICollection<Post> Responses
         {
             get { return this.responses; }
 

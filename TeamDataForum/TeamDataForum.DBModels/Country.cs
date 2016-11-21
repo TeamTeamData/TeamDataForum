@@ -3,13 +3,14 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using Resources;
 
     /// <summary>
     /// Country model for Entity framework
     /// </summary>
-    public partial class Country
+    public class Country
     {
-        private ISet<Town> towns;
+        private ICollection<Town> towns;
 
         public Country()
         {
@@ -25,12 +26,16 @@
         /// <summary>
         /// Country name - required
         /// </summary>
-        [Required(AllowEmptyStrings = false, ErrorMessage = ErrorCountryName)]
-        [MaxLength(CountryMaxLength, ErrorMessage = ErrorCountryNameMaxLength)]
-        [Index(CountryNameIndex)]
+        [Required(AllowEmptyStrings = false, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorCountryNameRequired), 
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.PlaceNameMaxLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorCountryNameMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [Index("UQ_CountryName")]
         public string Name { get; set; }
 
-        public virtual ISet<Town> Towns
+        public virtual ICollection<Town> Towns
         {
             get { return this.towns; }
 
