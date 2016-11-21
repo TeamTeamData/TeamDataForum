@@ -178,6 +178,69 @@ namespace TeamDataForum.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm password does not match password..
+        /// </summary>
+        public static string ErrorUserConfirmPasswordMatch {
+            get {
+                return ResourceManager.GetString("ErrorUserConfirmPasswordMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm password cannot be less than 6 symbols..
+        /// </summary>
+        public static string ErrorUserConfirmPasswordMinLength {
+            get {
+                return ResourceManager.GetString("ErrorUserConfirmPasswordMinLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm password is required..
+        /// </summary>
+        public static string ErrorUserConfirmPasswordRequired {
+            get {
+                return ResourceManager.GetString("ErrorUserConfirmPasswordRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm password cannot be more than 50 symbols..
+        /// </summary>
+        public static string ErrorUserConfrimPasswordMaxLength {
+            get {
+                return ResourceManager.GetString("ErrorUserConfrimPasswordMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email cannot be more than 50 symbols..
+        /// </summary>
+        public static string ErrorUserEmailMaxLength {
+            get {
+                return ResourceManager.GetString("ErrorUserEmailMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email cannot be less than 5 symbols..
+        /// </summary>
+        public static string ErrorUserEmailMinLength {
+            get {
+                return ResourceManager.GetString("ErrorUserEmailMinLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is required..
+        /// </summary>
+        public static string ErrorUserEmailRequired {
+            get {
+                return ResourceManager.GetString("ErrorUserEmailRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First name is required..
         /// </summary>
         public static string ErrorUserFirstnameRequired {
@@ -210,6 +273,51 @@ namespace TeamDataForum.Resources {
         public static string ErrorUserNameMaxLength {
             get {
                 return ResourceManager.GetString("ErrorUserNameMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password cannot be more than 50 sumbols..
+        /// </summary>
+        public static string ErrorUserPasswordMaxLength {
+            get {
+                return ResourceManager.GetString("ErrorUserPasswordMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password cannot be less than 6 symbols..
+        /// </summary>
+        public static string ErrorUserPasswordMinLength {
+            get {
+                return ResourceManager.GetString("ErrorUserPasswordMinLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password is required..
+        /// </summary>
+        public static string ErrorUserPasswordRequired {
+            get {
+                return ResourceManager.GetString("ErrorUserPasswordRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username cannot be more than 256 symbols..
+        /// </summary>
+        public static string ErrorUserUsernameMaxLength {
+            get {
+                return ResourceManager.GetString("ErrorUserUsernameMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username is required..
+        /// </summary>
+        public static string ErrorUserUsernameRequired {
+            get {
+                return ResourceManager.GetString("ErrorUserUsernameRequired", resourceCulture);
             }
         }
     }

@@ -156,6 +156,27 @@
   <data name="ErrorTownNameRequired" xml:space="preserve">
     <value>Town name is required.</value>
   </data>
+  <data name="ErrorUserConfirmPasswordMatch" xml:space="preserve">
+    <value>Confirm password does not match password.</value>
+  </data>
+  <data name="ErrorUserConfirmPasswordMinLength" xml:space="preserve">
+    <value>Confirm password cannot be less than 6 symbols.</value>
+  </data>
+  <data name="ErrorUserConfirmPasswordRequired" xml:space="preserve">
+    <value>Confirm password is required.</value>
+  </data>
+  <data name="ErrorUserConfrimPasswordMaxLength" xml:space="preserve">
+    <value>Confirm password cannot be more than 50 symbols.</value>
+  </data>
+  <data name="ErrorUserEmailMaxLength" xml:space="preserve">
+    <value>Email cannot be more than 50 symbols.</value>
+  </data>
+  <data name="ErrorUserEmailMinLength" xml:space="preserve">
+    <value>Email cannot be less than 5 symbols.</value>
+  </data>
+  <data name="ErrorUserEmailRequired" xml:space="preserve">
+    <value>Email is required.</value>
+  </data>
   <data name="ErrorUserFirstnameRequired" xml:space="preserve">
     <value>First name is required.</value>
   </data>
@@ -167,5 +188,20 @@
   </data>
   <data name="ErrorUserNameMaxLength" xml:space="preserve">
     <value>Name cannot be more than 50 symbols.</value>
+  </data>
+  <data name="ErrorUserPasswordMaxLength" xml:space="preserve">
+    <value>Password cannot be more than 50 sumbols.</value>
+  </data>
+  <data name="ErrorUserPasswordMinLength" xml:space="preserve">
+    <value>Password cannot be less than 6 symbols.</value>
+  </data>
+  <data name="ErrorUserPasswordRequired" xml:space="preserve">
+    <value>Password is required.</value>
+  </data>
+  <data name="ErrorUserUsernameMaxLength" xml:space="preserve">
+    <value>Username cannot be more than 256 symbols.</value>
+  </data>
+  <data name="ErrorUserUsernameRequired" xml:space="preserve">
+    <value>Username is required.</value>
   </data>
 </root>

@@ -1,44 +1,73 @@
 ﻿namespace TeamDataForum.Web.Models.BindingModels.Users
 {
     using System.ComponentModel.DataAnnotations;
+    using Resources;
 
     public class UserRegistrationBindingModel
     {
-        private const int MaxNameLength = 50;
-        private const int UsernameMaxLength = 256;
-
-        [Required(AllowEmptyStrings = false, ErrorMessage = "First name is required.")]
-        [MaxLength(MaxNameLength, ErrorMessage = "First name cannot be more than 50 symbols.")]
+        [Required(AllowEmptyStrings = false, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserFirstnameRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.NameMaxLength, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserNameMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         [Display(Name = "First name")]
         public string Firstname { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Last name is required.")]
-        [MaxLength(MaxNameLength, ErrorMessage = "Last name cannot be more than 50 symbols.")]
+        [Required(AllowEmptyStrings = false, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserLastnameRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.NameMaxLength, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserNameMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         [Display(Name = "Last name")]
         public string Lastname { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Username is required.")]
-        [MaxLength(UsernameMaxLength, ErrorMessage = "Username cannot be more than 256 symbols.")]
+        [Required(AllowEmptyStrings = false, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserUsernameRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.UsernameMaxLength, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserUsernameMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         [Display(Name = "Username")]
         public string Username { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Email is required.")]
+        [Required(AllowEmptyStrings = false, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserEmailRequired))]
         [DataType(DataType.EmailAddress)]
-        [MinLength(5, ErrorMessage = "Email cannot be less than 5 symbols.")]
-        [MaxLength(50, ErrorMessage = "Email cannot be more than 50 symbols.")]
+        [MinLength(NumericValues.EmailMinLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserEmailMinLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.EmailMaxLength, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserEmailMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Email { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Password is required.")]
+        [Required(AllowEmptyStrings = false, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserPasswordRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         [DataType(DataType.Password)]
-        [MinLength(6, ErrorMessage = "Password cannot be less than 6 symbols.")]
-        [MaxLength(50, ErrorMessage = "Password cannot be more than 50 sumbols.")]
+        [MinLength(NumericValues.PasswordMinLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserPasswordMinLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.PasswordMaxLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserPasswordMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Password { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Confirm password is required.")]
+        [Required(AllowEmptyStrings = false,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserConfirmPasswordRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         [DataType(DataType.Password)]
-        [MinLength(6, ErrorMessage = "Confirm password cannot be less than 6 symbols.")]
-        [MaxLength(50, ErrorMessage = "Confirm password cannot be more than 50 symbols.")]
-        [Compare("Password", ErrorMessage = "Confirm password does not match password.")]
+        [MinLength(NumericValues.PasswordMinLength, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserConfirmPasswordMinLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.PasswordMaxLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserConfrimPasswordMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [Compare("Password", 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserConfirmPasswordMatch),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string ConfirmPassword { get; set; }
     }
 }
