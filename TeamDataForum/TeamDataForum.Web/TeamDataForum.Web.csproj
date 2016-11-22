@@ -203,6 +203,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Bases\ForumBaseController.cs" />
+    <Compile Include="Controllers\Bases\ForumPageBaseController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ThreadController.cs" />
@@ -257,6 +258,7 @@
     <Content Include="Views\Shared\EditorTemplates\UserRegistrationBindingModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ForumBindingModel.cshtml" />
     <Content Include="Views\Forum\Create.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Paginator.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -275,6 +277,10 @@
     <ProjectReference Include="..\TeamDataForum.DB\TeamDataForum.DB.csproj">
       <Project>{4AC8BB64-623A-4A44-8E09-56D73F2B4886}</Project>
       <Name>TeamDataForum.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamDataForum.Pagination\TeamDataForum.Pagination.csproj">
+      <Project>{41f9287a-a99b-4990-be93-4edbc06b94e3}</Project>
+      <Name>TeamDataForum.Pagination</Name>
     </ProjectReference>
     <ProjectReference Include="..\TeamDataForum.Repository\TeamDataForum.Repository.csproj">
       <Project>{8ff94a34-ade4-4d4a-b7fe-79cf3927bac0}</Project>

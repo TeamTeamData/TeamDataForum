@@ -6,20 +6,21 @@
     using Models.ViewModels.Posts;
     using Models.ViewModels.Threads;
     using Models.ViewModels.Users;
+    using Pagination.Contracts;
     using UnitOfWork.Contracts;
 
     /// <summary>
     /// Controller for threads 
     /// </summary>
-    public class ThreadController : ForumBaseController
+    public class ThreadController : ForumPageBaseController
     {
         private const int PostsToTake = 10;
 
-        public ThreadController(IUnitOfWork unitOfWork)
-            : base(unitOfWork)
+        public ThreadController(IUnitOfWork unitOfWork, IPaginationFactory paginationFactory) 
+            : base(unitOfWork, paginationFactory)
         {
-
         }
+
         /// <summary>
         /// Selects all threads in specific subforum
         /// </summary>
@@ -27,29 +28,13 @@
         /// <returns>View of ThreadsViewModel</returns>
         public ActionResult Home(int id, int? page)
         {
-            int threadId = id;
-            int currentPage = (page ?? 1) - 1;
-
-            if (currentPage < 0)
-            {
-                currentPage = 1;
-            }
-
             var postsCount = this.UnitOfWork
                 .PostRepository
                 .Count(p => p.Thread.ThreadId == id);
 
-            int postsToSkip = (currentPage - 1) * PostsToTake;
+            var pagination = this.PaginationFactory.CreatePagination(page, PostsToTake, postsCount);
 
-            if (postsToSkip > postsCount)
-            {
-                postsToSkip = 0;
-                currentPage = 1;
-            }
-
-            int postsToTake = postsToSkip + PostsToTake > postsCount ?
-                postsCount - postsToSkip :
-                PostsToTake;
+            var skipTake = pagination.ElementsToSkipAndTake();
 
             var thread = this.UnitOfWork
                 .ThreadRepository
@@ -80,21 +65,21 @@
                         Changer = p.Changer.UserName
                     })
                     .OrderBy(p => p.Id)
-                    .Skip(postsToSkip)
-                    .Take(postsToTake)
+                    .Skip(skipTake.Skip)
+                    .Take(skipTake.Take)
                 })
                 .FirstOrDefault();
 
-            thread.Pages = (postsCount / PostsToTake) + 1;
-            thread.Page = currentPage;
-
-            int counter = postsToSkip + 1;
+            int postNumber = skipTake.Skip + 1;
 
             foreach (var post in thread.Posts)
             {
-                post.Number = counter;
-                counter++;
+                post.Number = postNumber;
+
+                postNumber++;
             }
+
+            thread.Pages = pagination.GetPages("Home", "Thread");
 
             return this.View(thread);
         }

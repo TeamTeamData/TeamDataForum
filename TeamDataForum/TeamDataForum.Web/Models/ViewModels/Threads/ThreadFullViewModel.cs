@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Pagination.PaginationModels;
     using Posts;
     using Users;
 
@@ -15,10 +16,8 @@
 
         public DateTime CreationDate { get; set; }
 
-        public int Pages { get; set; }
-
-        public int Page { get; set; }
-
         public IEnumerable<PostFullViewModel> Posts { get; set; }
+
+        public IEnumerable<Paginator> Pages { get; set; }
     }
 }

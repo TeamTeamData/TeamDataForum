@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IPaginationFactory.cs" />
     <Compile Include="Pagination.cs" />
     <Compile Include="Contracts\IPagination.cs" />
+    <Compile Include="PaginationFactory.cs" />
     <Compile Include="PaginationModels\Paginator.cs" />
     <Compile Include="PaginationModels\SkipTake.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

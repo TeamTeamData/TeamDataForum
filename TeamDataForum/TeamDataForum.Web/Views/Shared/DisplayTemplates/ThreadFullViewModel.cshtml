@@ -7,14 +7,6 @@
     <div>@Model.CreationDate</div>
     <div>@Html.DisplayFor(m => m.Posts)</div>
     <div>
-        @{
-            var i = 1;
-
-            while (i <= Model.Pages)
-            {
-                @Html.ActionLink(i.ToString(), "Home", "Thread", new { Id = Model.Id, Page = i }, null);
-                i++;
-            }
-        }
+        @Html.DisplayFor(m => m.Pages)
     </div>
 </div>

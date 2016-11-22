@@ -7,14 +7,15 @@
     using Models.ViewModels.Posts;
     using Models.ViewModels.Threads;
     using Models.ViewModels.Users;
+    using Pagination.Contracts;
     using UnitOfWork.Contracts;
 
-    public class HomeController : ForumBaseController
+    public class HomeController : ForumPageBaseController
     {
         private const int ThreadsToTake = 50;
 
-        public HomeController(IUnitOfWork unitOfWork)
-            : base(unitOfWork)
+        public HomeController(IUnitOfWork unitOfWork, IPaginationFactory paginationFactory) 
+            : base(unitOfWork, paginationFactory)
         {
         }
 
@@ -66,32 +67,18 @@
         /// Shows information for specefic forums
         /// </summary>
         /// <param name="id">Forum Id</param>
-        /// <returns></returns>
+        /// <returns>View</returns>
         public ActionResult View(int id, int? page)
         {
             int forumId = id;
-            int currentPage = (page ?? 1) - 1;
-
-            if (currentPage < 0)
-            {
-                currentPage = 0;
-            }
 
             var threadsCount = this.UnitOfWork
                 .ThreadRepository
                 .Count(t => t.Forum.ForumId == id);
 
-            int threadsToSkip = currentPage * ThreadsToTake;
+            var pagination = this.PaginationFactory.CreatePagination(page, ThreadsToTake, threadsCount);
 
-            if (threadsToSkip > threadsCount)
-            {
-                threadsToSkip = 0;
-                page = 1;
-            }
-
-            int threadsToTake = threadsToSkip + ThreadsToTake > threadsCount ?
-                threadsCount - threadsToSkip :
-                ThreadsToTake;
+            var skipTake = pagination.ElementsToSkipAndTake();
 
             var forum = this.UnitOfWork
                 .ForumRepository
@@ -123,13 +110,12 @@
                         .FirstOrDefault()
                     })
                     .OrderBy(tvm => tvm.Id)
-                    .Skip(threadsToSkip)
-                    .Take(threadsToTake)
+                    .Skip(skipTake.Skip)
+                    .Take(skipTake.Take)
                 })
                 .FirstOrDefault();
 
-            forum.Pages = (threadsCount / ThreadsToTake) + 1;
-            forum.Page = page ?? 1;
+            forum.Pages = pagination.GetPages("View", "Home");
 
             return View(forum);
         }

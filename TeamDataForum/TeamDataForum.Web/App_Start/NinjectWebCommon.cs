@@ -10,6 +10,8 @@ namespace TeamDataForum.Web.App_Start
     using Ninject.Web.Common;
     using Controllers.Bases;
     using DB;
+    using Pagination;
+    using Pagination.Contracts;
     using UnitOfWork;
     using UnitOfWork.Contracts;
 
