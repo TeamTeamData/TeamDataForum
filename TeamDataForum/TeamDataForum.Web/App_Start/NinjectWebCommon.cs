@@ -66,6 +66,7 @@ namespace TeamDataForum.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<TeamDataForumContext>().To<TeamDataForumContext>();
+            kernel.Bind<IPaginationFactory>().To<PaginationFactory>();
             kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
             kernel.Bind<ForumBaseController>().To<ForumBaseController>();
         }
