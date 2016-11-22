@@ -61,7 +61,6 @@
                 .Add(newForum);
 
             this.UnitOfWork
-                .ForumRepository
                 .SaveChanges();
 
             // to do change

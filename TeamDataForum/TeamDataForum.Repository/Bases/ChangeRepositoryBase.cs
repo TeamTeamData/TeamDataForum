@@ -46,14 +46,6 @@
         }
 
         /// <summary>
-        /// Context save changes to database
-        /// </summary>
-        public void SaveChanges()
-        {
-            this.Context.SaveChanges();
-        }
-
-        /// <summary>
         /// Updates element
         /// </summary>
         /// <param name="element">Element to be updated</param>

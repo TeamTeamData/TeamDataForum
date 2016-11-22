@@ -61,6 +61,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="PaginationTests\TestPagination.cs" />
     <Compile Include="RepositoryTests\TestRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfWorkTests\TestUnitOfWork.cs" />
@@ -77,6 +78,10 @@
     <ProjectReference Include="..\TeamDataForum.DB\TeamDataForum.DB.csproj">
       <Project>{4ac8bb64-623a-4a44-8e09-56d73f2b4886}</Project>
       <Name>TeamDataForum.DB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TeamDataForum.Pagination\TeamDataForum.Pagination.csproj">
+      <Project>{41f9287a-a99b-4990-be93-4edbc06b94e3}</Project>
+      <Name>TeamDataForum.Pagination</Name>
     </ProjectReference>
     <ProjectReference Include="..\TeamDataForum.Repository\TeamDataForum.Repository.csproj">
       <Project>{8ff94a34-ade4-4d4a-b7fe-79cf3927bac0}</Project>

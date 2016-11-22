@@ -23,5 +23,7 @@
         Repository<Town> TownRepository { get; }
 
         Repository<User> UserRepository { get; }
+
+        void SaveChanges();
     }
 }

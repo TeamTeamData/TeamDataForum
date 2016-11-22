@@ -6,6 +6,7 @@
     using DBModels;
     using Repository;
     using Repository.Contracts;
+    using UnitOfWork;
 
     /// <summary>
     /// Test class for repository
@@ -14,25 +15,32 @@
     [TestClass]
     public class TestRepository
     {
+        private const string Bulgaria = "Bulgaria";
         private const string USA = "USA";
         private const string Germany = "Germany";
         private const string Spain = "Spain";
 
-        private readonly string[] CountryNames = { USA, Germany, Spain };
+        private readonly string[] CountryNames = { Bulgaria, USA, Germany, Spain };
 
         private IRepository<Country> countryRepository;
+
+        private UnitOfWork unitOfWork;
 
         [TestInitialize]
         public void Initialize()
         {
             TeamDataForumContext context = new TeamDataForumContext();
 
-            this.countryRepository = new Repository<Country>(context);
+            this.unitOfWork = new UnitOfWork(context);
+
+            this.countryRepository = this.unitOfWork.CountryRepository;
         }
 
         [TestCleanup]
         public void Cleanup()
         {
+            this.unitOfWork = null;
+
             this.countryRepository = null;
         }
 
@@ -73,7 +81,7 @@
 
             this.countryRepository.Remove(usa);
 
-            this.countryRepository.SaveChanges();
+            this.unitOfWork.SaveChanges();
 
             int count = this.countryRepository.Count(c => c.Name == countryName);
 
@@ -99,7 +107,7 @@
                 .First();
 
             usa.Name = countryUpdateName;
-            this.countryRepository.SaveChanges();
+            this.unitOfWork.SaveChanges();
 
             int count = this.countryRepository.Count(c => c.Name == countryUpdateName);
 
@@ -108,7 +116,7 @@
             usa.Name = countryName;
 
             this.countryRepository.Update(usa);
-            this.countryRepository.SaveChanges();
+            this.unitOfWork.SaveChanges();
 
             int usaCount = this.countryRepository.Count(c => c.Name == countryName);
 
@@ -132,8 +140,6 @@
 
         /// <summary>
         /// Test count 
-        /// expected result 3 + 1
-        /// one country is added with seeding
         /// </summary>
         [TestMethod]
         public void TestCountNoParameters()
@@ -273,7 +279,7 @@
             };
 
             this.countryRepository.Add(country);
-            this.countryRepository.SaveChanges();
+            this.unitOfWork.SaveChanges();
 
             return country;
         }

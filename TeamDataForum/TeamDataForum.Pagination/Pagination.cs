@@ -84,7 +84,10 @@
         /// <returns>IEnumerable of Paginator</returns>
         public IEnumerable<Paginator> GetPages(string action, string controller)
         {
-            int totalPages = (this.TotalCountElements / this.ElementsToTake) + 1;
+            int addition = (this.TotalCountElements % this.ElementsToTake) > 0 ? 
+                1 : 0;
+
+            int totalPages = (this.TotalCountElements / this.ElementsToTake) + addition;
 
             List<Paginator> pages = new List<Paginator>();
 

@@ -101,5 +101,10 @@
 
             return newRepository;
         }
+
+        public void SaveChanges()
+        {
+            this.Context.SaveChanges();
+        }
     }
 }

@@ -21,11 +21,6 @@
         T Remove(T element);
 
         /// <summary>
-        /// Saves current operations
-        /// </summary>
-        void SaveChanges();
-
-        /// <summary>
         /// Updates element to Database
         /// </summary>
         /// <param name="element">Element to be updated.</param>
