@@ -32,6 +32,9 @@
         [MaxLength(NumericValues.TextMaxLength, 
             ErrorMessageResourceName = nameof(ModelsRes.ErrorThreadTitleMaxLength),
             ErrorMessageResourceType = typeof(ModelsRes))]
+        [MinLength(NumericValues.ThreadTitleMinLength, 
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorThreadTitleMinLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Title { get; set; }
 
         /// <summary>

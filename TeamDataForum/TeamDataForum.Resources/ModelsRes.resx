@@ -138,6 +138,12 @@
   <data name="ErrorForumTitleRequired" xml:space="preserve">
     <value>Forum title is required.</value>
   </data>
+  <data name="ErrorPostTextMaxValue" xml:space="preserve">
+    <value>Post text cannot be more than 2000 symbols.</value>
+  </data>
+  <data name="ErrorPostTextMinValue" xml:space="preserve">
+    <value>Post text cannot be less than 10 symbols.</value>
+  </data>
   <data name="ErrorPostTextTextRequired" xml:space="preserve">
     <value>Post text is required.</value>
   </data>
@@ -146,6 +152,9 @@
   </data>
   <data name="ErrorThreadTitleMaxLength" xml:space="preserve">
     <value>Thread title cannot be more than 300 symbols.</value>
+  </data>
+  <data name="ErrorThreadTitleMinLength" xml:space="preserve">
+    <value>Thread title cannot be less than 5 symbols.</value>
   </data>
   <data name="ErrorThreadTitleRequired" xml:space="preserve">
     <value>Thread title is required.</value>

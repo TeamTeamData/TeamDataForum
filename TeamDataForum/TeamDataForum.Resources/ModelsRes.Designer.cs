@@ -124,6 +124,24 @@ namespace TeamDataForum.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Post text cannot be more than 2000 symbols..
+        /// </summary>
+        public static string ErrorPostTextMaxValue {
+            get {
+                return ResourceManager.GetString("ErrorPostTextMaxValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Post text cannot be less than 10 symbols..
+        /// </summary>
+        public static string ErrorPostTextMinValue {
+            get {
+                return ResourceManager.GetString("ErrorPostTextMinValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post text is required..
         /// </summary>
         public static string ErrorPostTextTextRequired {
@@ -147,6 +165,15 @@ namespace TeamDataForum.Resources {
         public static string ErrorThreadTitleMaxLength {
             get {
                 return ResourceManager.GetString("ErrorThreadTitleMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thread title cannot be less than 5 symbols..
+        /// </summary>
+        public static string ErrorThreadTitleMinLength {
+            get {
+                return ResourceManager.GetString("ErrorThreadTitleMinLength", resourceCulture);
             }
         }
         
