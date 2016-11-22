@@ -32,19 +32,19 @@
 
             if (currentPage < 0)
             {
-                currentPage = 0;
+                currentPage = 1;
             }
 
             var postsCount = this.UnitOfWork
                 .PostRepository
                 .Count(p => p.Thread.ThreadId == id);
 
-            int postsToSkip = currentPage * PostsToTake;
+            int postsToSkip = (currentPage - 1) * PostsToTake;
 
             if (postsToSkip > postsCount)
             {
                 postsToSkip = 0;
-                page = 1;
+                currentPage = 1;
             }
 
             int postsToTake = postsToSkip + PostsToTake > postsCount ?
@@ -59,14 +59,23 @@
                 {
                     Id = t.ThreadId,
                     Title = t.Title,
-                    Creator = new UserViewModel() { Id = t.Creator.Id, Username = t.Creator.UserName },
+                    Creator = new UserViewModel()
+                    {
+                        Id = t.Creator.Id,
+                        Username = t.Creator.UserName
+                    },
                     CreationDate = t.Date,
                     Posts = t.Posts.Where(p => !p.IsDeleted).Select(p => new PostFullViewModel()
                     {
                         Id = p.PostId,
                         Date = p.PostDate,
                         Text = p.Text.Text,
-                        Author = new PostUserViewModel() { Id = p.Creator.Id, Username = p.Creator.UserName, Image = p.Creator.Image },
+                        Author = new PostUserViewModel()
+                        {
+                            Id = p.Creator.Id,
+                            Username = p.Creator.UserName,
+                            Image = p.Creator.Image
+                        },
                         ChangeDate = p.ChangeDate,
                         Changer = p.Changer.UserName
                     })
@@ -77,7 +86,7 @@
                 .FirstOrDefault();
 
             thread.Pages = (postsCount / PostsToTake) + 1;
-            thread.Page = page ?? 1;
+            thread.Page = currentPage;
 
             int counter = postsToSkip + 1;
 
