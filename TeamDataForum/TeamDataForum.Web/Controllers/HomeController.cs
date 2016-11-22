@@ -8,6 +8,7 @@
     using Models.ViewModels.Threads;
     using Models.ViewModels.Users;
     using Pagination.Contracts;
+    using Resources;
     using UnitOfWork.Contracts;
 
     public class HomeController : ForumPageBaseController
@@ -42,7 +43,7 @@
                     Threads = f.Threads.Count,
                     Posts = f.Threads.Where(p => !p.IsDeleted).SelectMany(t => t.Posts).Count(),
                     LatestPost = f.Threads
-                    .Select(t => t.Posts.Where(p => !p.IsDeleted).OrderByDescending(p => p.PostId).FirstOrDefault()).Select(p => new PostViewModel
+                    .Select(t => t.Posts.Where(p => !p.IsDeleted).OrderByDescending(p => p.PostId).FirstOrDefault()).Select(p => new ForumPostViewModel
                     {
                         Id = p.PostId,
                         ThreadId = p.Thread.ThreadId,
@@ -98,11 +99,11 @@
                         IsLocked = t.IsLocked,
                         Replies = t.Posts.Count,
                         TimesSeen = t.TimesSeen,
-                        LastPost = t.Posts.Where(p => !p.IsDeleted).Select(p => new PostViewModel
+                        LastPost = t.Posts.Where(p => !p.IsDeleted).Select(p => new ThreadPostViewModel
                         {
                             Id = p.PostId,
                             ThreadId = p.Thread.ThreadId,
-                            Title = p.Thread.Title,
+                            Text = p.Text.Text,
                             Author = new UserViewModel() { Id = p.Creator.Id, Username = p.Creator.UserName },
                             Date = p.PostDate
                         })

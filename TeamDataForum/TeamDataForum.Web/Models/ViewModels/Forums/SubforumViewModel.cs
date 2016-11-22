@@ -21,6 +21,6 @@
 
         public int Posts { get; set; }
 
-        public PostViewModel LatestPost { get; set; }
+        public ForumPostViewModel LatestPost { get; set; }
     }
 }

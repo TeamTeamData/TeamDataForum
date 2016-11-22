@@ -213,11 +213,13 @@
     <Compile Include="Models\BindingModels\Forums\ForumBindingModel.cs" />
     <Compile Include="Models\BindingModels\Users\UserLogBindingModel.cs" />
     <Compile Include="Models\BindingModels\Users\UserRegistrationBindingModel.cs" />
+    <Compile Include="Models\ViewModels\Posts\PostViewModel.cs" />
+    <Compile Include="Models\ViewModels\Posts\ThreadPostViewModel.cs" />
     <Compile Include="Models\ViewModels\Threads\ThreadFullViewModel.cs" />
     <Compile Include="Models\ViewModels\Users\PostUserViewModel.cs" />
     <Compile Include="Models\ViewModels\Users\UserViewModel.cs" />
     <Compile Include="Models\ViewModels\Forums\ForumFullViewModel.cs" />
-    <Compile Include="Models\ViewModels\Posts\PostViewModel.cs" />
+    <Compile Include="Models\ViewModels\Posts\ForumPostViewModel.cs" />
     <Compile Include="Models\ViewModels\Posts\PostFullViewModel.cs" />
     <Compile Include="Models\ViewModels\Forums\ForumViewModel.cs" />
     <Compile Include="Models\ViewModels\Forums\SubforumViewModel.cs" />
@@ -245,7 +247,7 @@
     <Content Include="Views\Shared\EditorTemplates\UserLogBindingModel.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ForumViewModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\PostViewModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ForumPostViewModel.cshtml" />
     <Content Include="Views\Thread\Home.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ThreadViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\UserViewModel.cshtml" />
@@ -259,6 +261,7 @@
     <Content Include="Views\Shared\EditorTemplates\ForumBindingModel.cshtml" />
     <Content Include="Views\Forum\Create.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Paginator.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ThreadPostViewModel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

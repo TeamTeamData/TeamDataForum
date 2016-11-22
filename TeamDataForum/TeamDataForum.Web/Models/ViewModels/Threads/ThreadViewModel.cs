@@ -14,6 +14,6 @@
 
         public int Replies { get; set; }
 
-        public PostViewModel LastPost { get; set; }
+        public ThreadPostViewModel LastPost { get; set; }
     }
 }
