@@ -8,7 +8,9 @@
     using Bases;
     using DBModels;
     using Models.BindingModels.Forums;
+    using Models.BindingModels.Users;
     using UnitOfWork.Contracts;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     public class ForumController : ForumBaseController
     {

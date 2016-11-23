@@ -108,7 +108,7 @@ namespace TeamDataForum.DB.Migrations
 
         private Forum CreateSubforum(TeamDataForumContext context, User user, string subforumTitle, string subforumDescription)
         {
-            if (!context.Subforums.Any(s => s.Title == subforumTitle))
+            if (!context.Forums.Any(s => s.Title == subforumTitle))
             {
                 Forum subforum = new Forum()
                 {
@@ -120,14 +120,14 @@ namespace TeamDataForum.DB.Migrations
 
                 subforum.Moderators.Add(user);
 
-                context.Subforums.Add(subforum);
+                context.Forums.Add(subforum);
 
                 context.SaveChanges();
 
                 return subforum;
             }
 
-            return context.Subforums
+            return context.Forums
                 .Where(s => s.Title == subforumTitle)
                 .FirstOrDefault();
         }

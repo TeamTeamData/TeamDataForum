@@ -21,13 +21,13 @@ namespace TeamDataForum.DB
         /// </summary>
         public virtual DbSet<Country> Countries { get; set; }
 
+        public virtual DbSet<Forum> Forums { get; set; }
+
         public virtual DbSet<Like> Likes { get; set; }
 
         public virtual DbSet<Post> Posts { get; set; }
 
         public virtual DbSet<PostText> PostTexts { get; set; }
-
-        public virtual DbSet<Forum> Subforums { get; set; }   
 
         public virtual DbSet<Thread> Topics { get; set; }
 

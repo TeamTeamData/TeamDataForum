@@ -28,14 +28,17 @@
         /// <returns>View of ThreadsViewModel</returns>
         public ActionResult Home(int id, int? page)
         {
+            // query count
             var postsCount = this.UnitOfWork
                 .PostRepository
                 .Count(p => p.Thread.ThreadId == id);
 
+            // pagination
             var pagination = this.PaginationFactory.CreatePagination(page, PostsToTake, postsCount);
 
             var skipTake = pagination.ElementsToSkipAndTake();
 
+            // query
             var thread = this.UnitOfWork
                 .ThreadRepository
                 .Query
@@ -70,17 +73,10 @@
                 })
                 .FirstOrDefault();
 
-            int postNumber = skipTake.Skip + 1;
-
-            foreach (var post in thread.Posts)
-            {
-                post.Number = postNumber;
-
-                postNumber++;
-            }
-
+            // model pagination
             thread.Pages = pagination.GetPages("Home", "Thread");
 
+            // view
             return this.View(thread);
         }
     }

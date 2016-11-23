@@ -26,8 +26,7 @@
         /// <returns>ForumViewModel</returns>
         public ActionResult Home()
         {
-            /// complex query
-            /// only one query
+            // query
             var forums = this.UnitOfWork
                 .ForumRepository
                 .Query
@@ -55,11 +54,13 @@
                 .OrderBy(s => s.Id)
                 .ToList();
 
+            // model
             var forum = new ForumViewModel()
             {
                 Subforums = forums
             };
 
+            // view
             return View(forum);
         }
 
@@ -72,14 +73,17 @@
         {
             int forumId = id;
 
+            // query count
             var threadsCount = this.UnitOfWork
                 .ThreadRepository
                 .Count(t => t.Forum.ForumId == id);
 
+            // pagination
             var pagination = this.PaginationFactory.CreatePagination(page, ThreadsToTake, threadsCount);
 
             var skipTake = pagination.ElementsToSkipAndTake();
 
+            // query
             var forum = this.UnitOfWork
                 .ForumRepository
                 .Query
@@ -115,8 +119,10 @@
                 })
                 .FirstOrDefault();
 
+            // model pagination
             forum.Pages = pagination.GetPages("View", "Home");
 
+            // view
             return View(forum);
         }
     }

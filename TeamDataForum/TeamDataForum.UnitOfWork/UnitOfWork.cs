@@ -44,6 +44,11 @@
             get { return this.GetRepository<Country>(); }
         }
 
+        public Repository<Forum> ForumRepository
+        {
+            get { return this.GetRepository<Forum>(); }
+        }
+
         public Repository<Like> LikeRepository
         {
             get { return this.GetRepository<Like>(); }
@@ -57,11 +62,6 @@
         public Repository<PostText> PostTextRepository
         {
             get { return this.GetRepository<PostText>(); }
-        }
-
-        public Repository<Forum> ForumRepository
-        {
-            get { return this.GetRepository<Forum>(); }
         }
 
         public Repository<Thread> ThreadRepository
