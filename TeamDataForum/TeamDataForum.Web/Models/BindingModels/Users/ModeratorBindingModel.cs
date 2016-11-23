@@ -7,6 +7,8 @@
     {
         public string Id { get; set; }
 
+        public int Number { get; set; }
+
         [Required(AllowEmptyStrings = false,
             ErrorMessageResourceName = nameof(ModelsRes.ErrorUserUsernameRequired),
             ErrorMessageResourceType = typeof(ModelsRes))]
