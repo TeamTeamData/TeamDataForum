@@ -5,7 +5,7 @@
 
     public class ModeratorBindingModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required(AllowEmptyStrings = false,
             ErrorMessageResourceName = nameof(ModelsRes.ErrorUserUsernameRequired),

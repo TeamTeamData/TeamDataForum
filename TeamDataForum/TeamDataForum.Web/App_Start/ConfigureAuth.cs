@@ -16,6 +16,8 @@
             app.CreatePerOwinContext(TeamDataForumContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
+
             app.UseCookieAuthentication(new CookieAuthenticationOptions());
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions

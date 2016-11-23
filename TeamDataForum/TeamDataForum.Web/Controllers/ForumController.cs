@@ -10,11 +10,12 @@
     using Models.BindingModels.Forums;
     using Models.BindingModels.Users;
     using UnitOfWork.Contracts;
-    using Microsoft.AspNet.Identity.EntityFramework;
 
     public class ForumController : ForumBaseController
     {
-        public ForumController(IUnitOfWork unitOfWork) 
+        private IEnumerable<ModeratorBindingModel> moderators;
+
+        public ForumController(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
         }
@@ -31,7 +32,19 @@
         /// <returns>View for creating forum</returns>
         public ActionResult Create()
         {
-            return View();
+            var role = this.RoleManager
+                .Roles
+                .FirstOrDefault(r => r.Name == "Moderator");
+
+            var moderators = this.UnitOfWork
+                .UserRepository
+                .Select(u => u.Roles.Any(
+                    r => r.RoleId == role.Id ));
+
+            ForumBindingModel model = new ForumBindingModel();
+            model.Moderators = this.GetModerators();
+
+            return View(model);
         }
 
         [HttpPost]
@@ -40,9 +53,12 @@
         {
             if (!ModelState.IsValid)
             {
+                model.Moderators = this.GetModerators();
+
                 return View(model);
             }
 
+            // to do
             User user = this.UnitOfWork
                 .UserRepository
                 .Select(u => u.UserName == this.User.Identity.Name)
@@ -67,6 +83,26 @@
 
             // to do change
             return RedirectToAction("Home", "Home", null);
+        }
+
+        private IEnumerable<ModeratorBindingModel> GetModerators()
+        {
+            var role = this.RoleManager
+                .Roles
+                .FirstOrDefault(r => r.Name == "Moderator");
+
+            var users = this.UnitOfWork
+                .UserRepository
+                .Select(u => u.Roles.Any(
+                    r => r.RoleId == role.Id));
+
+            var moderators = users.Select(m => new ModeratorBindingModel()
+            {
+                Id = m.Id,
+                Username = m.UserName
+            });
+
+            return moderators;
         }
     }
 }

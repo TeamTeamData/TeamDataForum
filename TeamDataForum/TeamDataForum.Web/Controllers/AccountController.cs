@@ -19,12 +19,12 @@
 
         private ApplicationUserManager UserManager
         {
-            get { return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+            get { return this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
         }
 
         private ApplicationSignInManager SignInManager
         {
-            get { return HttpContext.GetOwinContext().GetUserManager<ApplicationSignInManager>(); }
+            get { return this.HttpContext.GetOwinContext().GetUserManager<ApplicationSignInManager>(); }
         }
 
         private IAuthenticationManager AuthenticationManager

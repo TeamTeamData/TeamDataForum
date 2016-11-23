@@ -29,6 +29,6 @@
 
         [Required]
         [MinLength(1)]
-        IEnumerable<ModeratorBindingModel> Moderators { get; set; }
+        public IEnumerable<ModeratorBindingModel> Moderators { get; set; }
     }
 }
