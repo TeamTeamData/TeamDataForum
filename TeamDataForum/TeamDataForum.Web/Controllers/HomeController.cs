@@ -8,7 +8,6 @@
     using Models.ViewModels.Threads;
     using Models.ViewModels.Users;
     using Pagination.Contracts;
-    using Resources;
     using UnitOfWork.Contracts;
 
     public class HomeController : ForumPageBaseController

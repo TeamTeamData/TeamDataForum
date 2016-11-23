@@ -3,9 +3,7 @@
 
 @if (Model != null)
 {
-    var postPath = $"#{Model.Id}";
-    
-    <div>@Html.ActionLink(Model.Title, "Threads", new { Id = Model.ThreadId + postPath })</div>
+    <div>@Html.ActionLink(Model.Title, "View", "Posts", new { Id = Model.Id }, null)</div>
     <div>@Html.DisplayFor(m => m.Author)</div>
     <div>@Model.Date</div>
 }
