@@ -1,0 +1,7 @@
+﻿@using TeamDataForum.Web.Models.BindingModels.Forums
+@model IdentifiableForumBindingModel
+
+<input type="hidden" name="Forum.Id" value="@Model.Id" />
+<div>@Model.Title</div>
+<div>@Model.Description</div>
+@Html.ValidationMessageFor(m => m.Id)

@@ -1,8 +1,12 @@
 ﻿namespace TeamDataForum.Web.Controllers
 {
+    using System;
     using System.Linq;
     using System.Web.Mvc;
     using Bases;
+    using DBModels;
+    using Models.BindingModels.Forums;
+    using Models.BindingModels.Threads;
     using Models.ViewModels.Posts;
     using Models.ViewModels.Threads;
     using Models.ViewModels.Users;
@@ -78,6 +82,97 @@
 
             // view
             return this.View(thread);
+        }
+
+        public ActionResult Create(int id)
+        {
+            int forumId = id;
+
+            Forum forum = this.GetForum(forumId);
+
+            // to do
+            if (forum == default(Forum))
+            {
+                return RedirectToAction("Home", "Home", null);
+            }
+
+            ThreadBindingModel thread = new ThreadBindingModel()
+            {
+                Forum = new IdentifiableForumBindingModel()
+                {
+                    Id = forum.ForumId,
+                    Title = forum.Title,
+                    Description = forum.Description
+                }
+            };
+
+            return View(thread);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(ThreadBindingModel thread, int id)
+        {
+            int forumId = id;
+
+            Forum forum = this.GetForum(forumId);
+
+            User user = this.UnitOfWork
+                .UserRepository
+                .Select(u => u.UserName == this.HttpContext.User.Identity.Name)
+                .FirstOrDefault();
+
+            if (forum == default(Forum) || user == default(User))
+            {
+                return RedirectToAction("Home", "Home", null);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                thread.Forum = new IdentifiableForumBindingModel()
+                {
+                    Id = forum.ForumId,
+                    Title = forum.Title,
+                    Description = forum.Description
+                };
+
+                return View(thread);
+            }
+
+            Thread newThread = new Thread()
+            {
+                Creator = user,
+                Date = DateTime.Now,
+                Forum = forum,
+                Title = thread.Title,
+            };
+
+            newThread.Posts.Add(new Post()
+            {
+                Creator = user,
+                PostDate = DateTime.Now,
+                Text = new PostText()
+                {
+                    Text = thread.Post.Text
+                }
+            });
+
+            newThread = this.UnitOfWork
+                .ThreadRepository
+                .Add(newThread);
+
+            this.UnitOfWork.SaveChanges();
+
+            return RedirectToAction("Home", "Thread", new { id = newThread.ThreadId });
+        }
+
+        private Forum GetForum(int id)
+        {
+            Forum forum = this.UnitOfWork
+                .ForumRepository
+                .Find(id);
+
+            return forum;
         }
     }
 }

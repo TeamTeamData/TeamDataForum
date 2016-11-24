@@ -141,6 +141,9 @@
   <data name="ErrorModeratorIdRequired" xml:space="preserve">
     <value>Invalid moderator.</value>
   </data>
+  <data name="ErrorNoForum" xml:space="preserve">
+    <value>Forum is not found.</value>
+  </data>
   <data name="ErrorNoModerators" xml:space="preserve">
     <value>Select at least one moderator.</value>
   </data>
@@ -158,6 +161,12 @@
   </data>
   <data name="ErrorThreadDateRequired" xml:space="preserve">
     <value>Thread date is required.</value>
+  </data>
+  <data name="ErrorThreadNoForum" xml:space="preserve">
+    <value>No forum is specified for this thread.</value>
+  </data>
+  <data name="ErrorThreadNoPost" xml:space="preserve">
+    <value>No post is specified for this thread.</value>
   </data>
   <data name="ErrorThreadTitleMaxLength" xml:space="preserve">
     <value>Thread title cannot be more than 300 symbols.</value>

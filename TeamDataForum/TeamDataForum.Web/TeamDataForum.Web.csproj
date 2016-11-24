@@ -211,6 +211,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BindingModels\Forums\ForumBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Forums\IdentifiableForumBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Posts\PostBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Threads\ThreadBindingModel.cs" />
     <Compile Include="Models\BindingModels\Users\ModeratorBindingModel.cs" />
     <Compile Include="Models\BindingModels\Users\UserLogBindingModel.cs" />
     <Compile Include="Models\BindingModels\Users\UserRegistrationBindingModel.cs" />
@@ -264,6 +267,10 @@
     <Content Include="Views\Shared\DisplayTemplates\Paginator.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ThreadPostViewModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ModeratorBindingModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PostBindingModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\IdentifiableForumBindingModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ThreadBindingModel.cshtml" />
+    <Content Include="Views\Thread\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

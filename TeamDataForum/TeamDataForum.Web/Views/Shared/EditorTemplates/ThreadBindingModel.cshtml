@@ -1,0 +1,15 @@
+﻿@using TeamDataForum.Web.Models.BindingModels.Threads
+@model ThreadBindingModel
+
+@using (Html.BeginForm("Create", "Thread", FormMethod.Post))
+{
+    @Html.EditorFor(m => m.Forum)
+    @Html.ValidationMessageFor(m => m.Forum)
+    @Html.LabelFor(m => m.Title)
+    @Html.EditorFor(m => m.Title)
+    @Html.ValidationMessageFor(m => m.Title)
+    @Html.EditorFor(m => m.Post)
+    @Html.ValidationMessageFor(m => m.Post)
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Create"/>
+}

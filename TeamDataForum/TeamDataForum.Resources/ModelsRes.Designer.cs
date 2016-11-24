@@ -133,6 +133,15 @@ namespace TeamDataForum.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Forum is not found..
+        /// </summary>
+        public static string ErrorNoForum {
+            get {
+                return ResourceManager.GetString("ErrorNoForum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select at least one moderator..
         /// </summary>
         public static string ErrorNoModerators {
@@ -183,6 +192,24 @@ namespace TeamDataForum.Resources {
         public static string ErrorThreadDateRequired {
             get {
                 return ResourceManager.GetString("ErrorThreadDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No forum is specified for this thread..
+        /// </summary>
+        public static string ErrorThreadNoForum {
+            get {
+                return ResourceManager.GetString("ErrorThreadNoForum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No post is specified for this thread..
+        /// </summary>
+        public static string ErrorThreadNoPost {
+            get {
+                return ResourceManager.GetString("ErrorThreadNoPost", resourceCulture);
             }
         }
         
