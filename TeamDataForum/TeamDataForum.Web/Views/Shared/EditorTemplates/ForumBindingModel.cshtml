@@ -8,6 +8,7 @@
     @Html.EditorFor(m => m.Description)
     @Html.ValidationMessageFor(m => m.Description)
     @Html.EditorFor(m => m.Moderators)
+    @Html.ValidationMessageFor(m => m.Moderators)
     @Html.AntiForgeryToken()
     <input type="submit" value="Create" />
 }

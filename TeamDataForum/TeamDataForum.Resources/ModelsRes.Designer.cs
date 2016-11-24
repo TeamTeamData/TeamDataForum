@@ -124,6 +124,24 @@ namespace TeamDataForum.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid moderator..
+        /// </summary>
+        public static string ErrorModeratorIdRequired {
+            get {
+                return ResourceManager.GetString("ErrorModeratorIdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select at least one moderator..
+        /// </summary>
+        public static string ErrorNoModerators {
+            get {
+                return ResourceManager.GetString("ErrorNoModerators", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post text cannot be more than 2000 symbols..
         /// </summary>
         public static string ErrorPostTextMaxValue {
@@ -147,6 +165,15 @@ namespace TeamDataForum.Resources {
         public static string ErrorPostTextTextRequired {
             get {
                 return ResourceManager.GetString("ErrorPostTextTextRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no selected moderators ..
+        /// </summary>
+        public static string ErrorRequiredModerators {
+            get {
+                return ResourceManager.GetString("ErrorRequiredModerators", resourceCulture);
             }
         }
         

@@ -2,4 +2,4 @@
 @model ModeratorBindingModel
 
 <label>@Model.Username</label><input type="checkbox" name="Moderators[@Model.Number].Id" value="@Model.Id" />
-<input type="hidden" name="Moderators[@Model.Number].Username" value="@Model.Username"  />
+@Html.ValidationMessageFor(m => m.Id)

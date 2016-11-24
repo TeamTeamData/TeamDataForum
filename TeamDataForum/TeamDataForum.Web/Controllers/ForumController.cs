@@ -31,7 +31,7 @@
         /// <returns>View for creating forum</returns>
         public ActionResult Create()
         {
-            var role = this.GetUserRole("Moderator");
+            var role = this.GetRoleByName("Moderator");
 
             ForumBindingModel model = new ForumBindingModel();
             model.Moderators = this.GetUsersByRole(role.Id);
@@ -41,18 +41,18 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ForumBindingModel model)
+        public ActionResult Create(ForumBindingModel forum)
         {
-            var role = this.GetUserRole("Moderator");
+            var role = this.GetRoleByName("Moderator");
 
             if (!ModelState.IsValid)
             {
-                model.Moderators = this.GetUsersByRole(role.Id);
+                forum.Moderators = this.GetUsersByRole(role.Id);
 
-                return View(model);
+                return View(forum);
             }
 
-            var moderatorsIds = model.Moderators
+            var moderatorsIds = forum.Moderators
                 .Select(m => m.Id)
                 .ToArray();
 
@@ -66,8 +66,8 @@
 
             Forum newForum = new Forum()
             {
-                Title = model.Title,
-                Description = model.Description,
+                Title = forum.Title,
+                Description = forum.Description,
                 Date = DateTime.Now,
                 Creator = creator
             };
@@ -110,7 +110,7 @@
             return moderators;
         }
 
-        private IdentityRole GetUserRole(string roleType)
+        private IdentityRole GetRoleByName(string roleType)
         {
             var role = this.RoleManager
                 .Roles

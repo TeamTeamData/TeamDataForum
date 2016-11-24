@@ -138,6 +138,12 @@
   <data name="ErrorForumTitleRequired" xml:space="preserve">
     <value>Forum title is required.</value>
   </data>
+  <data name="ErrorModeratorIdRequired" xml:space="preserve">
+    <value>Invalid moderator.</value>
+  </data>
+  <data name="ErrorNoModerators" xml:space="preserve">
+    <value>Select at least one moderator.</value>
+  </data>
   <data name="ErrorPostTextMaxValue" xml:space="preserve">
     <value>Post text cannot be more than 2000 symbols.</value>
   </data>
@@ -146,6 +152,9 @@
   </data>
   <data name="ErrorPostTextTextRequired" xml:space="preserve">
     <value>Post text is required.</value>
+  </data>
+  <data name="ErrorRequiredModerators" xml:space="preserve">
+    <value>There are no selected moderators .</value>
   </data>
   <data name="ErrorThreadDateRequired" xml:space="preserve">
     <value>Thread date is required.</value>

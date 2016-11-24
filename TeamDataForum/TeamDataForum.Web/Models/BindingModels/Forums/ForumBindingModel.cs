@@ -1,9 +1,8 @@
 ﻿namespace TeamDataForum.Web.Models.BindingModels.Forums
 {
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Resources;
-    using Models.BindingModels.Users;
+    using Users;
 
     public class ForumBindingModel
     {
@@ -27,8 +26,12 @@
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [Required]
-        [MinLength(1)]
+        [Required(
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorRequiredModerators),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MinLength(1,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorNoModerators),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public ModeratorBindingModel[] Moderators { get; set; }
     }
 }

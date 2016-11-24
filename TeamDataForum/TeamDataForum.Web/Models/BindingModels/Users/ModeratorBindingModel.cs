@@ -5,13 +5,13 @@
 
     public class ModeratorBindingModel
     {
+        [Required(AllowEmptyStrings = false,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorModeratorIdRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Id { get; set; }
 
         public int Number { get; set; }
 
-        [Required(AllowEmptyStrings = false,
-            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserUsernameRequired),
-            ErrorMessageResourceType = typeof(ModelsRes))]
         public string Username { get; set; }
     }
 }
