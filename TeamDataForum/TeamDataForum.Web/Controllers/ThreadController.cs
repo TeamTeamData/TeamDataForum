@@ -84,6 +84,11 @@
             return this.View(thread);
         }
 
+        /// <summary>
+        /// Create empty model for thread creation
+        /// </summary>
+        /// <param name="id">forum id</param>
+        /// <returns>view for creation</returns>
         public ActionResult Create(int id)
         {
             int forumId = id;
@@ -91,7 +96,7 @@
             Forum forum = this.GetForum(forumId);
 
             // to do
-            if (forum == default(Forum))
+            if (forum == default(Forum) || !forum.IsDeleted)
             {
                 return RedirectToAction("Home", "Home", null);
             }
@@ -109,6 +114,12 @@
             return View(thread);
         }
 
+        /// <summary>
+        /// Create new thread
+        /// </summary>
+        /// <param name="thread">thread to create</param>
+        /// <param name="id">Parent forum id</param>
+        /// <returns>redirect to home home</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ThreadBindingModel thread, int id)
@@ -122,7 +133,8 @@
                 .Select(u => u.UserName == this.HttpContext.User.Identity.Name)
                 .FirstOrDefault();
 
-            if (forum == default(Forum) || user == default(User))
+            // to do
+            if (forum == default(Forum) || !forum.IsDeleted)
             {
                 return RedirectToAction("Home", "Home", null);
             }

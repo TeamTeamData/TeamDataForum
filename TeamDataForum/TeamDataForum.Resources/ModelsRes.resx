@@ -147,6 +147,9 @@
   <data name="ErrorNoModerators" xml:space="preserve">
     <value>Select at least one moderator.</value>
   </data>
+  <data name="ErrorNoThread" xml:space="preserve">
+    <value>Thread is not found.</value>
+  </data>
   <data name="ErrorPostTextMaxValue" xml:space="preserve">
     <value>Post text cannot be more than 2000 symbols.</value>
   </data>

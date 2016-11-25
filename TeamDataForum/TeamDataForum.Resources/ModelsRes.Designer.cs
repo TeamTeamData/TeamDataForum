@@ -151,6 +151,15 @@ namespace TeamDataForum.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Thread is not found..
+        /// </summary>
+        public static string ErrorNoThread {
+            get {
+                return ResourceManager.GetString("ErrorNoThread", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Post text cannot be more than 2000 symbols..
         /// </summary>
         public static string ErrorPostTextMaxValue {

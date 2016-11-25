@@ -206,6 +206,7 @@
     <Compile Include="Controllers\Bases\ForumPageBaseController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\ThreadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,6 +214,8 @@
     <Compile Include="Models\BindingModels\Forums\ForumBindingModel.cs" />
     <Compile Include="Models\BindingModels\Forums\IdentifiableForumBindingModel.cs" />
     <Compile Include="Models\BindingModels\Posts\PostBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Posts\ThreadPostBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Threads\IdentifiableThreadBindingModel.cs" />
     <Compile Include="Models\BindingModels\Threads\ThreadBindingModel.cs" />
     <Compile Include="Models\BindingModels\Users\ModeratorBindingModel.cs" />
     <Compile Include="Models\BindingModels\Users\UserLogBindingModel.cs" />
@@ -271,6 +274,9 @@
     <Content Include="Views\Shared\EditorTemplates\IdentifiableForumBindingModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ThreadBindingModel.cshtml" />
     <Content Include="Views\Thread\Create.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\IdentifiableThreadBindingModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ThreadPostBindingModel.cshtml" />
+    <Content Include="Views\Post\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

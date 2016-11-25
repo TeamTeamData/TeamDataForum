@@ -1,0 +1,6 @@
+﻿@using TeamDataForum.Web.Models.BindingModels.Threads
+@model IdentifiableThreadBindingModel
+
+<input type="hidden" value="@Model.Id" />
+<div>@Model.Title</div>
+@Html.ValidationMessageFor(m => m.Id)
