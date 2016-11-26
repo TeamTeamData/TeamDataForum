@@ -1,5 +1,6 @@
 ﻿@using TeamDataForum.Web.Models.BindingModels.Users
 @model ModeratorBindingModel
 
-<label>@Model.Username</label><input type="checkbox" name="Moderators[@Model.Number].Id" value="@Model.Id" />
+<div>@Model.Username</div>
+<input type="checkbox" name="Moderators[@Model.Number].Id" value="@Model.Id" />
 @Html.ValidationMessageFor(m => m.Id)

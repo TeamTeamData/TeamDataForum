@@ -9,7 +9,9 @@
 
         @using (Html.BeginForm("Login", "Account", FormMethod.Post))
         {
+            @Html.LabelFor(m => m.Username)
             @Html.EditorFor(m => m.Username, new { htmlAttributes = new { placeholder = "Username", @class = "form-control" } })
+            @Html.LabelFor(m => m.Password)
             @Html.EditorFor(m => m.Password, new { htmlAttributes = new { placeholder = "Password", @class = "form-control", @type = "password" } })
             @Html.ValidationSummary()
             @Html.AntiForgeryToken()

@@ -3,22 +3,22 @@
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
-    <label>First name</label>
+    @Html.LabelFor(m => m.Firstname)
     @Html.EditorFor(m => m.Firstname)
     @Html.ValidationMessageFor(m => m.Firstname)
-    <label>Last name</label>
+    @Html.LabelFor(m => m.Lastname)
     @Html.EditorFor(m => m.Lastname)
     @Html.ValidationMessageFor(m => m.Lastname)
-    <label>Username</label>
+    @Html.LabelFor(m => m.Username)
     @Html.EditorFor(m => m.Username)
     @Html.ValidationMessageFor(m => m.Username)
-    <label>Email</label>
+    @Html.LabelFor(m => m.Email)
     @Html.EditorFor(m => m.Email)
     @Html.ValidationMessageFor(m => m.Email)
-    <label>Password</label>
+    @Html.LabelFor(m => m.Password)
     @Html.EditorFor(m => m.Password)
     @Html.ValidationMessageFor(m => m.Password)
-    <label>Confirm password</label>
+    @Html.LabelFor(m => m.ConfirmPassword)
     @Html.EditorFor(m => m.ConfirmPassword)
     @Html.ValidationMessageFor(m => m.ConfirmPassword)
     @Html.AntiForgeryToken()

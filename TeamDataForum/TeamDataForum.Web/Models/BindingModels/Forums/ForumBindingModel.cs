@@ -32,6 +32,7 @@
         [MinLength(1,
             ErrorMessageResourceName = nameof(ModelsRes.ErrorNoModerators),
             ErrorMessageResourceType = typeof(ModelsRes))]
+        [Display(Name = "Forum moderators")]
         public ModeratorBindingModel[] Moderators { get; set; }
     }
 }

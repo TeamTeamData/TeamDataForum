@@ -3,10 +3,13 @@
 
 @using (Html.BeginForm("Create", "Forum", FormMethod.Post))
 {
+    @Html.LabelFor(m => m.Title)
     @Html.EditorFor(m => m.Title)
     @Html.ValidationMessageFor(m => m.Title)
+    @Html.LabelFor(m => m.Description)
     @Html.EditorFor(m => m.Description)
     @Html.ValidationMessageFor(m => m.Description)
+    @Html.LabelFor(m => m.Moderators)
     @Html.EditorFor(m => m.Moderators)
     @Html.ValidationMessageFor(m => m.Moderators)
     @Html.AntiForgeryToken()
