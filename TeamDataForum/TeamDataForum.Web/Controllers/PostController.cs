@@ -36,6 +36,11 @@
             return RedirectToAction("Home", "Thread", new { });
         }
 
+        /// <summary>
+        /// Empty create for post
+        /// </summary>
+        /// <param name="id">Thread id</param>
+        /// <returns>View of IdentifiableThreadBindingModel</returns>
         public ActionResult Create(int id)
         {
             Thread thread = this.GetThread(id);
@@ -58,6 +63,12 @@
             return View(post);
         }
 
+        /// <summary>
+        /// Creates new post for specific thread
+        /// </summary>
+        /// <param name="id">Thread id</param>
+        /// <param name="post">IdentifiableThreadBindingModel</param>
+        /// <returns>redirects</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(int id, ThreadPostBindingModel post)
@@ -72,6 +83,12 @@
 
             if (!ModelState.IsValid)
             {
+                post.Thread = new IdentifiableThreadBindingModel()
+                {
+                    Id = thread.ThreadId,
+                    Title = thread.Title
+                };
+
                 return View(post);
             }
 
@@ -101,6 +118,82 @@
             return RedirectToAction("View", "Post", new { id = newPost.PostId });
         }
 
+        /// <summary>
+        /// Empty action for edit
+        /// </summary>
+        /// <param name="id">Id of post</param>
+        /// <returns>View of EditPostBindingModel</returns>
+        public ActionResult Edit(int id)
+        {
+            Post post = this.GetPost(id);
+
+            // to do
+            if (post == default(Post))
+            {
+                return RedirectToAction("Home", "Home");
+            }
+
+            EditPostBindingModel postToEdit = new EditPostBindingModel()
+            {
+                Id = post.PostId,
+                Post = new PostBindingModel()
+                {
+                    Text = post.Text.Text
+                },
+                Thread = new IdentifiableThreadBindingModel()
+                {
+                    Id = post.Thread.ThreadId,
+                    Title = post.Thread.Title
+                }
+            };
+
+            return View(postToEdit);
+        }
+
+        /// <summary>
+        /// Edits post
+        /// </summary>
+        /// <param name="id">Post id</param>
+        /// <param name="post">EditPostBindingModel</param>
+        /// <returns>redirects</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, EditPostBindingModel post)
+        {
+            Post editedPost = this.GetPost(id);
+
+            // to do
+            if (editedPost == default(Post))
+            {
+                return RedirectToAction("Home", "Home");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                // to do
+
+                return this.Edit(id);
+            }
+
+            User user = this.UnitOfWork
+                .UserRepository
+                .Select(u => u.UserName == this.HttpContext.User.Identity.Name)
+                .FirstOrDefault();
+
+            editedPost.Text.Text = post.Post.Text;
+            editedPost.Changer = user;
+            editedPost.ChangeDate = DateTime.Now;
+
+            this.UnitOfWork
+                .PostRepository
+                .Update(editedPost);
+
+            this.UnitOfWork.SaveChanges();
+
+            // to do
+            return RedirectToAction("Home", "Home");
+        }
+
         private Thread GetThread(int id)
         {
             Thread thread = this.UnitOfWork
@@ -108,6 +201,15 @@
                 .Find(id);
 
             return thread;
+        }
+
+        private Post GetPost(int id)
+        {
+            Post post = this.UnitOfWork
+                .PostRepository
+                .Find(id, new string[] { "Text", "Thread" });
+
+            return post;
         }
     }
 }

@@ -4,7 +4,6 @@
     using Resources;
     using Threads;
     
-
     public class ThreadPostBindingModel
     {
         [Required(ErrorMessageResourceName = nameof(ModelsRes.ErrorNoThread),

@@ -213,6 +213,7 @@
     </Compile>
     <Compile Include="Models\BindingModels\Forums\ForumBindingModel.cs" />
     <Compile Include="Models\BindingModels\Forums\IdentifiableForumBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Posts\EditPostBindingModel.cs" />
     <Compile Include="Models\BindingModels\Posts\PostBindingModel.cs" />
     <Compile Include="Models\BindingModels\Posts\ThreadPostBindingModel.cs" />
     <Compile Include="Models\BindingModels\Threads\IdentifiableThreadBindingModel.cs" />
@@ -277,6 +278,8 @@
     <Content Include="Views\Shared\EditorTemplates\IdentifiableThreadBindingModel.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ThreadPostBindingModel.cshtml" />
     <Content Include="Views\Post\Create.cshtml" />
+    <Content Include="Views\Post\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EditPostBindingModel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
