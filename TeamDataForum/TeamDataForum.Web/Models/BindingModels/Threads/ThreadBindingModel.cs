@@ -17,6 +17,7 @@
             ErrorMessageResourceName = nameof(ModelsRes.ErrorThreadTitleMinLength),
             ErrorMessageResourceType = typeof(ModelsRes))]
         [DataType(DataType.MultilineText)]
+        [Display(Name = "Thread title")]
         public string Title { get; set; }
 
         [Required(ErrorMessageResourceName = nameof(ModelsRes.ErrorThreadNoForum),
@@ -25,6 +26,14 @@
 
         [Required(ErrorMessageResourceName = nameof(ModelsRes.ErrorThreadNoPost),
             ErrorMessageResourceType = typeof(ModelsRes))]
-        public PostBindingModel Post { get; set; }
+        [MinLength(NumericValues.PostTextMinValue,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorPostTextMinValue),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.PostTextMaxValue,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorPostTextMaxValue),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [Display(Name = "Post text")]
+        [DataType(DataType.MultilineText)]
+        public string Text { get; set; }
     }
 }

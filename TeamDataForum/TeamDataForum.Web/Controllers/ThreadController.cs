@@ -165,7 +165,7 @@
                 PostDate = DateTime.Now,
                 Text = new PostText()
                 {
-                    Text = thread.Post.Text
+                    Text = thread.Text
                 }
             });
 

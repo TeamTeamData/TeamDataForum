@@ -215,7 +215,7 @@
     <Compile Include="Models\BindingModels\Forums\ForumBindingModel.cs" />
     <Compile Include="Models\BindingModels\Forums\IdentifiableForumBindingModel.cs" />
     <Compile Include="Models\BindingModels\Posts\EditPostBindingModel.cs" />
-    <Compile Include="Models\BindingModels\Posts\PostBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Posts\PostDeleteBindingModel.cs" />
     <Compile Include="Models\BindingModels\Posts\ThreadPostBindingModel.cs" />
     <Compile Include="Models\BindingModels\Threads\IdentifiableThreadBindingModel.cs" />
     <Compile Include="Models\BindingModels\Threads\ThreadBindingModel.cs" />
@@ -283,6 +283,8 @@
     <Content Include="Views\Shared\EditorTemplates\EditPostBindingModel.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\BadRequest.cshtml" />
+    <Content Include="Views\Post\Delete.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PostDeleteBindingModel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

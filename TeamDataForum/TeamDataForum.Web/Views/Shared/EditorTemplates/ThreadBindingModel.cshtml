@@ -5,11 +5,12 @@
 {
     @Html.EditorFor(m => m.Forum)
     @Html.ValidationMessageFor(m => m.Forum)
-    @Html.LabelFor(m => m.Title)
+    @Html.DisplayFor(m => m.Title)
     @Html.EditorFor(m => m.Title)
     @Html.ValidationMessageFor(m => m.Title)
-    @Html.EditorFor(m => m.Post)
-    @Html.ValidationMessageFor(m => m.Post)
+    @Html.DisplayFor(m => m.Text)
+    @Html.EditorFor(m => m.Text)
+    @Html.ValidationMessageFor(m => m.Text)
     @Html.AntiForgeryToken()
     <input type="submit" value="Create"/>
 }

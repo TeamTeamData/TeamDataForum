@@ -10,8 +10,17 @@
             ErrorMessageResourceType = typeof(ModelsRes))]
         public IdentifiableThreadBindingModel Thread { get; set; }
 
-        [Required(ErrorMessageResourceName = nameof(ModelsRes.ErrorThreadNoPost),
+        [Required(AllowEmptyStrings = false,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorPostTextTextRequired),
             ErrorMessageResourceType = typeof(ModelsRes))]
-        public PostBindingModel Post { get; set; }
+        [MinLength(NumericValues.PostTextMinValue,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorPostTextMinValue),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.PostTextMaxValue,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorPostTextMaxValue),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [Display(Name = "Post text")]
+        [DataType(DataType.MultilineText)]
+        public string Text { get; set; }
     }
 }
