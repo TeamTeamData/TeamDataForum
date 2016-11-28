@@ -1,0 +1,17 @@
+﻿@using TeamDataForum.Web.Models.BindingModels.Forums
+@model EditForumBindingModel
+
+@using (Html.BeginForm("Edit", "Forum", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+    @Html.DisplayFor(m => m.Title)
+    @Html.EditorFor(m => m.Title)
+    @Html.ValidationMessageFor(m => m.Title)
+    @Html.DisplayFor(m => m.Description)
+    @Html.EditorFor(m => m.Description)
+    @Html.ValidationMessageFor(m => m.Description)
+    @Html.EditorFor(m => m.Moderators)
+    @Html.ValidationMessageFor(m => m.Id)
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Edit" />
+}

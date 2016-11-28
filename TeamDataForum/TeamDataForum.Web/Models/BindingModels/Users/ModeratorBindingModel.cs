@@ -13,5 +13,7 @@
         public int Number { get; set; }
 
         public string Username { get; set; }
+
+        public bool IsChecked { get; set; }
     }
 }

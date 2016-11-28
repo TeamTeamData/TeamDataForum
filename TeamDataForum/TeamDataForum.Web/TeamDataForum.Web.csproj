@@ -212,6 +212,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BindingModels\Forums\DeleteForumBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Forums\EditForumBindingModel.cs" />
     <Compile Include="Models\BindingModels\Forums\ForumBindingModel.cs" />
     <Compile Include="Models\BindingModels\Forums\IdentifiableForumBindingModel.cs" />
     <Compile Include="Models\BindingModels\Posts\EditPostBindingModel.cs" />
@@ -291,6 +293,10 @@
     <Content Include="Views\Shared\EditorTemplates\EditThreadBindingModel.cshtml" />
     <Content Include="Views\Thread\Delete.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DeleteThreadBindingModel.cshtml" />
+    <Content Include="Views\Forum\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EditForumBindingModel.cshtml" />
+    <Content Include="Views\Forum\Delete.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DeleteForumBindingModel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

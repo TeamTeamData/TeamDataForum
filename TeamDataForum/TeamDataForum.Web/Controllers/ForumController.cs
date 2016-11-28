@@ -59,7 +59,7 @@
             var users = this.UnitOfWork
                 .UserRepository
                 .Select(
-                u => u.UserName == this.User.Identity.Name || 
+                u => u.UserName == this.User.Identity.Name ||
                 (moderatorsIds.Contains(u.Id) && u.Roles.Any(r => r.RoleId == role.Id)));
 
             var creator = users.FirstOrDefault(u => u.UserName == this.User.Identity.Name);
@@ -85,6 +85,153 @@
 
             // to do change
             return RedirectToAction("Home", "Home", null);
+        }
+
+        /// <summary>
+        /// Edit action for forum
+        /// </summary>
+        /// <param name="id">forum id</param>
+        /// <returns>View</returns>
+        public ActionResult Edit(int id)
+        {
+            Forum forum = this.GetForum(id);
+
+            if (forum == default(Forum) || forum.IsDeleted)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            var role = this.GetRoleByName("Moderator");
+
+            var moderators = this.GetUsersByRole(role.Id);
+
+            foreach (var moderator in moderators)
+            {
+                if (forum.Moderators.Any(m => m.Id == moderator.Id))
+                {
+                    moderator.IsChecked = true;
+                }
+            }
+
+            EditForumBindingModel forumModel = new EditForumBindingModel()
+            {
+                Id = forum.ForumId,
+                Title = forum.Title,
+                Description = forum.Description,
+                Moderators = moderators
+            };
+
+            return View(forumModel);
+        }
+
+        /// <summary>
+        /// Action to edit Forum
+        /// </summary>
+        /// <param name="id">Forum id</param>
+        /// <param name="forum">EditForumBindingModel</param>
+        /// <returns>Redirects</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, EditForumBindingModel forum)
+        {
+            Forum editForum = this.GetForumNoModerators(id);
+
+            if (editForum == default(Forum) || editForum.IsDeleted || id != forum.Id)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return View(forum);
+            }
+
+            var role = this.GetRoleByName("Moderator");
+
+            var moderatorsIds = forum.Moderators
+                .Select(m => m.Id)
+                .ToArray();
+
+            var users = this.UnitOfWork
+                .UserRepository
+                .Select(u => moderatorsIds.Contains(u.Id) && u.Roles.Any(r => r.RoleId == role.Id));
+
+            editForum.Title = forum.Title;
+            editForum.Description = forum.Description;
+            editForum.Moderators = users;
+
+            editForum = this.UnitOfWork
+                .ForumRepository
+                .Update(editForum);
+
+            this.UnitOfWork.SaveChanges();
+
+            // to do
+            return RedirectToAction("Home", "Home");
+        }
+
+        /// <summary>
+        /// Delete action for forum
+        /// </summary>
+        /// <param name="id">Forum id</param>
+        /// <returns>View</returns>
+        public ActionResult Delete(int id)
+        {
+            Forum forum = this.GetForumNoModerators(id);
+
+            if (forum == default(Forum) || forum.IsDeleted)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            DeleteForumBindingModel deleteForum = new DeleteForumBindingModel()
+            {
+                Id = forum.ForumId,
+                Title = forum.Title,
+                Description = forum.Description
+            };
+
+            return View(deleteForum);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, DeleteForumBindingModel forum)
+        {
+            Forum deleteForum = this.GetForumNoModerators(id);
+
+            if (deleteForum == default(Forum) || deleteForum.IsDeleted || id != forum.Id)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            deleteForum.IsDeleted = true;
+
+            this.UnitOfWork
+                .ForumRepository
+                .Update(deleteForum);
+
+            this.UnitOfWork.SaveChanges();
+
+            return RedirectToAction("Home", "Home");
+        }
+
+        private Forum GetForum(int id)
+        {
+            Forum forum = this.UnitOfWork
+                .ForumRepository
+                .Find(id, new string[] { "Moderators" });
+
+            return forum;
+        }
+
+        private Forum GetForumNoModerators(int id)
+        {
+            Forum forum = this.UnitOfWork
+                .ForumRepository
+                .Find(id);
+
+            return forum;
         }
 
         private ModeratorBindingModel[] GetUsersByRole(string roleId)
