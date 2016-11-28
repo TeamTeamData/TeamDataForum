@@ -217,6 +217,8 @@
     <Compile Include="Models\BindingModels\Posts\EditPostBindingModel.cs" />
     <Compile Include="Models\BindingModels\Posts\PostDeleteBindingModel.cs" />
     <Compile Include="Models\BindingModels\Posts\ThreadPostBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Threads\DeleteThreadBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Threads\EditThreadBindingModel.cs" />
     <Compile Include="Models\BindingModels\Threads\IdentifiableThreadBindingModel.cs" />
     <Compile Include="Models\BindingModels\Threads\ThreadBindingModel.cs" />
     <Compile Include="Models\BindingModels\Users\ModeratorBindingModel.cs" />
@@ -285,6 +287,10 @@
     <Content Include="Views\Error\BadRequest.cshtml" />
     <Content Include="Views\Post\Delete.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PostDeleteBindingModel.cshtml" />
+    <Content Include="Views\Thread\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EditThreadBindingModel.cshtml" />
+    <Content Include="Views\Thread\Delete.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DeleteThreadBindingModel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -80,6 +80,7 @@
             // model pagination
             thread.Pages = pagination.GetPages("Home", "Thread");
 
+            // set post number in thread
             int pageNumber = skipTake.Skip + 1;
 
             foreach (var post in thread.Posts)
@@ -98,14 +99,11 @@
         /// <returns>view for creation</returns>
         public ActionResult Create(int id)
         {
-            int forumId = id;
+            Forum forum = this.GetForum(id);
 
-            Forum forum = this.GetForum(forumId);
-
-            // to do
-            if (forum == default(Forum) || !forum.IsDeleted)
+            if (forum == default(Forum) || forum.IsDeleted)
             {
-                return RedirectToAction("Home", "Home", null);
+                return RedirectToAction("BadRequest", "Error");
             }
 
             ThreadBindingModel thread = new ThreadBindingModel()
@@ -131,19 +129,11 @@
         [ValidateAntiForgeryToken]
         public ActionResult Create(ThreadBindingModel thread, int id)
         {
-            int forumId = id;
+            Forum forum = this.GetForum(id);
 
-            Forum forum = this.GetForum(forumId);
-
-            User user = this.UnitOfWork
-                .UserRepository
-                .Select(u => u.UserName == this.HttpContext.User.Identity.Name)
-                .FirstOrDefault();
-
-            // to do
-            if (forum == default(Forum) || !forum.IsDeleted)
+            if (forum == default(Forum) || forum.IsDeleted)
             {
-                return RedirectToAction("Home", "Home", null);
+                return RedirectToAction("BadRequest", "Error");
             }
 
             if (!ModelState.IsValid)
@@ -157,6 +147,8 @@
 
                 return View(thread);
             }
+
+            User user = this.GetUser();
 
             Thread newThread = new Thread()
             {
@@ -185,6 +177,113 @@
             return RedirectToAction("Home", "Thread", new { id = newThread.ThreadId });
         }
 
+        /// <summary>
+        /// Empty edit for thread
+        /// </summary>
+        /// <param name="id">Thread id</param>
+        /// <returns>View</returns>
+        public ActionResult Edit(int id)
+        {
+            Thread thread = this.GetThread(id);
+
+            if (thread == default(Thread) || thread.IsDeleted)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            EditThreadBindingModel editThread = new EditThreadBindingModel()
+            {
+                Id = thread.ThreadId,
+                Title = thread.Title
+            };
+
+            return View(editThread);
+        }
+
+        /// <summary>
+        /// Edit controller
+        /// </summary>
+        /// <param name="id">Thread id</param>
+        /// <param name="thread">Thread data to be edited</param>
+        /// <returns>Redirects</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, EditThreadBindingModel thread)
+        {
+            Thread editThread = this.GetThread(id);
+
+            if (editThread == default(Thread) || editThread.IsDeleted || id != thread.Id)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return View(thread);
+            }
+
+            editThread.Title = thread.Title;
+
+            editThread = this.UnitOfWork
+                .ThreadRepository
+                .Update(editThread);
+
+            this.UnitOfWork.SaveChanges();
+
+            return RedirectToAction("Home", "Thread", new { id = editThread.ThreadId });
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Thread thread = this.GetThread(id);
+
+            if (thread == default(Thread) || thread.IsDeleted)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            DeleteThreadBindingModel deleteThread = new DeleteThreadBindingModel()
+            {
+                Id = thread.ThreadId,
+                Title = thread.Title
+            };
+
+            return View(deleteThread);
+        }
+
+        /// <summary>
+        /// Action to delete thread
+        /// </summary>
+        /// <param name="id">Thread id</param>
+        /// <param name="thread">DeleteThreadBindingModel</param>
+        /// <returns>Redirects</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, DeleteThreadBindingModel thread)
+        {
+            Thread deleteThread = this.GetThread(id);
+
+            if (deleteThread == default(Thread) || deleteThread.IsDeleted || id != thread.Id)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            if (!this.ModelState.IsValid)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            deleteThread.IsDeleted = true;
+
+            this.UnitOfWork
+                .ThreadRepository
+                .Update(deleteThread);
+
+            this.UnitOfWork.SaveChanges();
+
+            return RedirectToAction("Home", "Home");
+        }
+
         private Forum GetForum(int id)
         {
             Forum forum = this.UnitOfWork
@@ -192,6 +291,25 @@
                 .Find(id);
 
             return forum;
+        }
+
+        private Thread GetThread(int id)
+        {
+            Thread thread = this.UnitOfWork
+                .ThreadRepository
+                .Find(id);
+
+            return thread;
+        }
+
+        private User GetUser()
+        {
+            User user = this.UnitOfWork
+                .UserRepository
+                .Select(u => u.UserName == this.HttpContext.User.Identity.Name)
+                .FirstOrDefault();
+
+            return user;
         }
     }
 }

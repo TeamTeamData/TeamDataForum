@@ -45,7 +45,7 @@
         {
             Thread thread = this.GetThread(id);
 
-            if (thread == default(Thread))
+            if (thread == default(Thread) || thread.IsDeleted)
             {
                 return RedirectToAction("BadRequest", "Error");
             }
@@ -74,7 +74,7 @@
         {
             Thread thread = this.GetThread(id);
 
-            if (thread == default(Thread) || id != post.Thread.Id)
+            if (thread == default(Thread) || thread.IsDeleted || id != post.Thread.Id)
             {
                 return RedirectToAction("BadRequest", "Error");
             }
@@ -90,10 +90,7 @@
                 return View(post);
             }
 
-            User user = this.UnitOfWork
-                .UserRepository
-                .Select(u => u.UserName == this.HttpContext.User.Identity.Name)
-                .FirstOrDefault();
+            User user = this.GetUser();
 
             Post newPost = new Post()
             {
@@ -125,7 +122,7 @@
         {
             Post post = this.GetPost(id);
 
-            if (post == default(Post))
+            if (post == default(Post) || post.IsDeleted)
             {
                 return RedirectToAction("BadRequest", "Error");
             }
@@ -156,7 +153,7 @@
         {
             Post editPost = this.GetPost(id);
 
-            if (editPost == default(Post) || id != post.Id)
+            if (editPost == default(Post) || editPost.IsDeleted || id != post.Id)
             {
                 return RedirectToAction("BadRequest", "Error");
             }
@@ -194,7 +191,7 @@
         {
             Post post = this.GetPost(id);
 
-            if (post == default(Post))
+            if (post == default(Post) || post.IsDeleted)
             {
                 return RedirectToAction("BadRequest", "Error");
             }
@@ -225,7 +222,7 @@
         {
             Post postToDelete = this.GetPost(id);
 
-            if (postToDelete == default(Post) || id != post.Id)
+            if (postToDelete == default(Post) || postToDelete.IsDeleted || id != post.Id)
             {
                 return RedirectToAction("BadRequest", "Error");
             }
@@ -263,6 +260,16 @@
                 .Find(id, new string[] { "Text", "Thread" });
 
             return post;
+        }
+
+        private User GetUser()
+        {
+            User user = this.UnitOfWork
+                .UserRepository
+                .Select(u => u.UserName == this.HttpContext.User.Identity.Name)
+                .FirstOrDefault();
+
+            return user;
         }
     }
 }

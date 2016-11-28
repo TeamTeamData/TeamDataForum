@@ -1,0 +1,11 @@
+﻿@using TeamDataForum.Web.Models.BindingModels.Threads
+@model DeleteThreadBindingModel
+
+@using (Html.BeginForm("Delete", "Thread", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.Id)
+    <div>@Model.Title</div>
+    @Html.ValidationMessageFor(m => m.Id)
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Delete" />
+}

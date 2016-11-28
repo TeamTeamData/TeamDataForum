@@ -40,6 +40,7 @@
                     Threads = f.Threads.Count(t => !t.IsDeleted),
                     Posts = f.Threads.Where(p => !p.IsDeleted).SelectMany(t => t.Posts).Count(p => !p.IsDeleted),
                     LatestPost = f.Threads
+                    .Where(t => !t.IsDeleted)
                     .Select(t => t.Posts.Where(p => !p.IsDeleted).OrderByDescending(p => p.PostId).FirstOrDefault()).Select(p => new ForumPostViewModel
                     {
                         Id = p.PostId,
