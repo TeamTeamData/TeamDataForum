@@ -45,10 +45,9 @@
         {
             Thread thread = this.GetThread(id);
 
-            // to do
             if (thread == default(Thread))
             {
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("BadRequest", "Error");
             }
 
             ThreadPostBindingModel post = new ThreadPostBindingModel()
@@ -75,10 +74,9 @@
         {
             Thread thread = this.GetThread(id);
 
-            // to do
-            if (thread == default(Thread))
+            if (thread == default(Thread) || id != thread.ThreadId)
             {
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("BadRequest", "Error");
             }
 
             if (!ModelState.IsValid)
@@ -127,10 +125,9 @@
         {
             Post post = this.GetPost(id);
 
-            // to do
-            if (post == default(Post))
+            if (post == default(Post) || id != post.PostId)
             {
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("BadRequest", "Error");
             }
 
             EditPostBindingModel postToEdit = new EditPostBindingModel()
@@ -160,19 +157,16 @@
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, EditPostBindingModel post)
         {
-            Post editedPost = this.GetPost(id);
+            Post editPost = this.GetPost(id);
 
-            // to do
-            if (editedPost == default(Post))
+            if (editPost == default(Post) || id != editPost.PostId)
             {
-                return RedirectToAction("Home", "Home");
+                return RedirectToAction("BadRequest", "Error");
             }
 
             if (!ModelState.IsValid)
             {
-                // to do
-
-                return this.Edit(id);
+                return this.View(post);
             }
 
             User user = this.UnitOfWork
@@ -180,13 +174,13 @@
                 .Select(u => u.UserName == this.HttpContext.User.Identity.Name)
                 .FirstOrDefault();
 
-            editedPost.Text.Text = post.Post.Text;
-            editedPost.Changer = user;
-            editedPost.ChangeDate = DateTime.Now;
+            editPost.Text.Text = post.Post.Text;
+            editPost.Changer = user;
+            editPost.ChangeDate = DateTime.Now;
 
             this.UnitOfWork
                 .PostRepository
-                .Update(editedPost);
+                .Update(editPost);
 
             this.UnitOfWork.SaveChanges();
 

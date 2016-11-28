@@ -204,6 +204,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Bases\ForumBaseController.cs" />
     <Compile Include="Controllers\Bases\ForumPageBaseController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ForumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
@@ -280,6 +281,8 @@
     <Content Include="Views\Post\Create.cshtml" />
     <Content Include="Views\Post\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\EditPostBindingModel.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\BadRequest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
