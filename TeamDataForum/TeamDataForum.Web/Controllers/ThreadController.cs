@@ -80,6 +80,13 @@
             // model pagination
             thread.Pages = pagination.GetPages("Home", "Thread");
 
+            int pageNumber = skipTake.Skip + 1;
+
+            foreach (var post in thread.Posts)
+            {
+                post.Number = pageNumber++;
+            }
+
             // view
             return this.View(thread);
         }
