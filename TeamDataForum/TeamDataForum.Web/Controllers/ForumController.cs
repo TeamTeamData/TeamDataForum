@@ -26,7 +26,7 @@
         }
 
         /// <summary>
-        /// Empty create for creating Forum
+        /// Empty create for creating forum
         /// </summary>
         /// <returns>View for creating forum</returns>
         public ActionResult Create()
@@ -45,7 +45,7 @@
         {
             var role = this.GetRoleByName("Moderator");
 
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 forum.Moderators = this.GetUsersByRole(role.Id);
 
