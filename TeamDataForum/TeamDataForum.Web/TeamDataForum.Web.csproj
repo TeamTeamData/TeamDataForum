@@ -223,7 +223,12 @@
     <Compile Include="Models\BindingModels\Threads\EditThreadBindingModel.cs" />
     <Compile Include="Models\BindingModels\Threads\IdentifiableThreadBindingModel.cs" />
     <Compile Include="Models\BindingModels\Threads\ThreadBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Users\EditUserBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Users\ImageUserBindingView.cs" />
     <Compile Include="Models\BindingModels\Users\ModeratorBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Users\UserNamesBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Users\PasswordBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Users\TownUserBindingModel.cs" />
     <Compile Include="Models\BindingModels\Users\UserLogBindingModel.cs" />
     <Compile Include="Models\BindingModels\Users\UserRegistrationBindingModel.cs" />
     <Compile Include="Models\ViewModels\Posts\PostViewModel.cs" />
@@ -297,6 +302,12 @@
     <Content Include="Views\Shared\EditorTemplates\EditForumBindingModel.cshtml" />
     <Content Include="Views\Forum\Delete.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DeleteForumBindingModel.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\EditUserBindingModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\UserNamesBindingModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\PasswordBindingModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ImageUserBindingView.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TownUserBindingModel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

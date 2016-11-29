@@ -1,0 +1,12 @@
+﻿@using TeamDataForum.Web.Models.BindingModels.Users
+@model UserNamesBindingModel
+
+@using (Ajax.BeginForm("ChangeNames", "Account", new AjaxOptions { HttpMethod = "Post" }))
+{
+    @Html.LabelFor(m => m.Firstname)
+    @Html.EditorFor(m => m.Firstname)
+    @Html.LabelFor(m => m.Lastname)
+    @Html.EditorFor(m => m.Lastname)
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Update names" />
+}

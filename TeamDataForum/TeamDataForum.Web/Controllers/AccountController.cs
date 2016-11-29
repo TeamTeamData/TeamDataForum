@@ -1,5 +1,6 @@
 ﻿namespace TeamDataForum.Web.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
@@ -126,6 +127,52 @@
             this.AuthenticationManager.SignOut();
 
             return RedirectToAction("Home", "Home", null);
+        }
+
+        /// <summary>
+        /// Empty Edit for user
+        /// </summary>
+        /// <returns>View</returns>
+        public ActionResult Edit()
+        {
+            User user = this.GetUser();
+
+            if (user == default(User))
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            EditUserBindingModel editUser = new EditUserBindingModel()
+            {
+                UserNames = new UserNamesBindingModel()
+                {
+                    Firstname = user.Firstname,
+                    Lastname = user.Lastname
+                },
+
+                UserPassword = new PasswordBindingModel(),
+
+                UserImage = new ImageUserBindingView(),
+
+                UserTown = new TownUserBindingModel()
+                {
+                    Name = user.Town.Name,
+                    Country = user.Town.Country.Name
+                }
+            };
+
+            return View(editUser);
+        }
+
+        private User GetUser()
+        {
+            User user = this.UnitOfWork
+                .UserRepository
+                .Select(u => u.UserName == this.HttpContext.User.Identity.Name,
+                new string[] { "Town" })
+                .FirstOrDefault();
+
+            return user;
         }
     }
 }

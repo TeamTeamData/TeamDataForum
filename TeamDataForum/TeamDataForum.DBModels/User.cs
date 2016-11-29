@@ -34,7 +34,7 @@
         [Required(AllowEmptyStrings = false,
             ErrorMessageResourceName = nameof(ModelsRes.ErrorUserFirstnameRequired),
             ErrorMessageResourceType = typeof(ModelsRes))]
-        [MaxLength(NumericValues.UsernameMaxLength, 
+        [MaxLength(NumericValues.NameMaxLength, 
             ErrorMessageResourceName = nameof(ModelsRes.ErrorUserNameMaxLength),
             ErrorMessageResourceType = typeof(ModelsRes))]
         public string Firstname { get; set; }
@@ -45,7 +45,7 @@
         [Required(AllowEmptyStrings = false,
             ErrorMessageResourceName = nameof(ModelsRes.ErrorUserLastnameRequired),
             ErrorMessageResourceType = typeof(ModelsRes))]
-        [MaxLength(NumericValues.UsernameMaxLength,
+        [MaxLength(NumericValues.NameMaxLength,
             ErrorMessageResourceName = nameof(ModelsRes.ErrorUserNameMaxLength),
             ErrorMessageResourceType = typeof(ModelsRes))]
         public string Lastname { get; set; }

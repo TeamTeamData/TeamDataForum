@@ -1,0 +1,12 @@
+﻿@using TeamDataForum.Web.Models.BindingModels.Users
+@model TownUserBindingModel
+
+@using (Ajax.BeginForm("Town", "Account", new AjaxOptions { HttpMethod = "Post" }))
+{
+    @Html.LabelFor(m => m.Name)
+    @Html.EditorFor(m => m.Name)
+    @Html.LabelFor(m => m.Country)
+    @Html.EditorFor(m => m.Country)
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Update town" />
+}
