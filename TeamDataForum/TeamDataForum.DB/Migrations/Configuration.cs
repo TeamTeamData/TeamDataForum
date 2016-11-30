@@ -79,9 +79,10 @@ namespace TeamDataForum.DB.Migrations
 
                 User user = new User()
                 {
-                    Firstname = "Jojo",
-                    Lastname = "Mojo",
+                    Firstname = "Admin",
+                    Lastname = "Administrator",
                     UserName = admin,
+                    Email = "Admin@TeamForumData.com",
                     SecurityStamp = Guid.NewGuid().ToString(),
                     Town = new Town()
                     {

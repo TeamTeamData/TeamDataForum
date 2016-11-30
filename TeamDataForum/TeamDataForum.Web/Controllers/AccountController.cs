@@ -1,6 +1,7 @@
 ﻿namespace TeamDataForum.Web.Controllers
 {
     using System.Linq;
+    using System.Net;
     using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
@@ -147,7 +148,8 @@
                 UserNames = new UserNamesBindingModel()
                 {
                     Firstname = user.Firstname,
-                    Lastname = user.Lastname
+                    Lastname = user.Lastname,
+                    Email = user.Email
                 },
 
                 UserPassword = new PasswordBindingModel(),
@@ -164,12 +166,84 @@
             return View(editUser);
         }
 
+        /// <summary>
+        /// Change password for user
+        /// </summary>
+        /// <param name="model">PasswordBindingModel</param>
+        /// <returns>Status codes</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(PasswordBindingModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            User user = this.GetCurrentUser();
+
+            var result = await this.UserManager
+                .ChangePasswordAsync(user.Id, model.Password, model.NewPassword);
+
+            if (!result.Succeeded)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeInformation(UserNamesBindingModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            User user = this.GetCurrentUser();
+
+            if (!string.IsNullOrWhiteSpace(model.Firstname))
+            {
+                user.Firstname = model.Firstname;
+            }
+
+            if (!string.IsNullOrWhiteSpace(model.Lastname))
+            {
+                user.Lastname = model.Lastname;
+            }
+
+            if (!string.IsNullOrWhiteSpace(model.Email))
+            {
+                user.Email = model.Email;
+            }
+
+            this.UnitOfWork
+                .UserRepository
+                .Update(user);
+
+            this.UnitOfWork.SaveChanges();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
         private User GetUser()
         {
             User user = this.UnitOfWork
                 .UserRepository
                 .Select(u => u.UserName == this.HttpContext.User.Identity.Name,
-                new string[] { "Town" })
+                new string[] { "Town", "Town.Country" })
+                .FirstOrDefault();
+
+            return user;
+        }
+
+        private User GetCurrentUser()
+        {
+            User user = this.UnitOfWork
+                .UserRepository
+                .Select(u => u.UserName == this.HttpContext.User.Identity.Name)
                 .FirstOrDefault();
 
             return user;

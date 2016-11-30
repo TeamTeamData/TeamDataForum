@@ -1,12 +1,33 @@
 ﻿@using TeamDataForum.Web.Models.BindingModels.Users
 @model UserNamesBindingModel
 
-@using (Ajax.BeginForm("ChangeNames", "Account", new AjaxOptions { HttpMethod = "Post" }))
+@using (Html.BeginForm("ChangeInformation", "Account", FormMethod.Post, new { id = "status-form" }))
 {
     @Html.LabelFor(m => m.Firstname)
     @Html.EditorFor(m => m.Firstname)
     @Html.LabelFor(m => m.Lastname)
     @Html.EditorFor(m => m.Lastname)
+    @Html.LabelFor(m => m.Email)
+    @Html.EditorFor(m => m.Email)
     @Html.AntiForgeryToken()
-    <input type="submit" value="Update names" />
+    <input type="submit" value="Update status" />
 }
+
+<script>
+    $('#status-form').submit(function () {
+        var data = $(this).serialize();
+        data = data.replace(/UserNames./g, '');
+        $.ajax({
+            url: this.action,
+            method: this.method,
+            data: data,
+            success: function() {
+                alert('Success');
+            },
+            error: function() {
+                alert('Error');
+            }
+        });
+        return false;
+    });
+</script>

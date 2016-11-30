@@ -22,5 +22,18 @@
             ErrorMessageResourceType = typeof(ModelsRes))]
         [Display(Name = "Last name")]
         public string Lastname { get; set; }
+
+        [Required(AllowEmptyStrings = false,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserEmailRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [DataType(DataType.EmailAddress)]
+        [MinLength(NumericValues.EmailMinLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserEmailMinLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [MaxLength(NumericValues.EmailMaxLength,
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserEmailMaxLength),
+            ErrorMessageResourceType = typeof(ModelsRes))]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
     }
 }

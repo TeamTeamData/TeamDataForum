@@ -33,7 +33,8 @@
         public string Username { get; set; }
 
         [Required(AllowEmptyStrings = false, 
-            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserEmailRequired))]
+            ErrorMessageResourceName = nameof(ModelsRes.ErrorUserEmailRequired),
+            ErrorMessageResourceType = typeof(ModelsRes))]
         [DataType(DataType.EmailAddress)]
         [MinLength(NumericValues.EmailMinLength,
             ErrorMessageResourceName = nameof(ModelsRes.ErrorUserEmailMinLength),
