@@ -1,0 +1,26 @@
+﻿@using TeamDataForum.Web.Models.ViewModels.Users
+@model UserFullViewModel
+
+@{ 
+    var imagePath = string.IsNullOrWhiteSpace(Model.Image) ? "//ssl.gstatic.com/accounts/ui/avatar_2x.png" : Model.Image;
+    var fullName = @Model.Firstname + " " + @Model.Lastname;
+}
+
+<img src="imagePath" alt="@fullName" />
+<div>@Model.Firstname</div>
+<div>@Model.Lastname</div>
+<div>@Model.Email</div>
+<div>@Model.Town</div>
+<div>@Model.Country</div>
+<div>@Model.PostsCount</div>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Thread</th>
+                <th>Post</th>
+            </tr>
+        </thead>
+        @Html.DisplayFor(m => m.Posts)
+    </table>
+</div>

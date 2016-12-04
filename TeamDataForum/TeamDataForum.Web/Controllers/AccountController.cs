@@ -10,6 +10,8 @@
     using Bases;
     using DBModels;
     using Models.BindingModels.Users;
+    using Models.ViewModels.Posts;
+    using Models.ViewModels.Users;
     using UnitOfWork.Contracts;
 
     public class AccountController : ForumBaseController
@@ -191,6 +193,45 @@
             }
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        /// <summary>
+        /// View personal information for logged user
+        /// </summary>
+        /// <returns>View</returns>
+        public ActionResult UserStatus()
+        {
+            UserFullViewModel user = this.UnitOfWork
+                .UserRepository
+                .Query
+                .Where(u => u.UserName == this.HttpContext.User.Identity.Name)
+                .Select(u => new UserFullViewModel
+                {
+                    Firstname = u.Firstname,
+                    Lastname = u.Lastname,
+                    Email = u.Email,
+                    Image = u.Image,
+                    Town = u.Town.Name,
+                    Country = u.Town.Country.Name,
+                    PostsCount = u.Posts.Count,
+                    Posts = u.Posts.Select(p => new UserPostViewModel()
+                    {
+                        PostId = p.PostId,
+                        ThreadId = p.Thread.ThreadId,
+                        Thread = p.Thread.Title,
+                        Text = p.Text.Text
+                    })
+                    .OrderByDescending(p => p.PostId)
+                    .Take(5)
+                })
+                .FirstOrDefault();
+
+            if (user == default(UserFullViewModel))
+            {
+                return RedirectToAction("NotFound", "Error");
+            }
+
+            return View(user);
         }
 
         [HttpPost]

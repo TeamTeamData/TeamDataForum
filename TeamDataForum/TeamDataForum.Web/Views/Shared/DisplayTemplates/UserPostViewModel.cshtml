@@ -1,0 +1,7 @@
+﻿@using TeamDataForum.Web.Models.ViewModels.Posts
+@model UserPostViewModel
+
+<tr>
+    <td>@Html.ActionLink(Model.Thread, "Home", "Thread", new { id = Model.ThreadId }, null)</td>
+    <td>@Html.ActionLink(Model.Text, "View", "Post", new { id = Model.PostId }, null)</td>
+</tr>
