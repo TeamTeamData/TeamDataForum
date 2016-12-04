@@ -6,10 +6,10 @@
     var fullName = @Model.Firstname + " " + @Model.Lastname;
 }
 
-<img src="imagePath" alt="@fullName" />
-<div>@Model.Firstname</div>
-<div>@Model.Lastname</div>
-<div>@Model.Email</div>
+<img src="@imagePath" alt="@fullName" />
+<div id="Firstname">@Model.Firstname</div>
+<div id="Lastname">@Model.Lastname</div>
+<div id="Email">@Model.Email</div>
 <div>@Model.Town</div>
 <div>@Model.Country</div>
 <div>@Model.PostsCount</div>

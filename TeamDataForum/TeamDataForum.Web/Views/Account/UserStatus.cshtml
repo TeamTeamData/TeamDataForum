@@ -9,3 +9,110 @@
 <h2>User Status</h2>
 
 @Html.DisplayForModel()
+
+<button id="changePassword">Change password</button>
+<button id="changeUserInformation">Change user information</button>
+
+@using (Html.BeginForm("ChangePassword", "Account", FormMethod.Post, new { id = "password-form", @class = "dialog-form" }))
+{
+    <label for="Password">Current password:</label>
+    <input type="password" id="Password" name="Password" />
+    <label for="NewPassword">New password:</label>
+    <input type="password" id="NewPassword" name="NewPassword" />
+    <label for="ConfirmPassword">Confirm new password:</label>
+    <input type="password" id="ConfirmPassword" name="ConfirmPassword" />
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Update password" />
+}
+
+@using (Html.BeginForm("ChangeInformation", "Account", FormMethod.Post, new { id = "user-data", @class = "dialog-form" }))
+{
+    <label for="Firstname-new">First name:</label>
+    <input type="text" id="Firstname-new" name="Firstname" />
+    <label for="Lastname-new">Last name:</label>
+    <input type="text" id="Lastname-new" name="Lastname" />
+    <label for="Email-new">Email:</label>
+    <input type="email" id="Email-new" name="Email" />
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Update status" />
+}
+
+<script>
+    var passDialog = $('#password-form').dialog({
+        autoOpen: false,
+        height: 350,
+        width: 350,
+        modal: true,
+        buttons: {
+            Cancel: function () {
+                passDialog.dialog("close");
+            }
+        },
+        Close: function () {
+            passDialog.dialog("close");
+        }
+    });
+
+    var userDialog = $('#user-data').dialog({
+        autoOpen: false,
+        height: 500,
+        width: 350,
+        modal: true,
+        buttons: {
+            Cancel: function () {
+                userDialog.dialog("close");
+            }
+        },
+        Close: function () {
+            passDialog.dialog("close");
+        }
+    });
+
+    $('#changePassword').on('click', function () {
+        passDialog.dialog('open');
+    });
+
+    $('#changeUserInformation').on('click', function () {
+        var userFirstName = $('#Firstname').text();
+        var userLastName = $('#Lastname').text();
+        var userEmail = $('#Email').text();
+
+        $('#Firstname-new').val(userFirstName);
+        $('#Lastname-new').val(userLastName);
+        $('#Email-new').val(userEmail);
+
+        userDialog.dialog('open');
+    });
+
+    $('#password-form').submit(function () {
+        var data = $(this).serialize();
+        $.ajax({
+            url: this.action,
+            method: this.method,
+            data: data,
+            success: function () {
+                alert('Success.');
+            },
+            error: function () {
+                alert('Error.')
+            }
+        });
+        return false;
+    });
+
+    $('#user-data').submit(function () {
+        var data = $(this).serialize();
+        $.ajax({
+            url: this.action,
+            method: this.method,
+            data: data,
+            success: function () {
+                alert('Success');
+            },
+            error: function () {
+                alert('Error');
+            }
+        });
+        return false;
+    });
+</script>
