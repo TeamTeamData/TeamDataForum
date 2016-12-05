@@ -1,4 +1,5 @@
-﻿@using TeamDataForum.Web.Models.ViewModels.Users
+﻿@using TeamDataForum.Web.Models.BindingModels.Users
+@using TeamDataForum.Web.Models.ViewModels.Users
 @model UserFullViewModel
 
 @{
@@ -13,29 +14,9 @@
 <button id="changePassword">Change password</button>
 <button id="changeUserInformation">Change user information</button>
 
-@using (Html.BeginForm("ChangePassword", "Account", FormMethod.Post, new { id = "password-form", @class = "dialog-form" }))
-{
-    <label for="Password">Current password:</label>
-    <input type="password" id="Password" name="Password" />
-    <label for="NewPassword">New password:</label>
-    <input type="password" id="NewPassword" name="NewPassword" />
-    <label for="ConfirmPassword">Confirm new password:</label>
-    <input type="password" id="ConfirmPassword" name="ConfirmPassword" />
-    @Html.AntiForgeryToken()
-    <input type="submit" value="Update password" />
-}
+@Html.Partial("~/Views/Shared/UserPartials/UserPasswordPartial.cshtml", new PasswordBindingModel())
 
-@using (Html.BeginForm("ChangeInformation", "Account", FormMethod.Post, new { id = "user-data", @class = "dialog-form" }))
-{
-    <label for="Firstname-new">First name:</label>
-    <input type="text" id="Firstname-new" name="Firstname" />
-    <label for="Lastname-new">Last name:</label>
-    <input type="text" id="Lastname-new" name="Lastname" />
-    <label for="Email-new">Email:</label>
-    <input type="email" id="Email-new" name="Email" />
-    @Html.AntiForgeryToken()
-    <input type="submit" value="Update status" />
-}
+@Html.Partial("~/Views/Shared/UserPartials/UserNamesPartial.cshtml", new UserNamesBindingModel())
 
 <script>
     var passDialog = $('#password-form').dialog({
@@ -73,13 +54,13 @@
     });
 
     $('#changeUserInformation').on('click', function () {
-        var userFirstName = $('#Firstname').text();
-        var userLastName = $('#Lastname').text();
-        var userEmail = $('#Email').text();
+        var userFirstName = $('#user-firstname').text();
+        var userLastName = $('#user-lastname').text();
+        var userEmail = $('#user-email').text();
 
-        $('#Firstname-new').val(userFirstName);
-        $('#Lastname-new').val(userLastName);
-        $('#Email-new').val(userEmail);
+        $('#Firstname').val(userFirstName);
+        $('#Lastname').val(userLastName);
+        $('#Email').val(userEmail);
 
         userDialog.dialog('open');
     });

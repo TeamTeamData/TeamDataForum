@@ -1,7 +1,7 @@
 ﻿@using TeamDataForum.Web.Models.BindingModels.Users
 @model UserNamesBindingModel
 
-@using (Html.BeginForm("ChangeInformation", "Account", FormMethod.Post, new { id = "status-form" }))
+@using (Html.BeginForm("ChangeInformation", "Account", FormMethod.Post, new { id = "user-data", @class = "dialog-form" }))
 {
     @Html.LabelFor(m => m.Firstname)
     @Html.EditorFor(m => m.Firstname)
@@ -12,22 +12,3 @@
     @Html.AntiForgeryToken()
     <input type="submit" value="Update status" />
 }
-
-<script>
-    $('#status-form').submit(function () {
-        var data = $(this).serialize();
-        data = data.replace(/UserNames./g, '');
-        $.ajax({
-            url: this.action,
-            method: this.method,
-            data: data,
-            success: function() {
-                alert('Success');
-            },
-            error: function() {
-                alert('Error');
-            }
-        });
-        return false;
-    });
-</script>

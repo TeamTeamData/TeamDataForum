@@ -321,6 +321,8 @@
     <Content Include="Views\Account\UserStatus.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\UserFullViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\UserPostViewModel.cshtml" />
+    <Content Include="Views\Shared\UserPartials\UserPasswordPartial.cshtml" />
+    <Content Include="Views\Shared\UserPartials\UserNamesPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
