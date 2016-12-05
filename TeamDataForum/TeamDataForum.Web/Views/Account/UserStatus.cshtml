@@ -21,6 +21,8 @@
 
 @Html.Partial("~/Views/Shared/UserPartials/UserTownPartial.cshtml", new TownUserBindingModel())
 
+@Html.Partial("~/Views/Shared/UserPartials/UserImagePartial.cshtml", new ImageUserBindingView());
+
 <script>
     var passDialog = $('#password-form').dialog({
         autoOpen: false,
