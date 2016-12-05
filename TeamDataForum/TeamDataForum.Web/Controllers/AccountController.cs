@@ -45,37 +45,39 @@
         /// <returns>View</returns>
         public ActionResult Login()
         {
-            return View();
+            return this.View();
         }
 
         /// <summary>
         /// Login for checking user, also for errors
         /// </summary>
-        /// <param name="user">User to be logged</param>
+        /// <param name="model">User to be logged</param>
         /// <returns>View or redirects to home</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(UserLogBindingModel user)
+        public async Task<ActionResult> Login(UserLogBindingModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 this.ModelState.AddModelError(string.Empty, "Invalid user or password.");
-                return View(user);
+
+                return this.View(model);
             }
 
             var result = await this.SignInManager.PasswordSignInAsync(
-                user.Username,
-                user.Password,
+                model.Username,
+                model.Password,
                 false,
                 shouldLockout: false);
 
             if (result != SignInStatus.Success)
             {
-                ModelState.AddModelError(string.Empty, "Invalid user or password.");
-                return View(user);
+                this.ModelState.AddModelError(string.Empty, "Invalid user or password.");
+
+                return this.View(model);
             }
 
-            return RedirectToAction("Home", "Home");
+            return this.RedirectToAction("Home", "Home");
         }
 
         /// <summary>
@@ -84,41 +86,41 @@
         /// <returns>View</returns>
         public ActionResult Register()
         {
-            return View();
+            return this.View();
         }
 
         /// <summary>
         /// Register controller for register, also shows error data
         /// </summary>
-        /// <param name="user">User to be register</param>
+        /// <param name="model">User to be register</param>
         /// <returns>View or redirects to home</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(UserRegistrationBindingModel user)
+        public async Task<ActionResult> Register(UserRegistrationBindingModel model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return View(user);
+                return this.View(model);
             }
 
-            User newUser = new User()
+            User user = new User()
             {
-                Firstname = user.Firstname,
-                Lastname = user.Lastname,
-                UserName = user.Username,
-                Email = user.Email
+                Firstname = model.Firstname,
+                Lastname = model.Lastname,
+                UserName = model.Username,
+                Email = model.Email
             };
 
-            var result = await this.UserManager.CreateAsync(newUser, user.Password);
+            var result = await this.UserManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
-                return View(user);
+                return this.View(model);
             }
 
-            await this.SignInManager.SignInAsync(newUser, false, false);
+            await this.SignInManager.SignInAsync(user, false, false);
 
-            return RedirectToAction("Home", "Home", null);
+            return this.RedirectToAction("Home", "Home", null);
         }
 
         /// <summary>
@@ -129,7 +131,7 @@
         {
             this.AuthenticationManager.SignOut();
 
-            return RedirectToAction("Home", "Home", null);
+            return this.RedirectToAction("Home", "Home", null);
         }
 
         /// <summary>
@@ -142,7 +144,7 @@
 
             if (user == default(User))
             {
-                return RedirectToAction("BadRequest", "Error");
+                return this.RedirectToAction("BadRequest", "Error");
             }
 
             EditUserBindingModel editUser = new EditUserBindingModel()
@@ -165,7 +167,7 @@
                 }
             };
 
-            return View(editUser);
+            return this.View(editUser);
         }
 
         /// <summary>
@@ -228,10 +230,10 @@
 
             if (user == default(UserFullViewModel))
             {
-                return RedirectToAction("NotFound", "Error");
+                return this.RedirectToAction("NotFound", "Error");
             }
 
-            return View(user);
+            return this.View(user);
         }
 
         [HttpPost]

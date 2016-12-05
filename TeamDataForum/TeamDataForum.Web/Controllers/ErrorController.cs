@@ -17,12 +17,12 @@
 
         public ActionResult NotFound()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult BadRequest()
         {
-            return View();
+            return this.View();
         }
     }
 }

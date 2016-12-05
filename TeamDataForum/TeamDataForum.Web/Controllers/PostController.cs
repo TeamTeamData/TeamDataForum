@@ -21,7 +21,7 @@
         // GET: Post
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         /// <summary>
@@ -33,7 +33,7 @@
         public ActionResult View(int id)
         {
             // to do
-            return RedirectToAction("Home", "Thread", new { });
+            return this.RedirectToAction("Home", "Thread", new { });
         }
 
         /// <summary>
@@ -47,7 +47,7 @@
 
             if (thread == default(Thread) || thread.IsDeleted)
             {
-                return RedirectToAction("BadRequest", "Error");
+                return this.RedirectToAction("BadRequest", "Error");
             }
 
             ThreadPostBindingModel post = new ThreadPostBindingModel()
@@ -59,35 +59,35 @@
                 }
             };
 
-            return View(post);
+            return this.View(post);
         }
 
         /// <summary>
         /// Creates new post for specific thread
         /// </summary>
         /// <param name="id">Thread id</param>
-        /// <param name="post">ThreadPostBindingModel</param>
+        /// <param name="model">ThreadPostBindingModel</param>
         /// <returns>redirects</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(int id, ThreadPostBindingModel post)
+        public ActionResult Create(int id, ThreadPostBindingModel model)
         {
             Thread thread = this.GetThread(id);
 
-            if (thread == default(Thread) || thread.IsDeleted || id != post.Thread.Id)
+            if (thread == default(Thread) || thread.IsDeleted || id != model.Thread.Id)
             {
-                return RedirectToAction("BadRequest", "Error");
+                return this.RedirectToAction("BadRequest", "Error");
             }
 
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                post.Thread = new IdentifiableThreadBindingModel()
+                model.Thread = new IdentifiableThreadBindingModel()
                 {
                     Id = thread.ThreadId,
                     Title = thread.Title
                 };
 
-                return View(post);
+                return this.View(model);
             }
 
             User user = this.GetUser();
@@ -98,7 +98,7 @@
                 PostDate = DateTime.Now,
                 Text = new PostText()
                 {
-                    Text = post.Text
+                    Text = model.Text
                 },
                 Thread = thread
             };
@@ -110,7 +110,7 @@
             this.UnitOfWork.SaveChanges();
 
             // to do
-            return RedirectToAction("Home", "Home");
+            return this.RedirectToAction("Home", "Home");
         }
 
         /// <summary>
@@ -124,7 +124,7 @@
 
             if (post == default(Post) || post.IsDeleted)
             {
-                return RedirectToAction("BadRequest", "Error");
+                return this.RedirectToAction("BadRequest", "Error");
             }
 
             EditPostBindingModel postToEdit = new EditPostBindingModel()
@@ -138,29 +138,29 @@
                 }
             };
 
-            return View(postToEdit);
+            return this.View(postToEdit);
         }
 
         /// <summary>
         /// Edits post
         /// </summary>
         /// <param name="id">Post id</param>
-        /// <param name="post">EditPostBindingModel</param>
+        /// <param name="model">EditPostBindingModel</param>
         /// <returns>redirects</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EditPostBindingModel post)
+        public ActionResult Edit(int id, EditPostBindingModel model)
         {
             Post editPost = this.GetPost(id);
 
-            if (editPost == default(Post) || editPost.IsDeleted || id != post.Id)
+            if (editPost == default(Post) || editPost.IsDeleted || id != model.Id)
             {
-                return RedirectToAction("BadRequest", "Error");
+                return this.RedirectToAction("BadRequest", "Error");
             }
 
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
-                return this.View(post);
+                return this.View(model);
             }
 
             User user = this.UnitOfWork
@@ -168,7 +168,7 @@
                 .Select(u => u.UserName == this.HttpContext.User.Identity.Name)
                 .FirstOrDefault();
 
-            editPost.Text.Text = post.Text;
+            editPost.Text.Text = model.Text;
             editPost.Changer = user;
             editPost.ChangeDate = DateTime.Now;
 
@@ -179,7 +179,7 @@
             this.UnitOfWork.SaveChanges();
 
             // to do
-            return RedirectToAction("Home", "Home");
+            return this.RedirectToAction("Home", "Home");
         }
 
         /// <summary>
@@ -193,7 +193,7 @@
 
             if (post == default(Post) || post.IsDeleted)
             {
-                return RedirectToAction("BadRequest", "Error");
+                return this.RedirectToAction("BadRequest", "Error");
             }
 
             PostDeleteBindingModel postToDelete = new PostDeleteBindingModel()
@@ -207,29 +207,29 @@
                 }
             };
 
-            return View(postToDelete);
+            return this.View(postToDelete);
         }
 
         /// <summary>
         /// Delete for post
         /// </summary>
         /// <param name="id">Id of post</param>
-        /// <param name="post">Post to be deleted</param>
+        /// <param name="model">Post to be deleted</param>
         /// <returns>Redirects</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, PostDeleteBindingModel post)
+        public ActionResult Delete(int id, PostDeleteBindingModel model)
         {
             Post postToDelete = this.GetPost(id);
 
-            if (postToDelete == default(Post) || postToDelete.IsDeleted || id != post.Id)
+            if (postToDelete == default(Post) || postToDelete.IsDeleted || id != model.Id)
             {
-                return RedirectToAction("BadRequest", "Error");
+                return this.RedirectToAction("BadRequest", "Error");
             }
 
             if (!this.ModelState.IsValid)
             {
-                return View(post);
+                return this.View(model);
             }
 
             postToDelete.IsDeleted = true;
@@ -241,7 +241,7 @@
             this.UnitOfWork.SaveChanges();
 
             // to do
-            return RedirectToAction("Home", "Home");
+            return this.RedirectToAction("Home", "Home");
         }
 
         private Thread GetThread(int id)

@@ -22,7 +22,7 @@
         // GET: Forum
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         /// <summary>
@@ -36,23 +36,23 @@
             ForumBindingModel model = new ForumBindingModel();
             model.Moderators = this.GetUsersByRole(role.Id);
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ForumBindingModel forum)
+        public ActionResult Create(ForumBindingModel model)
         {
             var role = this.GetRoleByName("Moderator");
 
             if (!this.ModelState.IsValid)
             {
-                forum.Moderators = this.GetUsersByRole(role.Id);
+                model.Moderators = this.GetUsersByRole(role.Id);
 
-                return View(forum);
+                return this.View(model);
             }
 
-            var moderatorsIds = forum.Moderators
+            var moderatorsIds = model.Moderators
                 .Select(m => m.Id)
                 .ToArray();
 
@@ -64,27 +64,27 @@
 
             var creator = users.FirstOrDefault(u => u.UserName == this.User.Identity.Name);
 
-            Forum newForum = new Forum()
+            Forum forum = new Forum()
             {
-                Title = forum.Title,
-                Description = forum.Description,
+                Title = model.Title,
+                Description = model.Description,
                 Date = DateTime.Now,
                 Creator = creator
             };
 
             foreach (var user in users)
             {
-                newForum.Moderators.Add(user);
+                forum.Moderators.Add(user);
             }
 
-            newForum = this.UnitOfWork
+            forum = this.UnitOfWork
                 .ForumRepository
-                .Add(newForum);
+                .Add(forum);
 
             this.UnitOfWork.SaveChanges();
 
             // to do change
-            return RedirectToAction("Home", "Home", null);
+            return this.RedirectToAction("Home", "Home", null);
         }
 
         /// <summary>
@@ -98,7 +98,7 @@
 
             if (forum == default(Forum) || forum.IsDeleted)
             {
-                return RedirectToAction("BadRequest", "Error");
+                return this.RedirectToAction("BadRequest", "Error");
             }
 
             var role = this.GetRoleByName("Moderator");
@@ -121,34 +121,34 @@
                 Moderators = moderators
             };
 
-            return View(forumModel);
+            return this.View(forumModel);
         }
 
         /// <summary>
         /// Action to edit Forum
         /// </summary>
         /// <param name="id">Forum id</param>
-        /// <param name="forum">EditForumBindingModel</param>
+        /// <param name="model">EditForumBindingModel</param>
         /// <returns>Redirects</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, EditForumBindingModel forum)
+        public ActionResult Edit(int id, EditForumBindingModel model)
         {
             Forum editForum = this.GetForumNoModerators(id);
 
-            if (editForum == default(Forum) || editForum.IsDeleted || id != forum.Id)
+            if (editForum == default(Forum) || editForum.IsDeleted || id != model.Id)
             {
-                return RedirectToAction("BadRequest", "Error");
+                return this.RedirectToAction("BadRequest", "Error");
             }
 
             if (!this.ModelState.IsValid)
             {
-                return View(forum);
+                return this.View(model);
             }
 
             var role = this.GetRoleByName("Moderator");
 
-            var moderatorsIds = forum.Moderators
+            var moderatorsIds = model.Moderators
                 .Select(m => m.Id)
                 .ToArray();
 
@@ -156,8 +156,8 @@
                 .UserRepository
                 .Select(u => moderatorsIds.Contains(u.Id) && u.Roles.Any(r => r.RoleId == role.Id));
 
-            editForum.Title = forum.Title;
-            editForum.Description = forum.Description;
+            editForum.Title = model.Title;
+            editForum.Description = model.Description;
             editForum.Moderators = users;
 
             editForum = this.UnitOfWork
@@ -167,7 +167,7 @@
             this.UnitOfWork.SaveChanges();
 
             // to do
-            return RedirectToAction("Home", "Home");
+            return this.RedirectToAction("Home", "Home");
         }
 
         /// <summary>
@@ -191,18 +191,18 @@
                 Description = forum.Description
             };
 
-            return View(deleteForum);
+            return this.View(deleteForum);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, DeleteForumBindingModel forum)
+        public ActionResult Delete(int id, DeleteForumBindingModel model)
         {
             Forum deleteForum = this.GetForumNoModerators(id);
 
-            if (deleteForum == default(Forum) || deleteForum.IsDeleted || id != forum.Id)
+            if (deleteForum == default(Forum) || deleteForum.IsDeleted || id != model.Id)
             {
-                return RedirectToAction("BadRequest", "Error");
+                return this.RedirectToAction("BadRequest", "Error");
             }
 
             deleteForum.IsDeleted = true;
@@ -213,7 +213,7 @@
 
             this.UnitOfWork.SaveChanges();
 
-            return RedirectToAction("Home", "Home");
+            return this.RedirectToAction("Home", "Home");
         }
 
         private Forum GetForum(int id)

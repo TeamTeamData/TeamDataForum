@@ -61,7 +61,7 @@
             };
 
             // view
-            return View(forum);
+            return this.View(forum);
         }
 
         /// <summary>
@@ -123,7 +123,7 @@
             forum.Pages = pagination.GetPages("View", "Home");
 
             // view
-            return View(forum);
+            return this.View(forum);
         }
     }
 }
