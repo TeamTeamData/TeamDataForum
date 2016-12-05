@@ -1,10 +1,10 @@
 ﻿@using TeamDataForum.Web.Models.BindingModels.Users
 @model TownUserBindingModel
 
-@using (Ajax.BeginForm("Town", "Account", new AjaxOptions { HttpMethod = "Post" }))
+@using (Html.BeginForm("Town", "Account", FormMethod.Post, new { id = "user-town", @class = "dialog-form" }))
 {
-    @Html.LabelFor(m => m.Name)
-    @Html.EditorFor(m => m.Name)
+    @Html.LabelFor(m => m.Town)
+    @Html.EditorFor(m => m.Town)
     @Html.LabelFor(m => m.Country)
     @Html.EditorFor(m => m.Country)
     @Html.AntiForgeryToken()

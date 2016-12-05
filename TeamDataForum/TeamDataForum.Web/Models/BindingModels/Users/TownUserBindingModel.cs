@@ -12,7 +12,7 @@
             ErrorMessageResourceName = nameof(ModelsRes.ErrorTownNameMaxLength),
             ErrorMessageResourceType = typeof(ModelsRes))]
         [Display(Name = "Town")]
-        public string Name { get; set; }
+        public string Town { get; set; }
 
         [Required(AllowEmptyStrings = false,
             ErrorMessageResourceName = nameof(ModelsRes.ErrorCountryNameRequired),

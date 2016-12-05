@@ -323,6 +323,7 @@
     <Content Include="Views\Shared\DisplayTemplates\UserPostViewModel.cshtml" />
     <Content Include="Views\Shared\UserPartials\UserPasswordPartial.cshtml" />
     <Content Include="Views\Shared\UserPartials\UserNamesPartial.cshtml" />
+    <Content Include="Views\Shared\UserPartials\UserTownPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

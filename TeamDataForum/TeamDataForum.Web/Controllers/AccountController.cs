@@ -160,7 +160,7 @@
 
                 UserTown = new TownUserBindingModel()
                 {
-                    Name = user.Town.Name,
+                    Town = user.Town.Name,
                     Country = user.Town.Country.Name
                 }
             };
@@ -259,6 +259,62 @@
             {
                 user.Email = model.Email;
             }
+
+            this.UnitOfWork
+                .UserRepository
+                .Update(user);
+
+            this.UnitOfWork.SaveChanges();
+
+            return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Town(TownUserBindingModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            User user = this.GetCurrentUser();
+
+            Country country = this.UnitOfWork
+                .CountryRepository
+                .Select(c => c.Name == model.Country, new string[] { "Towns" })
+                .FirstOrDefault();
+
+            if (country == default(Country))
+            {
+                Town newTown = new Town()
+                {
+                    Name = model.Town,
+                    Country = new Country() { Name = model.Country }
+                };
+
+                this.UnitOfWork
+                    .UserRepository
+                    .Update(user);
+
+                this.UnitOfWork.SaveChanges();
+
+                return new HttpStatusCodeResult(HttpStatusCode.OK);
+            }
+
+            Town town = country.Towns.FirstOrDefault(t => t.Name == model.Town);
+
+            if (town == default(Town))
+            {
+                town = new Town()
+                {
+                    Name = model.Town,
+                    Country = country
+                };
+
+            }
+
+            user.Town = town;
 
             this.UnitOfWork
                 .UserRepository

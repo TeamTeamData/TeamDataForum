@@ -13,10 +13,13 @@
 
 <button id="changePassword">Change password</button>
 <button id="changeUserInformation">Change user information</button>
+<button id="changeUserTown">Change town</button>
 
 @Html.Partial("~/Views/Shared/UserPartials/UserPasswordPartial.cshtml", new PasswordBindingModel())
 
 @Html.Partial("~/Views/Shared/UserPartials/UserNamesPartial.cshtml", new UserNamesBindingModel())
+
+@Html.Partial("~/Views/Shared/UserPartials/UserTownPartial.cshtml", new TownUserBindingModel())
 
 <script>
     var passDialog = $('#password-form').dialog({
@@ -45,7 +48,22 @@
             }
         },
         Close: function () {
-            passDialog.dialog("close");
+            userDialog.dialog("close");
+        }
+    });
+
+    var townDialog = $('#user-town').dialog({
+        autoOpen: false,
+        height: 300,
+        width: 350,
+        modal: true,
+        buttons: {
+            Cancel: function () {
+                townDialog.dialog("close");
+            }
+        },
+        Close: function () {
+            townDialog.dialog("close");
         }
     });
 
@@ -65,6 +83,16 @@
         userDialog.dialog('open');
     });
 
+    $('#changeUserTown').on('click', function () {
+        var townName = $('#user-hometown').text();
+        var countryName = $('#user-country').text();
+
+        $('#Town').val(townName);
+        $('#Country').val(countryName);
+
+        townDialog.dialog('open');
+    });
+
     $('#password-form').submit(function () {
         var data = $(this).serialize();
         $.ajax({
@@ -82,6 +110,22 @@
     });
 
     $('#user-data').submit(function () {
+        var data = $(this).serialize();
+        $.ajax({
+            url: this.action,
+            method: this.method,
+            data: data,
+            success: function () {
+                alert('Success');
+            },
+            error: function () {
+                alert('Error');
+            }
+        });
+        return false;
+    });
+
+    $('#user-town').submit(function () {
         var data = $(this).serialize();
         $.ajax({
             url: this.action,
