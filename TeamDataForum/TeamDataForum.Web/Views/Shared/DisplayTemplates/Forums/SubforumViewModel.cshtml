@@ -8,7 +8,7 @@
         <div>@Model.Date.ToString("dd.MM.yyyy")</div>
         <div>@Html.DisplayFor(m => m.Moderators)</div>
     </td>
-    <td>@Html.DisplayFor(m => m.LatestPost)</td>
+    <td>@Html.DisplayFor(m => m.LatestPost, "Posts/ForumPostViewModel")</td>
     <td>@Model.Threads</td>
     <td>@Model.Posts</td>
 </tr>

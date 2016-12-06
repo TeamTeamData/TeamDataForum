@@ -16,13 +16,17 @@
                 </tr>
             </thead>
             <tbody>
-                @Html.DisplayFor(m => m.Threads)
+                @foreach (var thread in Model.Threads)
+                {
+                    @Html.DisplayFor(m => thread, "Threads/ThreadViewModel")
+                }
             </tbody>
         </table>
     </div>
     <div>
-        @{
-            @Html.DisplayFor(m => m.Pages);
+        @foreach (var page in Model.Pages)
+        {
+            @Html.DisplayFor(m => page, "Paginators/Paginator");
         }
     </div>
 </div>
