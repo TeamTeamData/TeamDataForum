@@ -12,6 +12,7 @@
     using Models.BindingModels.Users;
     using UnitOfWork.Contracts;
 
+    [Authorize]
     public class ForumController : ForumBaseController
     {
         public ForumController(IUnitOfWork unitOfWork)
@@ -29,6 +30,7 @@
         /// Empty create for creating forum
         /// </summary>
         /// <returns>View for creating forum</returns>
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             var role = this.GetRoleByName("Moderator");
@@ -41,6 +43,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create(ForumBindingModel model)
         {
             var role = this.GetRoleByName("Moderator");
@@ -92,6 +95,7 @@
         /// </summary>
         /// <param name="id">forum id</param>
         /// <returns>View</returns>
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id)
         {
             Forum forum = this.GetForum(id);
@@ -132,6 +136,7 @@
         /// <returns>Redirects</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id, EditForumBindingModel model)
         {
             Forum editForum = this.GetForumNoModerators(id);
@@ -175,6 +180,7 @@
         /// </summary>
         /// <param name="id">Forum id</param>
         /// <returns>View</returns>
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int id)
         {
             Forum forum = this.GetForumNoModerators(id);
@@ -196,6 +202,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int id, DeleteForumBindingModel model)
         {
             Forum deleteForum = this.GetForumNoModerators(id);

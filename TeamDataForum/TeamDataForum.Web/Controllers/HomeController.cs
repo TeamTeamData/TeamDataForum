@@ -10,6 +10,7 @@
     using Pagination.Contracts;
     using UnitOfWork.Contracts;
 
+    [Authorize]
     public class HomeController : ForumPageBaseController
     {
         private const int ThreadsToTake = 50;
@@ -24,6 +25,7 @@
         /// Display all subforums in forum
         /// </summary>
         /// <returns>ForumViewModel</returns>
+        [AllowAnonymous]
         public ActionResult Home()
         {
             var forums = this.UnitOfWork
@@ -60,6 +62,9 @@
                 Subforums = forums
             };
 
+            // get data for current user
+            forum.User = this.GetCurrentUser;
+
             // view
             return this.View(forum);
         }
@@ -69,6 +74,7 @@
         /// </summary>
         /// <param name="id">Forum Id</param>
         /// <returns>View</returns>
+        [AllowAnonymous]
         public ActionResult View(int id, int? page)
         {
             int forumId = id;
@@ -121,6 +127,8 @@
 
             // model pagination
             forum.Pages = pagination.GetPages("View", "Home");
+
+            forum.User = this.GetCurrentUser;
 
             // view
             return this.View(forum);

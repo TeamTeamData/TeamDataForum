@@ -1,7 +1,16 @@
-﻿
+﻿@using TeamDataForum.Web.Models.ViewModels.Users
+@model CurrentUser
+
 @{
     ViewBag.Title = "BadRequest";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    if (Model.IsRegistered)
+    {
+        Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 
 <h2>BadRequest</h2>

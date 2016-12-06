@@ -1,10 +1,18 @@
-﻿
+﻿@using TeamDataForum.Web.Models.ViewModels.Users
+@model CurrentUser
+
 @{
-    ViewBag.Title = "NotFound";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Not found";
+    if (Model.IsRegistered)
+    {
+        Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 
 <h2>NotFound</h2>
 
 <div><strong>403</strong></div>
-

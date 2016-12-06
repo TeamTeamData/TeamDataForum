@@ -3,8 +3,10 @@
     using System;
     using System.Web;
     using System.Web.Mvc;
+    using System.Web.Security;
     using Microsoft.AspNet.Identity.Owin;
     using UnitOfWork.Contracts;
+    using Models.ViewModels.Users;
 
     /// <summary>
     /// Base controller for all Mvc Forum controllers
@@ -38,6 +40,23 @@
         protected ApplicationRoleManager RoleManager
         {
             get { return this.HttpContext.GetOwinContext().Get<ApplicationRoleManager>(); }
+        }
+
+        protected CurrentUser GetCurrentUser
+        {
+            get
+            {
+                var currentUser = new CurrentUser();
+                currentUser.IsRegistered = this.HttpContext.User.Identity.IsAuthenticated;
+
+                if (currentUser.IsRegistered)
+                {
+                    currentUser.Username = this.HttpContext.User.Identity.Name;
+                    currentUser.Role = Roles.GetRolesForUser();
+                }
+
+                return currentUser;
+            }
         }
     }
 }

@@ -16,6 +16,7 @@
     /// <summary>
     /// Controller for threads 
     /// </summary>
+    [Authorize]
     public class ThreadController : ForumPageBaseController
     {
         private const int PostsToTake = 10;
@@ -30,6 +31,7 @@
         /// </summary>
         /// <param name="id">Subforum Id</param>
         /// <returns>View of ThreadsViewModel</returns>
+        [AllowAnonymous]
         public ActionResult Home(int id, int? page)
         {
             // query count
@@ -87,6 +89,8 @@
             {
                 post.Number = pageNumber++;
             }
+
+            thread.User = this.GetCurrentUser;
 
             // view
             return this.View(thread);
@@ -182,6 +186,7 @@
         /// </summary>
         /// <param name="id">Thread id</param>
         /// <returns>View</returns>
+        [Authorize(Roles = "Moderator")]
         public ActionResult Edit(int id)
         {
             Thread thread = this.GetThread(id);
@@ -208,6 +213,7 @@
         /// <returns>Redirects</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Moderator")]
         public ActionResult Edit(int id, EditThreadBindingModel model)
         {
             Thread editThread = this.GetThread(id);
@@ -233,6 +239,7 @@
             return this.RedirectToAction("Home", "Thread", new { id = editThread.ThreadId });
         }
 
+        [Authorize(Roles = "Moderator")]
         public ActionResult Delete(int id)
         {
             Thread thread = this.GetThread(id);
@@ -259,6 +266,7 @@
         /// <returns>Redirects</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Moderator")]
         public ActionResult Delete(int id, DeleteThreadBindingModel model)
         {
             Thread deleteThread = this.GetThread(id);

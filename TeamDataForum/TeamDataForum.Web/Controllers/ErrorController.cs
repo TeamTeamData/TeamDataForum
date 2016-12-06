@@ -6,6 +6,7 @@
     using System.Web;
     using System.Web.Mvc;
     using Bases;
+    using Models.ViewModels.Users;
     using UnitOfWork.Contracts;
 
     public class ErrorController : ForumBaseController
@@ -15,14 +16,20 @@
         {
         }
 
+        [AllowAnonymous]
         public ActionResult NotFound()
         {
-            return this.View();
+            var user = this.GetCurrentUser;
+
+            return this.View(user);
         }
 
+        [AllowAnonymous]
         public ActionResult BadRequest()
         {
-            return this.View();
+            var user = this.GetCurrentUser;
+
+            return this.View(user);
         }
     }
 }

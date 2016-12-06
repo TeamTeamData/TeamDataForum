@@ -14,6 +14,7 @@
     using Models.ViewModels.Users;
     using UnitOfWork.Contracts;
 
+    [Authorize]
     public class AccountController : ForumBaseController
     {
         public AccountController(IUnitOfWork unitOfWork)
@@ -43,6 +44,7 @@
         /// Empty login for first time
         /// </summary>
         /// <returns>View</returns>
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return this.View();
@@ -55,6 +57,7 @@
         /// <returns>View or redirects to home</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<ActionResult> Login(UserLogBindingModel model)
         {
             if (!this.ModelState.IsValid)
@@ -84,6 +87,7 @@
         /// Empty register controller for first time
         /// </summary>
         /// <returns>View</returns>
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return this.View();
@@ -96,6 +100,7 @@
         /// <returns>View or redirects to home</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<ActionResult> Register(UserRegistrationBindingModel model)
         {
             if (!this.ModelState.IsValid)

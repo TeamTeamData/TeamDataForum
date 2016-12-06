@@ -21,5 +21,7 @@
         public IEnumerable<ThreadViewModel> Threads { get; set; }
 
         public IEnumerable<Paginator> Pages { get; set; }
+
+        public CurrentUser User { get; set; }
     }
 }

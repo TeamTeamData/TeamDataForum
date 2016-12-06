@@ -242,6 +242,7 @@
     <Compile Include="Models\ViewModels\Posts\ThreadPostViewModel.cs" />
     <Compile Include="Models\ViewModels\Posts\UserPostViewModel.cs" />
     <Compile Include="Models\ViewModels\Threads\ThreadFullViewModel.cs" />
+    <Compile Include="Models\ViewModels\Users\CurrentUser.cs" />
     <Compile Include="Models\ViewModels\Users\PostUserViewModel.cs" />
     <Compile Include="Models\ViewModels\Users\UserFullViewModel.cs" />
     <Compile Include="Models\ViewModels\Users\UserViewModel.cs" />
@@ -322,6 +323,8 @@
     <Content Include="Views\Shared\UserPartials\UserNamesPartial.cshtml" />
     <Content Include="Views\Shared\UserPartials\UserTownPartial.cshtml" />
     <Content Include="Views\Shared\UserPartials\UserImagePartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutUser.cshtml" />
+    <Content Include="Views\Shared\_HeadLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

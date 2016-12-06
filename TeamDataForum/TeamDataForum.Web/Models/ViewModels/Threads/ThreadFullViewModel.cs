@@ -19,5 +19,7 @@
         public IEnumerable<PostFullViewModel> Posts { get; set; }
 
         public IEnumerable<Paginator> Pages { get; set; }
+
+        public CurrentUser User { get; set; }
     }
 }

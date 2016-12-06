@@ -2,11 +2,18 @@
 @model ThreadFullViewModel
 
 @{
-    ViewBag.Title = "Threads";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Thread: " + Model.Title;
+
+    if (Model.User.IsRegistered)
+    {
+        Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 
 <div class="container">
     @Html.DisplayForModel("Threads/ThreadFullViewModel")
 </div>
-

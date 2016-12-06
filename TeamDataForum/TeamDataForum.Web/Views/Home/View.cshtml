@@ -1,6 +1,16 @@
-﻿@{
-    ViewBag.Title = "View";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using TeamDataForum.Web.Models.ViewModels.Forums
+@model ForumFullViewModel
+
+@{
+    ViewBag.Title = "View forum: " + Model.Description;
+    if (Model.User.IsRegistered)
+    {
+        Layout = "~/Views/Shared/_LayoutUser.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 }
 
 <div class="container">

@@ -6,7 +6,7 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-brand">TeamData</div>
-        <span>@Html.ActionLink("Login", "Login", "Account") or @Html.ActionLink("Register", "Register", "Account")</span>
+        <span>@Html.ActionLink("Hello " + User.Identity.Name, "UserStatus", "Account") @Html.ActionLink("Sign out", "Signout", "Account")</span>
     </div>
     @RenderBody()
 </body>
