@@ -4,6 +4,6 @@
 @if (Model != null)
 {
     <div>@Html.ActionLink(Model.Title, "View", "Posts", new { Id = Model.Id }, null)</div>
-    <div>@Html.DisplayFor(m => m.Author)</div>
+    <div>@Html.DisplayFor(m => m.Author, "Users/UserViewModel")</div>
     <div>@Model.Date</div>
 }

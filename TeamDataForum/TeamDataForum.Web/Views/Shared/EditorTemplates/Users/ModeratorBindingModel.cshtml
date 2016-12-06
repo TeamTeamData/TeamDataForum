@@ -2,5 +2,5 @@
 @model ModeratorBindingModel
 
 <div>@Model.Username</div>
-<input type="checkbox" name="Moderators[@Model.Number].Id" value="@Model.Id" checked="@Model.IsChecked" />
+<input type="checkbox" name="Moderators[@Model.Number].Id" value="@Model.Id" checked="@Model.IsChecked.ToString()" />
 @Html.ValidationMessageFor(m => m.Id)

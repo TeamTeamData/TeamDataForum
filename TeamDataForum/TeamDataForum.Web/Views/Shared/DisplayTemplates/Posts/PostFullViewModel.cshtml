@@ -3,7 +3,7 @@
 
 <div>
     <div>@Model.Number</div>
-    <div>@Html.DisplayFor(m => m.Author)</div>
+    <div>@Html.DisplayFor(m => m.Author, "Users/PostUserViewModel")</div>
     <div>@Model.Date</div>
     <div>@Model.Text</div>
     <div>@Model.ChangeDate</div>

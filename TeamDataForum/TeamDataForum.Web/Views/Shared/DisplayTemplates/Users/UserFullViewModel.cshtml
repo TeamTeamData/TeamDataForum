@@ -21,6 +21,9 @@
                 <th>Post</th>
             </tr>
         </thead>
-        @Html.DisplayFor(m => m.Posts)
+        @foreach (var post in Model.Posts)
+        {
+            @Html.DisplayFor(m => post, "Posts/UserPostViewModel")
+        }
     </table>
 </div>

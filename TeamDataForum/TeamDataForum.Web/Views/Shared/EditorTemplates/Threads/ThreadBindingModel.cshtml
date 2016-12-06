@@ -3,7 +3,7 @@
 
 @using (Html.BeginForm("Create", "Thread", FormMethod.Post))
 {
-    @Html.EditorFor(m => m.Forum)
+    @Html.EditorFor(m => m.Forum, "Forums/IdentifiableForumBindingModel")
     @Html.ValidationMessageFor(m => m.Forum)
     @Html.DisplayFor(m => m.Title)
     @Html.EditorFor(m => m.Title)

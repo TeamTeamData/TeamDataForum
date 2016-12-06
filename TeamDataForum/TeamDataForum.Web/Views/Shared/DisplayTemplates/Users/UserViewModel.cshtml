@@ -1,0 +1,4 @@
+﻿@using TeamDataForum.Web.Models.ViewModels.Users
+@model UserViewModel
+
+@Html.ActionLink(Model.Username, "User", "View", new { Id = Model.Id }, null)

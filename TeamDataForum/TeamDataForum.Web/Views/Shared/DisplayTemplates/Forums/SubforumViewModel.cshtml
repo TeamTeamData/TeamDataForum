@@ -6,7 +6,12 @@
         <div>@Html.ActionLink(Model.Title, "View", "", new { Id = Model.Id }, null)</div>
         <div>@Model.Description</div>
         <div>@Model.Date.ToString("dd.MM.yyyy")</div>
-        <div>@Html.DisplayFor(m => m.Moderators)</div>
+        <div>
+            @foreach (var moderator in Model.Moderators)
+            {
+                @Html.DisplayFor(m => moderator, "Users/UserViewModel")
+            }
+        </div>
     </td>
     <td>@Html.DisplayFor(m => m.LatestPost, "Posts/ForumPostViewModel")</td>
     <td>@Model.Threads</td>

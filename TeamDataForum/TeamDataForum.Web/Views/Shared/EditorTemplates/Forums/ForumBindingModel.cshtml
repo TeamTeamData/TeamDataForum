@@ -10,7 +10,10 @@
     @Html.EditorFor(m => m.Description)
     @Html.ValidationMessageFor(m => m.Description)
     @Html.LabelFor(m => m.Moderators)
-    @Html.EditorFor(m => m.Moderators)
+    @foreach (var moderator in Model.Moderators)
+    {
+        @Html.EditorFor(m => moderator, "Users/ModeratorBindingModel")
+    }
     @Html.ValidationMessageFor(m => m.Moderators)
     @Html.AntiForgeryToken()
     <input type="submit" value="Create" />

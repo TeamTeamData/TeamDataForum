@@ -3,7 +3,7 @@
 
 @using (Html.BeginForm("Create", "Post", FormMethod.Post))
 {
-    @Html.EditorFor(m => m.Thread)
+    @Html.EditorFor(m => m.Thread, "Threads/IdentifiableThreadBindingModel")
     @Html.DisplayFor(m => m.Text)
     @Html.EditorFor(m => m.Text)
     @Html.AntiForgeryToken()

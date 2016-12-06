@@ -4,7 +4,7 @@
 @using (Html.BeginForm("Edit", "Post", FormMethod.Post))
 {
     @Html.HiddenFor(m => m.Id)
-    @Html.EditorFor(m => m.Thread)
+    @Html.EditorFor(m => m.Thread, "Threads/IdentifiableThreadBindingModel")
     @Html.ValidationMessageFor(m => m.Thread)
     @Html.DisplayFor(m => m.Text)
     @Html.EditorFor(m => m.Text)

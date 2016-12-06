@@ -3,9 +3,14 @@
 
 <div>
     <div>@Model.Title</div>
-    <div>@Html.DisplayFor(m => m.Creator)</div>
+    <div>@Html.DisplayFor(m => m.Creator, "Users/UserViewModel")</div>
     <div>@Model.CreationDate</div>
-    <div>@Html.DisplayFor(m => m.Posts)</div>
+    <div>
+        @foreach (var post in Model.Posts)
+        {
+            @Html.DisplayFor(m => post, "Posts/PostFullViewModel")
+        } 
+    </div>
     <div>
         @foreach (var page in Model.Pages)
         {
