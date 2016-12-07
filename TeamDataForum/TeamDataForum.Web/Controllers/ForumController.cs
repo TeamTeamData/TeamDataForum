@@ -21,9 +21,10 @@
         }
 
         // GET: Forum
+        [AllowAnonymous]
         public ActionResult Index()
         {
-            return this.View();
+            return this.RedirectToAction("Home", "Home");
         }
 
         /// <summary>

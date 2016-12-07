@@ -1,10 +1,11 @@
 ﻿namespace TeamDataForum.Web.Controllers.Bases
 {
     using System;
+    using System.Linq;
     using System.Web;
     using System.Web.Mvc;
-    using System.Web.Security;
     using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
     using UnitOfWork.Contracts;
     using Models.ViewModels.Users;
 
@@ -37,6 +38,24 @@
             }
         }
 
+        protected ApplicationUserManager UserManager
+        {
+            get { return this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
+        }
+
+        protected ApplicationSignInManager SignInManager
+        {
+            get { return this.HttpContext.GetOwinContext().GetUserManager<ApplicationSignInManager>(); }
+        }
+
+        protected IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return HttpContext.GetOwinContext().Authentication;
+            }
+        }
+
         protected ApplicationRoleManager RoleManager
         {
             get { return this.HttpContext.GetOwinContext().Get<ApplicationRoleManager>(); }
@@ -52,7 +71,17 @@
                 if (currentUser.IsRegistered)
                 {
                     currentUser.Username = this.HttpContext.User.Identity.Name;
-                    currentUser.Role = Roles.GetRolesForUser();
+
+                    var user = this.UserManager
+                        .Users
+                        .Where(u => u.UserName == currentUser.Username)
+                        .FirstOrDefault();
+
+                    currentUser.Roles = this.RoleManager
+                        .Roles
+                        .Where(r => r.Users.Any(u => u.UserId == user.Id))
+                        .Select(r => r.Name)
+                        .ToArray();
                 }
 
                 return currentUser;

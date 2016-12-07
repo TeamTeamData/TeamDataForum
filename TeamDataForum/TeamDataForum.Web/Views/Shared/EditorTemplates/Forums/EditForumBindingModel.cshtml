@@ -10,7 +10,7 @@
     @Html.DisplayFor(m => m.Description)
     @Html.EditorFor(m => m.Description)
     @Html.ValidationMessageFor(m => m.Description)
-    @foreach (var moderator in Model.Moderators)
+    foreach (var moderator in Model.Moderators)
     {
         @Html.EditorFor(m => moderator, "Users/ModeratorBindingModel")
     }

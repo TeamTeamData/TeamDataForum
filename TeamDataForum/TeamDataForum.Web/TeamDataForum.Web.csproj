@@ -325,6 +325,8 @@
     <Content Include="Views\Shared\UserPartials\UserImagePartial.cshtml" />
     <Content Include="Views\Shared\_LayoutUser.cshtml" />
     <Content Include="Views\Shared\_HeadLayout.cshtml" />
+    <Content Include="Views\Shared\MenuPartials\CreateForumPartial.cshtml" />
+    <Content Include="Views\Shared\MenuPartials\ForumAdminPanelPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -3,10 +3,8 @@
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
-    using System.Web;
     using System.Web.Mvc;
     using Microsoft.AspNet.Identity.Owin;
-    using Microsoft.Owin.Security;
     using Bases;
     using DBModels;
     using Models.BindingModels.Users;
@@ -20,24 +18,6 @@
         public AccountController(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
-        }
-
-        private ApplicationUserManager UserManager
-        {
-            get { return this.HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>(); }
-        }
-
-        private ApplicationSignInManager SignInManager
-        {
-            get { return this.HttpContext.GetOwinContext().GetUserManager<ApplicationSignInManager>(); }
-        }
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
         }
 
         /// <summary>
@@ -189,7 +169,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            User user = this.GetCurrentUser();
+            User user = this.GetUserNoAdditionalParameters();
 
             var result = await this.UserManager
                 .ChangePasswordAsync(user.Id, model.Password, model.NewPassword);
@@ -250,7 +230,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            User user = this.GetCurrentUser();
+            User user = this.GetUserNoAdditionalParameters();
 
             if (!string.IsNullOrWhiteSpace(model.Firstname))
             {
@@ -285,7 +265,7 @@
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            User user = this.GetCurrentUser();
+            User user = this.GetUserNoAdditionalParameters();
 
             Country country = this.UnitOfWork
                 .CountryRepository
@@ -343,7 +323,7 @@
             return user;
         }
 
-        private User GetCurrentUser()
+        private User GetUserNoAdditionalParameters()
         {
             User user = this.UnitOfWork
                 .UserRepository

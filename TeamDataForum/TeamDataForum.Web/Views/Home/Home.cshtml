@@ -1,4 +1,5 @@
-﻿@using TeamDataForum.Web.Models.ViewModels.Forums
+﻿@using System.Linq;
+@using TeamDataForum.Web.Models.ViewModels.Forums
 @model ForumViewModel
 
 @{
@@ -6,13 +7,17 @@
     if (Model.User.IsRegistered)
     {
         Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+        if (Model.User.Roles.Any(r => r == "Administrator"))
+        {
+            @Html.Partial("~/Views/Shared/MenuPartials/CreateForumPartial.cshtml")
+        }
     }
     else
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
 }
-<link href="~/Content/Login-style.css" rel="stylesheet" />
 <div class="container">
     @Html.DisplayForModel("Forums/ForumViewModel")
 </div>

@@ -1,6 +1,10 @@
 ﻿@using TeamDataForum.Web.Models.BindingModels.Users
 @model ModeratorBindingModel
 
-<div>@Model.Username</div>
-<input type="checkbox" name="Moderators[@Model.Number].Id" value="@Model.Id" checked="@Model.IsChecked.ToString()" />
+@{
+    var isChecked = @Model.IsChecked ? "checked" : string.Empty;
+}
+
+<div>@Html.DisplayFor(m => m.Username)</div>
+<input type="checkbox" name="Moderators[@Html.DisplayFor(m => m.Number)].Id" value="@Html.DisplayFor(m => m.Id)" @isChecked />
 @Html.ValidationMessageFor(m => m.Id)
