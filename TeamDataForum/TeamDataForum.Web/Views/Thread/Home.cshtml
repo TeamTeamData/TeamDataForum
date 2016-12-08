@@ -1,4 +1,5 @@
-﻿@using TeamDataForum.Web.Models.ViewModels.Threads
+﻿@using System.Linq;
+@using TeamDataForum.Web.Models.ViewModels.Threads
 @model ThreadFullViewModel
 
 @{
@@ -7,6 +8,18 @@
     if (Model.User.IsRegistered)
     {
         Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+        var administrator = "Administrator";
+        var moderator = "Moderator";
+
+        var userRole = Model.User.Roles.FirstOrDefault(r => r == administrator || r == moderator);
+
+        if (userRole == administrator || (userRole == moderator && Model.Moderators.Any(u => u.Username == Model.User.Username)))
+        {
+            @Html.Partial("~/Views/Shared/MenuPartials/TreadAdminPanelPartial.cshtml", Model.Id);
+        }
+
+        @Html.Partial("~/Views/Shared/MenuPartials/CreateThreadPartial.cshtml", Model.ForumId);
     }
     else
     {

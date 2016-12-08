@@ -4,10 +4,10 @@
 @using (Html.BeginForm("Edit", "Forum", FormMethod.Post))
 {
     @Html.HiddenFor(m => m.Id)
-    @Html.DisplayFor(m => m.Title)
+    @Html.LabelFor(m => m.Title)
     @Html.EditorFor(m => m.Title)
     @Html.ValidationMessageFor(m => m.Title)
-    @Html.DisplayFor(m => m.Description)
+    @Html.LabelFor(m => m.Description)
     @Html.EditorFor(m => m.Description)
     @Html.ValidationMessageFor(m => m.Description)
     foreach (var moderator in Model.Moderators)

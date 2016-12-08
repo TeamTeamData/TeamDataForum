@@ -5,10 +5,10 @@
 {
     @Html.EditorFor(m => m.Forum, "Forums/IdentifiableForumBindingModel")
     @Html.ValidationMessageFor(m => m.Forum)
-    @Html.DisplayFor(m => m.Title)
+    @Html.LabelFor(m => m.Title)
     @Html.EditorFor(m => m.Title)
     @Html.ValidationMessageFor(m => m.Title)
-    @Html.DisplayFor(m => m.Text)
+    @Html.LabelFor(m => m.Text)
     @Html.EditorFor(m => m.Text)
     @Html.ValidationMessageFor(m => m.Text)
     @Html.AntiForgeryToken()

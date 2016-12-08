@@ -10,11 +10,15 @@
     {
         public int Id { get; set; }
 
+        public int ForumId { get; set; }
+
         public string Title { get; set; }
 
         public UserViewModel Creator { get; set; }
 
         public DateTime CreationDate { get; set; }
+
+        public IEnumerable<UserViewModel> Moderators { get; set; }
 
         public IEnumerable<PostFullViewModel> Posts { get; set; }
 

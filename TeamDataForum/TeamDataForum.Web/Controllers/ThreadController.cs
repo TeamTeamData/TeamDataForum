@@ -54,6 +54,7 @@
                     .Select(t => new ThreadFullViewModel()
                     {
                         Id = t.ThreadId,
+                        ForumId = t.Forum.ForumId,
                         Title = t.Title,
                         Creator = new UserViewModel()
                         {
@@ -61,6 +62,11 @@
                             Username = t.Creator.UserName
                         },
                         CreationDate = t.Date,
+                        Moderators = t.Forum.Moderators.Select(u => new UserViewModel
+                        {
+                            Id = u.Id,
+                            Username = u.UserName
+                        }),
                         Posts = t.Posts.Where(p => !p.IsDeleted).Select(p => new PostFullViewModel()
                         {
                             Id = p.PostId,
@@ -106,13 +112,19 @@
                 .Select(t => new ThreadFullViewModel()
                 {
                     Id = t.ThreadId,
+                    ForumId = t.Forum.ForumId,
                     Title = t.Title,
                     Creator = new UserViewModel()
                     {
                         Id = t.Creator.Id,
                         Username = t.Creator.UserName
                     },
-                    CreationDate = t.Date
+                    CreationDate = t.Date,
+                    Moderators = t.Forum.Moderators.Select(u => new UserViewModel
+                    {
+                        Id = u.Id,
+                        Username = u.UserName
+                    })
                 })
                 .FirstOrDefault();
 
@@ -215,7 +227,7 @@
         /// </summary>
         /// <param name="id">Thread id</param>
         /// <returns>View</returns>
-        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Moderator, Administrator")]
         public ActionResult Edit(int id)
         {
             Thread thread = this.GetThread(id);
@@ -242,7 +254,7 @@
         /// <returns>Redirects</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Moderator, Administrator")]
         public ActionResult Edit(int id, EditThreadBindingModel model)
         {
             Thread editThread = this.GetThread(id);
@@ -268,7 +280,7 @@
             return this.RedirectToAction("Home", "Thread", new { id = editThread.ThreadId });
         }
 
-        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Moderator, Administrator")]
         public ActionResult Delete(int id)
         {
             Thread thread = this.GetThread(id);
@@ -295,7 +307,7 @@
         /// <returns>Redirects</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Moderator, Administrator")]
         public ActionResult Delete(int id, DeleteThreadBindingModel model)
         {
             Thread deleteThread = this.GetThread(id);

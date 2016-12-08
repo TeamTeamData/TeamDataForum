@@ -12,6 +12,8 @@
         {
             @Html.Partial("~/Views/Shared/MenuPartials/ForumAdminPanelPartial.cshtml", Model.Id);
         }
+
+        @Html.Partial("~/Views/Shared/MenuPartials/CreateThreadPartial.cshtml", Model.Id);
     }
     else
     {
