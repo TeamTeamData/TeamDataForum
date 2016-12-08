@@ -14,16 +14,9 @@
     [Authorize]
     public class PostController : ForumBaseController
     {
-        public PostController(IUnitOfWork unitOfWork) 
+        public PostController(IUnitOfWork unitOfWork)
             : base(unitOfWork)
         {
-        }
-
-        // GET: Post
-        [AllowAnonymous]
-        public ActionResult Index()
-        {
-            return this.View();
         }
 
         /// <summary>
@@ -35,8 +28,40 @@
         [AllowAnonymous]
         public ActionResult View(int id)
         {
-            // to do
-            return this.RedirectToAction("Home", "Thread", new { });
+            Thread thread = this.UnitOfWork
+                .ThreadRepository
+                .Select(t => t.Posts.Any(p => p.PostId == id), new string[] { "Posts" })
+                .FirstOrDefault();
+
+            if (thread == default(Thread))
+            {
+                return this.RedirectToAction("NotFound", "Error");
+            }
+
+            int postIndex = 0;
+            Post selectedPost = thread.Posts.FirstOrDefault();
+
+            foreach (Post post in thread.Posts)
+            {
+                if (post.PostId == id)
+                {
+                    selectedPost = post;
+                    break;
+                }
+
+                postIndex++;
+            }
+
+            int threadPage = (postIndex / 10) + 1;
+
+            string additionalParameters = "?page=" + threadPage + "#post_" + selectedPost.PostId;
+
+            return this.Redirect(Url.RouteUrl(new
+            {
+                controller = "Thread",
+                action = "Home",
+                Id = thread.ThreadId
+            }) + additionalParameters);
         }
 
         /// <summary>

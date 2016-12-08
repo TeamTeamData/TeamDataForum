@@ -15,7 +15,7 @@
                 var administrator = "Administrator";
                 var moderator = "Moderator";
 
-                var isCreator = Model.Creator.Username == Model.User.Username;
+                var isCreator = post.Author.Username == Model.User.Username;
 
                 var userRole = Model.User.Roles.FirstOrDefault(r => r == administrator || r == moderator);
 
