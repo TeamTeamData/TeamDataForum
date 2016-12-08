@@ -190,7 +190,7 @@
         /// </summary>
         /// <param name="id">Post id</param>
         /// <returns>View</returns>
-        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Administrator, Moderator")]
         public ActionResult Delete(int id)
         {
             Post post = this.GetPost(id);
@@ -220,7 +220,7 @@
         /// <param name="id">Id of post</param>
         /// <param name="model">Post to be deleted</param>
         /// <returns>Redirects</returns>
-        [Authorize(Roles = "Moderator")]
+        [Authorize(Roles = "Administrator, Moderator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, PostDeleteBindingModel model)

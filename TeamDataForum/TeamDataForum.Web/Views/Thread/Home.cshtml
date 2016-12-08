@@ -20,6 +20,8 @@
         }
 
         @Html.Partial("~/Views/Shared/MenuPartials/CreateThreadPartial.cshtml", Model.ForumId);
+
+        @Html.Partial("~/Views/Shared/MenuPartials/CreatePostPartial.cshtml", Model.Id);
     }
     else
     {
@@ -30,3 +32,10 @@
 <div class="container">
     @Html.DisplayForModel("Threads/ThreadFullViewModel")
 </div>
+
+@{
+    if (Model.User.IsRegistered)
+    {
+        @Html.Partial("~/Views/Shared/MenuPartials/CreatePostPartial.cshtml", Model.Id);
+    }
+}

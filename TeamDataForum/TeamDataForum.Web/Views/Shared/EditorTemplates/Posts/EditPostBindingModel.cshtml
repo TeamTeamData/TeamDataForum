@@ -6,9 +6,9 @@
     @Html.HiddenFor(m => m.Id)
     @Html.EditorFor(m => m.Thread, "Threads/IdentifiableThreadBindingModel")
     @Html.ValidationMessageFor(m => m.Thread)
-    @Html.DisplayFor(m => m.Text)
+    @Html.LabelFor(m => m.Text)
     @Html.EditorFor(m => m.Text)
     @Html.ValidationMessageFor(m => m.Text)
     @Html.AntiForgeryToken()
-    <input type="submit" value="Create" />
+    <input type="submit" value="Edit" />
 }

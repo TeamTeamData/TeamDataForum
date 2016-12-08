@@ -9,7 +9,30 @@
         @foreach (var post in Model.Posts)
         {
             @Html.DisplayFor(m => post, "Posts/PostFullViewModel")
-        } 
+
+            if (Model.User.IsRegistered)
+            {
+                var administrator = "Administrator";
+                var moderator = "Moderator";
+
+                var isCreator = Model.Creator.Username == Model.User.Username;
+
+                var userRole = Model.User.Roles.FirstOrDefault(r => r == administrator || r == moderator);
+
+                if (isCreator ||
+                        userRole == administrator ||
+                        (userRole == moderator && Model.Moderators.Any(u => u.Username == Model.User.Username)))
+                {
+                    @Html.Partial("~/Views/Shared/MenuPartials/PostEditPanelPartial.cshtml", post.Id);
+                }
+
+                if (userRole == administrator ||
+                    (userRole == moderator && Model.Moderators.Any(u => u.Username == Model.User.Username)))
+                {
+                    @Html.Partial("~/Views/Shared/MenuPartials/PostDeleteAdminPanel.cshtml", post.Id);
+                }
+            }
+        }
     </div>
     <div>
         @foreach (var page in Model.Pages)

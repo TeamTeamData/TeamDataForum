@@ -329,6 +329,9 @@
     <Content Include="Views\Shared\MenuPartials\ForumAdminPanelPartial.cshtml" />
     <Content Include="Views\Shared\MenuPartials\TreadAdminPanelPartial.cshtml" />
     <Content Include="Views\Shared\MenuPartials\CreateThreadPartial.cshtml" />
+    <Content Include="Views\Shared\MenuPartials\CreatePostPartial.cshtml" />
+    <Content Include="Views\Shared\MenuPartials\PostEditPanelPartial.cshtml" />
+    <Content Include="Views\Shared\MenuPartials\PostDeleteAdminPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

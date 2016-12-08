@@ -4,8 +4,9 @@
 @using (Html.BeginForm("Create", "Post", FormMethod.Post))
 {
     @Html.EditorFor(m => m.Thread, "Threads/IdentifiableThreadBindingModel")
-    @Html.DisplayFor(m => m.Text)
+    @Html.LabelFor(m => m.Text)
     @Html.EditorFor(m => m.Text)
+    @Html.ValidationMessageFor(m => m.Text)
     @Html.AntiForgeryToken()
     <input type="submit" value="Create" />
 }
