@@ -9,13 +9,12 @@
     using Models.ViewModels.Threads;
     using Models.ViewModels.Users;
     using Pagination.Contracts;
+    using Resources;
     using UnitOfWork.Contracts;
 
     [Authorize]
     public class HomeController : ForumPageBaseController
     {
-        private const int ThreadsToTake = 50;
-
         public HomeController(IUnitOfWork unitOfWork, IPaginationFactory paginationFactory) 
             : base(unitOfWork, paginationFactory)
         {
@@ -86,59 +85,12 @@
                 .Count(t => t.Forum.ForumId == id);
 
             // pagination
-            var pagination = this.PaginationFactory.CreatePagination(page, ThreadsToTake, threadsCount);
+            var pagination = this.PaginationFactory.CreatePagination(page, NumericValues.ThreadsToTake, threadsCount);
 
             var skipTake = pagination.ElementsToSkipAndTake();
 
-            if (skipTake.Take > 0)
-            {
-                // query for forum with with more than one thread
-                var forum = this.UnitOfWork
-                    .ForumRepository
-                    .Query
-                    .Where(f => f.ForumId == forumId)
-                    .Select(f => new ForumFullViewModel()
-                    {
-                        Id = f.ForumId,
-                        Title = f.Title,
-                        Description = f.Description,
-                        Date = f.Date,
-                        Moderators = f.Moderators.Select(u => new UserViewModel() { Id = u.Id, Username = u.UserName }),
-                        Threads = f.Threads.Where(t => !t.IsDeleted).Select(t => new ThreadViewModel()
-                        {
-                            Id = t.ThreadId,
-                            Title = t.Title,
-                            IsLocked = t.IsLocked,
-                            Replies = t.Posts.Count(p => !p.IsDeleted),
-                            TimesSeen = t.TimesSeen,
-                            LastPost = t.Posts.Where(p => !p.IsDeleted).Select(p => new ThreadPostViewModel
-                            {
-                                Id = p.PostId,
-                                ThreadId = p.Thread.ThreadId,
-                                Text = p.Text.Text,
-                                Author = new UserViewModel() { Id = p.Creator.Id, Username = p.Creator.UserName },
-                                Date = p.PostDate
-                            })
-                            .OrderByDescending(p => p.Id)
-                            .FirstOrDefault()
-                        })
-                        .OrderBy(tvm => tvm.Id)
-                        .Skip(skipTake.Skip)
-                        .Take(skipTake.Take)
-                    })
-                    .FirstOrDefault();
-
-                // model pagination
-                forum.Pages = pagination.GetPages("View", "Home");
-
-                forum.User = this.GetCurrentUser;
-
-                // view
-                return this.View(forum);
-            }
-
-            // query for forum with no threads
-            var forumNoThreads = this.UnitOfWork
+            // query for forum with with more than one thread
+            var forum = this.UnitOfWork
                 .ForumRepository
                 .Query
                 .Where(f => f.ForumId == forumId)
@@ -148,19 +100,38 @@
                     Title = f.Title,
                     Description = f.Description,
                     Date = f.Date,
-                    Moderators = f.Moderators.Select(u => new UserViewModel() { Id = u.Id, Username = u.UserName })
+                    Moderators = f.Moderators.Select(u => new UserViewModel() { Id = u.Id, Username = u.UserName }),
+                    Threads = f.Threads.Where(t => !t.IsDeleted).Select(t => new ThreadViewModel()
+                    {
+                        Id = t.ThreadId,
+                        Title = t.Title,
+                        IsLocked = t.IsLocked,
+                        Replies = t.Posts.Count(p => !p.IsDeleted),
+                        TimesSeen = t.TimesSeen,
+                        LastPost = t.Posts.Where(p => !p.IsDeleted).Select(p => new ThreadPostViewModel
+                        {
+                            Id = p.PostId,
+                            ThreadId = p.Thread.ThreadId,
+                            Text = p.Text.Text,
+                            Author = new UserViewModel() { Id = p.Creator.Id, Username = p.Creator.UserName },
+                            Date = p.PostDate
+                        })
+                        .OrderByDescending(p => p.Id)
+                        .FirstOrDefault()
+                    })
+                    .OrderBy(tvm => tvm.Id)
+                    .Skip(skipTake.Skip)
+                    .Take(skipTake.Take)
                 })
                 .FirstOrDefault();
 
-            forumNoThreads.Threads = new List<ThreadViewModel>();
+            // model pagination
+            forum.Pages = pagination.GetPages("View", "Home");
 
-            // model pagination for forum with no threads
-            forumNoThreads.Pages = pagination.GetPages("View", "Home");
-
-            forumNoThreads.User = this.GetCurrentUser;
+            forum.User = this.GetCurrentUser;
 
             // view
-            return this.View(forumNoThreads);
+            return this.View(forum);
         }
     }
 }

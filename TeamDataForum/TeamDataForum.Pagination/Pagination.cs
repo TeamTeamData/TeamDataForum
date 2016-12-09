@@ -72,6 +72,11 @@
                 this.TotalCountElements - elementsToSkip :
                 elementsToTake;
 
+            if (elementsToTakeCount <= 0)
+            {
+                elementsToTakeCount = this.ElementsToTake;
+            }
+
             return new SkipTake(elementsToSkip, elementsToTakeCount);
         }
 

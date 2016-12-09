@@ -9,6 +9,7 @@
     using DBModels;
     using Models.BindingModels.Posts;
     using Models.BindingModels.Threads;
+    using Resources;
     using UnitOfWork.Contracts;
 
     [Authorize]
@@ -52,7 +53,7 @@
                 postIndex++;
             }
 
-            int threadPage = (postIndex / 10) + 1;
+            int threadPage = (postIndex / NumericValues.PostsToTake) + 1;
 
             string additionalParameters = "?page=" + threadPage + "#post_" + selectedPost.PostId;
 

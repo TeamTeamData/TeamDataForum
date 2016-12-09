@@ -14,5 +14,7 @@
         public const int TextMaxLength = 300;
         public const int ImagePathMaxLength = 500;
         public const int PostTextMaxValue = 2000;
+        public const int PostsToTake = 10;
+        public const int ThreadsToTake = 50;
     }
 }

@@ -332,6 +332,7 @@
     <Content Include="Views\Shared\MenuPartials\CreatePostPartial.cshtml" />
     <Content Include="Views\Shared\MenuPartials\PostEditPanelPartial.cshtml" />
     <Content Include="Views\Shared\MenuPartials\PostDeleteAdminPanel.cshtml" />
+    <Content Include="Views\Account\ViewUser.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

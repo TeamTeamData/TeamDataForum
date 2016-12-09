@@ -11,6 +11,7 @@
     using Models.ViewModels.Threads;
     using Models.ViewModels.Users;
     using Pagination.Contracts;
+    using Resources;
     using UnitOfWork.Contracts;
 
     /// <summary>
@@ -19,8 +20,6 @@
     [Authorize]
     public class ThreadController : ForumPageBaseController
     {
-        private const int PostsToTake = 10;
-
         public ThreadController(IUnitOfWork unitOfWork, IPaginationFactory paginationFactory) 
             : base(unitOfWork, paginationFactory)
         {
@@ -40,72 +39,12 @@
                 .Count(p => p.Thread.ThreadId == id);
 
             // pagination
-            var pagination = this.PaginationFactory.CreatePagination(page, PostsToTake, postsCount);
+            var pagination = this.PaginationFactory.CreatePagination(page, NumericValues.PostsToTake, postsCount);
 
             var skipTake = pagination.ElementsToSkipAndTake();
 
-            if (skipTake.Take > 0)
-            {
-                // query
-                var thread = this.UnitOfWork
-                    .ThreadRepository
-                    .Query
-                    .Where(t => t.ThreadId == id)
-                    .Select(t => new ThreadFullViewModel()
-                    {
-                        Id = t.ThreadId,
-                        ForumId = t.Forum.ForumId,
-                        Title = t.Title,
-                        Creator = new UserViewModel()
-                        {
-                            Id = t.Creator.Id,
-                            Username = t.Creator.UserName
-                        },
-                        CreationDate = t.Date,
-                        Moderators = t.Forum.Moderators.Select(u => new UserViewModel
-                        {
-                            Id = u.Id,
-                            Username = u.UserName
-                        }),
-                        Posts = t.Posts.Where(p => !p.IsDeleted).Select(p => new PostFullViewModel()
-                        {
-                            Id = p.PostId,
-                            Date = p.PostDate,
-                            Text = p.Text.Text,
-                            Author = new PostUserViewModel()
-                            {
-                                Id = p.Creator.Id,
-                                Username = p.Creator.UserName,
-                                Image = p.Creator.Image
-                            },
-                            ChangeDate = p.ChangeDate,
-                            Changer = p.Changer.UserName
-                        })
-                        .OrderBy(p => p.Id)
-                        .Skip(skipTake.Skip)
-                        .Take(skipTake.Take)
-                    })
-                    .FirstOrDefault();
-
-                // model pagination
-                thread.Pages = pagination.GetPages("Home", "Thread");
-
-                // set post number in thread
-                int pageNumber = skipTake.Skip + 1;
-
-                foreach (var post in thread.Posts)
-                {
-                    post.Number = pageNumber++;
-                }
-
-                thread.User = this.GetCurrentUser;
-
-                // view
-                return this.View(thread);
-            }
-
-            // query for thread with no posts
-            var threadNoPosts = this.UnitOfWork
+            // query
+            var thread = this.UnitOfWork
                 .ThreadRepository
                 .Query
                 .Where(t => t.ThreadId == id)
@@ -124,17 +63,42 @@
                     {
                         Id = u.Id,
                         Username = u.UserName
+                    }),
+                    Posts = t.Posts.Where(p => !p.IsDeleted).Select(p => new PostFullViewModel()
+                    {
+                        Id = p.PostId,
+                        Date = p.PostDate,
+                        Text = p.Text.Text,
+                        Author = new PostUserViewModel()
+                        {
+                            Id = p.Creator.Id,
+                            Username = p.Creator.UserName,
+                            Image = p.Creator.Image
+                        },
+                        ChangeDate = p.ChangeDate,
+                        Changer = p.Changer.UserName
                     })
+                    .OrderBy(p => p.Id)
+                    .Skip(skipTake.Skip)
+                    .Take(skipTake.Take)
                 })
                 .FirstOrDefault();
 
-            // model pagination for thread with no posts
-            threadNoPosts.Pages = pagination.GetPages("Home", "Thread");
+            // model pagination
+            thread.Pages = pagination.GetPages("Home", "Thread");
 
-            threadNoPosts.User = this.GetCurrentUser;
+            // set post number in thread
+            int pageNumber = skipTake.Skip + 1;
 
-            // view for thread with no posts
-            return this.View(threadNoPosts);
+            foreach (var post in thread.Posts)
+            {
+                post.Number = pageNumber++;
+            }
+
+            thread.User = this.GetCurrentUser;
+
+            // view
+            return this.View(thread);
         }
 
         /// <summary>

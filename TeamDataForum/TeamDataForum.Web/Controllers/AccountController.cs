@@ -221,6 +221,42 @@
             return this.View(user);
         }
 
+        [HttpGet]
+        public ActionResult ViewUser(string id)
+        {
+            UserFullViewModel user = this.UnitOfWork
+                .UserRepository
+                .Query
+                .Where(u => u.Id == id)
+                .Select(u => new UserFullViewModel
+                {
+                    Firstname = u.Firstname,
+                    Lastname = u.Lastname,
+                    Email = u.Email,
+                    Image = u.Image,
+                    Town = u.Town.Name,
+                    Country = u.Town.Country.Name,
+                    PostsCount = u.Posts.Count,
+                    Posts = u.Posts.Select(p => new UserPostViewModel()
+                    {
+                        PostId = p.PostId,
+                        ThreadId = p.Thread.ThreadId,
+                        Thread = p.Thread.Title,
+                        Text = p.Text.Text
+                    })
+                    .OrderByDescending(p => p.PostId)
+                    .Take(5)
+                })
+                .FirstOrDefault();
+
+            if (user == default(UserFullViewModel))
+            {
+                return this.RedirectToAction("NotFound", "Error");
+            }
+
+            return this.View(user);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ChangeInformation(UserNamesBindingModel model)
