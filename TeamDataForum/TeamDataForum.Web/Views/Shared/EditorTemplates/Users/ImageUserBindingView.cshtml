@@ -1,10 +1,11 @@
 ﻿@using TeamDataForum.Web.Models.BindingModels.Users
 @model ImageUserBindingView
 
-@using (Html.BeginForm("UploadAvatar", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("UploadAvatar", "Account", FormMethod.Post, new { Id = "uploadAvatar", enctype = "multipart/form-data" }))
 {
     @Html.LabelFor(m => m.Image)
     <input type="file" id="Image" name="Image" />
+    @Html.ValidationMessageFor(m => m.Image)
     @Html.AntiForgeryToken()
     <input type="submit" value="Upload image" />
 }

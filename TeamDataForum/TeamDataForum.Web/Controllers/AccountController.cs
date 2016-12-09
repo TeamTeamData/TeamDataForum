@@ -359,16 +359,23 @@
         [ValidateAntiForgeryToken]
         public ActionResult UploadAvatar(ImageUserBindingView model)
         {
+            string[] allowedExtensions = { ".jpg", ".jpeg", ".png" };
+
             if (!this.ModelState.IsValid || model.Image == null)
             {
-                return RedirectToAction("BadRequest", "Error");
+                return this.RedirectToAction("BadRequest", "Error");
             }
 
             string extension = Path.GetExtension(model.Image.FileName);
 
+            if (!allowedExtensions.Contains(extension) || model.Image.ContentLength > 512000)
+            {
+                return this.RedirectToAction("BadRequest", "Error");
+            }
+
             string userName = this.HttpContext.User.Identity.Name;
-            string path = "/Content/Images/Users/{userName}/";
-            string defaultPath = $"~" + path;
+            string path = $"/Content/Images/Users/{userName}/";
+            string defaultPath = $"~{path}";
             string directoryPath = Path.Combine(Server.MapPath(defaultPath));
 
             if (!Directory.Exists(directoryPath))
