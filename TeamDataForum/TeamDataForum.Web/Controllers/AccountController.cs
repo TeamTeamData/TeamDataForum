@@ -1,5 +1,6 @@
 ﻿namespace TeamDataForum.Web.Controllers
 {
+    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -11,6 +12,7 @@
     using Models.ViewModels.Posts;
     using Models.ViewModels.Users;
     using UnitOfWork.Contracts;
+    using System.Web;
 
     [Authorize]
     public class AccountController : ForumBaseController
@@ -346,6 +348,50 @@
             this.UnitOfWork.SaveChanges();
 
             return new HttpStatusCodeResult(HttpStatusCode.OK);
+        }
+
+        /// <summary>
+        /// Action for uploading user avatar
+        /// </summary>
+        /// <param name="model">ImageUserBindingView</param>
+        /// <returns>Redirects to UserStatus</returns>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UploadAvatar(ImageUserBindingView model)
+        {
+            if (!this.ModelState.IsValid || model.Image == null)
+            {
+                return RedirectToAction("BadRequest", "Error");
+            }
+
+            string extension = Path.GetExtension(model.Image.FileName);
+
+            string userName = this.HttpContext.User.Identity.Name;
+            string path = "/Content/Images/Users/{userName}/";
+            string defaultPath = $"~" + path;
+            string directoryPath = Path.Combine(Server.MapPath(defaultPath));
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            string fullPath = directoryPath + userName + extension;
+
+            model.Image.SaveAs(fullPath);
+
+            User user = this.GetUserNoAdditionalParameters();
+
+            user.Image = path + userName + extension;
+
+            this.UnitOfWork
+                .UserRepository
+                .Update(user);
+
+            this.UnitOfWork
+                .SaveChanges();
+
+            return RedirectToAction("UserStatus", "Account");
         }
 
         private User GetUser()
