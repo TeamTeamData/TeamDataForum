@@ -16,10 +16,13 @@
 <button id="changeUserTown">Change town</button>
 
 @Html.Partial("~/Views/Shared/UserPartials/UserPasswordPartial.cshtml", new PasswordBindingModel())
+<div id="password-progress"></div>
 
 @Html.Partial("~/Views/Shared/UserPartials/UserNamesPartial.cshtml", new UserNamesBindingModel())
+<div id="usernames-progress"></div>
 
 @Html.Partial("~/Views/Shared/UserPartials/UserTownPartial.cshtml", new TownUserBindingModel())
+<div id="usertown-progress"></div>
 
 @Html.Partial("~/Views/Shared/UserPartials/UserImagePartial.cshtml", new ImageUserBindingView())
 

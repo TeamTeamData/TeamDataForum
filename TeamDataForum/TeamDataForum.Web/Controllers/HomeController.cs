@@ -42,8 +42,10 @@
                     Threads = f.Threads.Count(t => !t.IsDeleted),
                     Posts = f.Threads.Where(p => !p.IsDeleted).SelectMany(t => t.Posts).Count(p => !p.IsDeleted),
                     LatestPost = f.Threads
-                    .Where(t => !t.IsDeleted)
-                    .Select(t => t.Posts.Where(p => !p.IsDeleted).OrderByDescending(p => p.PostId).FirstOrDefault()).Select(p => new ForumPostViewModel
+                    .SelectMany(t => t.Posts)
+                    .Where(p => !p.IsDeleted)
+                    .OrderByDescending(p => p.PostId)
+                    .Select(p => new ForumPostViewModel
                     {
                         Id = p.PostId,
                         ThreadId = p.Thread.ThreadId,
@@ -119,7 +121,8 @@
                         .OrderByDescending(p => p.Id)
                         .FirstOrDefault()
                     })
-                    .OrderBy(tvm => tvm.Id)
+                    .OrderByDescending(tvm => tvm.LastPost.Date)
+                    .ThenBy(tvm => tvm.Id)
                     .Skip(skipTake.Skip)
                     .Take(skipTake.Take)
                 })
