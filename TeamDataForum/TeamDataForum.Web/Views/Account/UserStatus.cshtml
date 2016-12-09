@@ -11,18 +11,17 @@
 
 @Html.DisplayForModel("Users/UserFullViewModel")
 
+<div id="task-progress"></div>
+
 <button id="changePassword">Change password</button>
 <button id="changeUserInformation">Change user information</button>
 <button id="changeUserTown">Change town</button>
 
 @Html.Partial("~/Views/Shared/UserPartials/UserPasswordPartial.cshtml", new PasswordBindingModel())
-<div id="password-progress"></div>
 
 @Html.Partial("~/Views/Shared/UserPartials/UserNamesPartial.cshtml", new UserNamesBindingModel())
-<div id="usernames-progress"></div>
 
 @Html.Partial("~/Views/Shared/UserPartials/UserTownPartial.cshtml", new TownUserBindingModel())
-<div id="usertown-progress"></div>
 
 @Html.Partial("~/Views/Shared/UserPartials/UserImagePartial.cshtml", new ImageUserBindingView())
 
@@ -100,31 +99,46 @@
 
     $('#password-form').submit(function () {
         var data = $(this).serialize();
+        $('#task-progress').html('<progress max="5"></progress>');
         $.ajax({
             url: this.action,
             method: this.method,
             data: data,
             success: function () {
-                alert('Success.');
+                $('#task-progress').html('Password updated.');
+                setTimeout(clearTaskInformation, 5000);
+                passDialog.dialog("close");
             },
             error: function () {
-                alert('Error.')
+                $('#task-progress').html('Error password update.');
+                setTimeout(clearTaskInformation, 5000);
+                passDialog.dialog("close");
             }
         });
+
+        $('#Password').val('');
+        $('#NewPassword').val('');
+        $('#ConfirmPassword').val('');
+
         return false;
     });
 
     $('#user-data').submit(function () {
         var data = $(this).serialize();
+        $('#task-progress').html('<progress max="5"></progress>');
         $.ajax({
             url: this.action,
             method: this.method,
             data: data,
             success: function () {
-                alert('Success');
+                $('#task-progress').html('Password updated.');
+                setTimeout(clearTaskInformation, 5000);
+                userDialog.dialog("close");
             },
             error: function () {
-                alert('Error');
+                $('#task-progress').html('Password updated.');
+                setTimeout(clearTaskInformation, 5000);
+                userDialog.dialog("close");
             }
         });
         return false;
@@ -132,17 +146,26 @@
 
     $('#user-town').submit(function () {
         var data = $(this).serialize();
+        $('#task-progress').html('<progress max="5"></progress>');
         $.ajax({
             url: this.action,
             method: this.method,
             data: data,
             success: function () {
-                alert('Success');
+                $('#task-progress').html('Password updated.');
+                setTimeout(clearTaskInformation, 5000);
+                townDialog.dialog("close");
             },
             error: function () {
-                alert('Error');
+                $('#task-progress').html('Password updated.');
+                setTimeout(clearTaskInformation, 5000);
+                townDialog.dialog("close");
             }
         });
         return false;
     });
+
+    function clearTaskInformation() {
+        $('#task-progress').html('');
+    }
 </script>
