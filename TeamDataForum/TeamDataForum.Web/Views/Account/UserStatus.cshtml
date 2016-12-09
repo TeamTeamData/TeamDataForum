@@ -125,12 +125,19 @@
 
     $('#user-data').submit(function () {
         var data = $(this).serialize();
+        var newFirstName = $('#Firstname').val();
+        var newLastName = $('#Lastname').val();
+        var newUserEmail = $('#Email').val();
+        
         $('#task-progress').html('<progress max="5"></progress>');
         $.ajax({
             url: this.action,
             method: this.method,
             data: data,
             success: function () {
+                $('#user-firstname').text(newFirstName);
+                $('#user-lastname').text(newLastName);
+                $('#user-email').text(newUserEmail);
                 $('#task-progress').html('Password updated.');
                 setTimeout(clearTaskInformation, 5000);
                 userDialog.dialog("close");
@@ -146,12 +153,18 @@
 
     $('#user-town').submit(function () {
         var data = $(this).serialize();
+        var newTownName = $('#Town').val(); 
+        var newCountryName = $('#Country').val(); 
+
         $('#task-progress').html('<progress max="5"></progress>');
         $.ajax({
             url: this.action,
             method: this.method,
             data: data,
             success: function () {
+                $('#user-hometown').text(newTownName);
+                $('#user-country').text(newCountryName);
+
                 $('#task-progress').html('Password updated.');
                 setTimeout(clearTaskInformation, 5000);
                 townDialog.dialog("close");
