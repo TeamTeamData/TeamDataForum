@@ -5,7 +5,7 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-brand">TeamData</div>
+        <div class="navbar-brand">@Html.ActionLink("TeamData", "Home", "Home")</div>
         <span>@Html.ActionLink("Hello " + User.Identity.Name, "UserStatus", "Account") @Html.ActionLink("Sign out", "Signout", "Account")</span>
     </div>
     <div class="container">

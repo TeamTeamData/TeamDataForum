@@ -10,7 +10,13 @@ namespace TeamDataForum.Web.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-
+    using Controllers.Bases;
+    using DB;
+    using Pagination;
+    using Pagination.Contracts;
+    using UnitOfWork;
+    using UnitOfWork.Contracts;
+    
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -61,6 +67,10 @@ namespace TeamDataForum.Web.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<TeamDataForumContext>().To<TeamDataForumContext>();
+            kernel.Bind<IPaginationFactory>().To<PaginationFactory>();
+            kernel.Bind<IUnitOfWork>().To<UnitOfWork>();
+            kernel.Bind<ForumBaseController>().To<ForumBaseController>();
         }        
     }
 }
