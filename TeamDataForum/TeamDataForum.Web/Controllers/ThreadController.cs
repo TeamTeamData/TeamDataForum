@@ -183,7 +183,7 @@
 
             this.UnitOfWork.SaveChanges();
 
-            return this.RedirectToAction("Home", "Thread", new { Id = newThread.ThreadId });
+            return this.RedirectToAction("Home", "Thread", new { id = newThread.ThreadId });
         }
 
         /// <summary>
@@ -241,7 +241,7 @@
 
             this.UnitOfWork.SaveChanges();
 
-            return this.RedirectToAction("Home", "Thread", new { Id = editThread.ThreadId });
+            return this.RedirectToAction("Home", "Thread", new { id = editThread.ThreadId });
         }
 
         [Authorize(Roles = "Moderator, Administrator")]
