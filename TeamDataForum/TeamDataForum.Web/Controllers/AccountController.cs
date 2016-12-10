@@ -223,6 +223,11 @@
             return this.View(user);
         }
 
+        /// <summary>
+        /// View information for user with specific id
+        /// </summary>
+        /// <param name="id">user id</param>
+        /// <returns>View</returns>
         [HttpGet]
         public ActionResult ViewUser(string id)
         {
@@ -259,6 +264,11 @@
             return this.View(user);
         }
 
+        /// <summary>
+        /// Cahnges names and email for user
+        /// </summary>
+        /// <param name="model">UserNamesBindingModel</param>
+        /// <returns>Status code</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ChangeInformation(UserNamesBindingModel model)
@@ -294,6 +304,11 @@
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
+        /// <summary>
+        /// Change town for user
+        /// </summary>
+        /// <param name="model">TownUserBindingModel</param>
+        /// <returns>Status code</returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Town(TownUserBindingModel model)
