@@ -2,5 +2,5 @@
 @model IdentifiableThreadBindingModel
 
 @Html.HiddenFor(m => m.Id)
-<div>@Model.Title</div>
+<div>Thread: @Model.Title</div>
 @Html.ValidationMessageFor(m => m.Id)

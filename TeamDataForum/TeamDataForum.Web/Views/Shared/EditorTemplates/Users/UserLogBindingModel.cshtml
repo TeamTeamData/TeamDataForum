@@ -2,21 +2,19 @@
 @model UserLogBindingModel
 
 <link href="~/Content/Login-style.css" rel="stylesheet" />
-<div class="container">
-    <div class="card card-container">
-        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-        <p id="profile-name" class="profile-name-card"></p>
+<div class="card card-container">
+    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+    <p id="profile-name" class="profile-name-card"></p>
 
-        @using (Html.BeginForm("Login", "Account", FormMethod.Post))
-        {
-            @Html.LabelFor(m => m.Username)
-            @Html.EditorFor(m => m.Username, new { htmlAttributes = new { placeholder = "Username", @class = "form-control" } })
-            @Html.LabelFor(m => m.Password)
-            @Html.EditorFor(m => m.Password, new { htmlAttributes = new { placeholder = "Password", @class = "form-control", @type = "password" } })
-            @Html.ValidationSummary()
-            @Html.AntiForgeryToken()
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
-        }
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+    {
+        @Html.LabelFor(m => m.Username)
+        @Html.EditorFor(m => m.Username, new { htmlAttributes = new { placeholder = "Username", @class = "form-control" } })
+        @Html.LabelFor(m => m.Password)
+        @Html.EditorFor(m => m.Password, new { htmlAttributes = new { placeholder = "Password", @class = "form-control", @type = "password" } })
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+    }
 
-    </div><!-- /card-container -->
-</div><!-- /container -->
+</div><!-- /card-container -->

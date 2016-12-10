@@ -15,7 +15,7 @@
         [MaxLength(NumericValues.TextMaxLength,
             ErrorMessageResourceName = nameof(ModelsRes.ErrorForumTitleMaxLength),
             ErrorMessageResourceType = typeof(ModelsRes))]
-        [Display(Name = "Forum title")]
+        [Display(Name = "Forum title:")]
         [DataType(DataType.MultilineText)]
         public string Title { get; set; }
 
@@ -25,7 +25,7 @@
         [MaxLength(NumericValues.TextMaxLength,
             ErrorMessageResourceName = nameof(ModelsRes.ErrorForumDescriptionMaxLength),
             ErrorMessageResourceType = typeof(ModelsRes))]
-        [Display(Name = "Forum description")]
+        [Display(Name = "Forum description:")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
@@ -35,7 +35,7 @@
         [MinLength(1,
             ErrorMessageResourceName = nameof(ModelsRes.ErrorNoModerators),
             ErrorMessageResourceType = typeof(ModelsRes))]
-        [Display(Name = "Forum moderators")]
+        [Display(Name = "Forum moderators:")]
         public ModeratorBindingModel[] Moderators { get; set; }
     }
 }

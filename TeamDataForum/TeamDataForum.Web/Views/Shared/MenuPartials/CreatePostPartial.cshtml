@@ -1,7 +1,7 @@
 ﻿@model int
 
 <section>
-    <ul>
-        <li>@Html.ActionLink("Create new post", "Create", "Post", new { Id = Model }, null)</li>
-    </ul>
+    <div class="btn-group">
+        @Html.ActionLink("Create new post", "Create", "Post", new { Id = Model }, new { @class = "btn btn-primary" })
+    </div>
 </section>

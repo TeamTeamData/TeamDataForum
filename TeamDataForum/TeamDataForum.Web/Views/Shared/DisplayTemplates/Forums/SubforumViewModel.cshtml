@@ -6,6 +6,7 @@
         <div>@Html.ActionLink(Model.Title, "View", "", new { Id = Model.Id }, null)</div>
         <div>@Model.Description</div>
         <div>@Model.Date.ToString("dd.MM.yyyy")</div>
+        <div>Moderators:</div>
         <div>
             @foreach (var moderator in Model.Moderators)
             {

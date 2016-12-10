@@ -16,7 +16,7 @@
 
         if (userRole == administrator || (userRole == moderator && Model.Moderators.Any(u => u.Username == Model.User.Username)))
         {
-            @Html.Partial("~/Views/Shared/MenuPartials/TreadAdminPanelPartial.cshtml", Model.Id);
+            @Html.Partial("~/Views/Shared/MenuPartials/ThreadAdminPanelPartial.cshtml", Model.Id);
         }
 
         @Html.Partial("~/Views/Shared/MenuPartials/CreateThreadPartial.cshtml", Model.ForumId);

@@ -3,14 +3,20 @@
 
 @using (Html.BeginForm("Create", "Thread", FormMethod.Post))
 {
-    @Html.EditorFor(m => m.Forum, "Forums/IdentifiableForumBindingModel")
-    @Html.ValidationMessageFor(m => m.Forum)
-    @Html.LabelFor(m => m.Title)
-    @Html.EditorFor(m => m.Title)
-    @Html.ValidationMessageFor(m => m.Title)
-    @Html.LabelFor(m => m.Text)
-    @Html.EditorFor(m => m.Text)
-    @Html.ValidationMessageFor(m => m.Text)
+    <div class="form-group">
+        @Html.EditorFor(m => m.Forum, "Forums/IdentifiableForumBindingModel")
+        @Html.ValidationMessageFor(m => m.Forum)
+    </div>
+   <div class="form-group">
+       @Html.LabelFor(m => m.Title)
+       @Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
+       @Html.ValidationMessageFor(m => m.Title)
+   </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Text)
+        @Html.EditorFor(m => m.Text, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(m => m.Text)
+    </div>
     @Html.AntiForgeryToken()
-    <input type="submit" value="Create"/>
+    <input class="btn btn-success" type="submit" value="Create"/>
 }

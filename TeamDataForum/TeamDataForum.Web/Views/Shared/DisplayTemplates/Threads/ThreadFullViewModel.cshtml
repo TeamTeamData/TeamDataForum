@@ -34,10 +34,10 @@
             }
         }
     </div>
-    <div>
+    <ul class="pagination">
         @foreach (var page in Model.Pages)
         {
             @Html.DisplayFor(m => page, "Paginators/Paginator")
         }
-    </div>
+    </ul>
 </div>

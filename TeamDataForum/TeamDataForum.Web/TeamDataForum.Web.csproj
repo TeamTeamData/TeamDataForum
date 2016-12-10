@@ -337,7 +337,7 @@
     <Content Include="Views\Shared\_HeadLayout.cshtml" />
     <Content Include="Views\Shared\MenuPartials\CreateForumPartial.cshtml" />
     <Content Include="Views\Shared\MenuPartials\ForumAdminPanelPartial.cshtml" />
-    <Content Include="Views\Shared\MenuPartials\TreadAdminPanelPartial.cshtml" />
+    <Content Include="Views\Shared\MenuPartials\ThreadAdminPanelPartial.cshtml" />
     <Content Include="Views\Shared\MenuPartials\CreateThreadPartial.cshtml" />
     <Content Include="Views\Shared\MenuPartials\CreatePostPartial.cshtml" />
     <Content Include="Views\Shared\MenuPartials\PostEditPanelPartial.cshtml" />

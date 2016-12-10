@@ -3,7 +3,7 @@
 
 @if (Model != null)
 {
-    <div>@Html.ActionLink(Model.Title, "View", "Post", new { Id = Model.Id }, null)</div>
-    <div>@Html.DisplayFor(m => m.Author, "Users/UserViewModel")</div>
-    <div>@Model.Date</div>
+    <div>In thread @Html.ActionLink(Model.Title, "View", "Post", new { Id = Model.Id }, null)</div>
+    <div>Created by @Html.DisplayFor(m => m.Author, "Users/UserViewModel")</div>
+    <div>Created on @Model.Date.ToString("dd.MM.yyyy HH:mm")</div>
 }

@@ -6,7 +6,7 @@
     <div>@Model.Description</div>
     <div>@Model.Date</div>
     <div>
-        <table>
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Thread</th>
@@ -23,10 +23,10 @@
             </tbody>
         </table>
     </div>
-    <div>
+    <ul class="pagination">
         @foreach (var page in Model.Pages)
         {
             @Html.DisplayFor(m => page, "Paginators/Paginator");
         }
-    </div>
+    </ul>
 </div>

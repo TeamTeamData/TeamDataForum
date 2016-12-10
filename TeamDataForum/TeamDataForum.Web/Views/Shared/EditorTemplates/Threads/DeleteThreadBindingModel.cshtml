@@ -4,8 +4,8 @@
 @using (Html.BeginForm("Delete", "Thread", FormMethod.Post))
 {
     @Html.HiddenFor(m => m.Id)
-    <div>@Model.Title</div>
+    <div>Thread: @Model.Title</div>
     @Html.ValidationMessageFor(m => m.Id)
     @Html.AntiForgeryToken()
-    <input type="submit" value="Delete" />
+    <input class="btn btn-success" type="submit" value="Delete" />
 }

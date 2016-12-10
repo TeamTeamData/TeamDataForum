@@ -3,9 +3,11 @@
 
 @using (Html.BeginForm("UploadAvatar", "Account", FormMethod.Post, new { Id = "uploadAvatar", enctype = "multipart/form-data" }))
 {
-    @Html.LabelFor(m => m.Image)
-    <input type="file" id="Image" name="Image" />
-    @Html.ValidationMessageFor(m => m.Image)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Image)
+        <input type="file" id="Image" name="Image" />
+        @Html.ValidationMessageFor(m => m.Image)
+    </div>
     @Html.AntiForgeryToken()
-    <input type="submit" value="Upload image" />
+    <input class="btn btn-success" type="submit" value="Upload image" />
 }

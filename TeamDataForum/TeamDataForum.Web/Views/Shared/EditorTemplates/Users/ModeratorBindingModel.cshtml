@@ -3,8 +3,11 @@
 
 @{
     var isChecked = @Model.IsChecked ? "checked" : string.Empty;
+    var name = "Moderators[" + Html.DisplayFor(m => m.Number) + "].Id";
 }
 
-<div>@Html.DisplayFor(m => m.Username)</div>
-<input type="checkbox" name="Moderators[@Html.DisplayFor(m => m.Number)].Id" value="@Html.DisplayFor(m => m.Id)" @isChecked />
-@Html.ValidationMessageFor(m => m.Id)
+<div class="form-group">
+    <label for="@name">@Html.DisplayFor(m => m.Username)</label>
+    <input type="checkbox" name="@name" id="@name" value="@Html.DisplayFor(m => m.Id)" @isChecked />
+    @Html.ValidationMessageFor(m => m.Id)
+</div>

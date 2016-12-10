@@ -3,5 +3,5 @@
 
 <tr>
     <td>@Html.ActionLink(Model.Thread, "Home", "Thread", new { id = Model.ThreadId }, null)</td>
-    <td>@Html.ActionLink(Model.Text, "View", "Post", new { id = Model.PostId }, null)</td>
+    <td>@Model.Text @Html.ActionLink("View in thread", "View", "Post", new { id = Model.PostId }, null)</td>
 </tr>

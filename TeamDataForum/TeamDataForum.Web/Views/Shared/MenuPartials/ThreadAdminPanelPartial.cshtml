@@ -1,0 +1,8 @@
+﻿@model int
+
+<section>
+    <div class="btn-group">
+        @Html.ActionLink("Edit thread", "Edit", "Thread", new { Id = Model }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Delete thread", "Delete", "Thread", new { Id = Model }, new { @class = "btn btn-primary" })
+    </div>
+</section>

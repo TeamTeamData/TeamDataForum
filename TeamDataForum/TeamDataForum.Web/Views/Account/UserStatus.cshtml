@@ -7,15 +7,15 @@
     Layout = "~/Views/Shared/_LayoutUser.cshtml";
 }
 
-<h2>User Status</h2>
+<h2>View account</h2>
 
 @Html.DisplayForModel("Users/UserFullViewModel")
 
 <div id="task-progress"></div>
 
-<button id="changePassword">Change password</button>
-<button id="changeUserInformation">Change user information</button>
-<button id="changeUserTown">Change town</button>
+<button id="changePassword" class="btn btn-success">Change password</button>
+<button id="changeUserInformation" class="btn btn-success">Change user information</button>
+<button id="changeUserTown" class="btn btn-success">Change town</button>
 
 @Html.Partial("~/Views/Shared/UserPartials/UserPasswordPartial.cshtml", new PasswordBindingModel())
 

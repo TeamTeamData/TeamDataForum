@@ -3,10 +3,12 @@
 
 @using (Html.BeginForm("Create", "Post", FormMethod.Post))
 {
-    @Html.EditorFor(m => m.Thread, "Threads/IdentifiableThreadBindingModel")
-    @Html.LabelFor(m => m.Text)
-    @Html.EditorFor(m => m.Text)
+    <div>
+        @Html.EditorFor(m => m.Thread, "Threads/IdentifiableThreadBindingModel")
+        @Html.LabelFor(m => m.Text)
+        @Html.EditorFor(m => m.Text, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
     @Html.ValidationMessageFor(m => m.Text)
     @Html.AntiForgeryToken()
-    <input type="submit" value="Create" />
+    <input class="btn btn-success" type="submit" value="Create" />
 }

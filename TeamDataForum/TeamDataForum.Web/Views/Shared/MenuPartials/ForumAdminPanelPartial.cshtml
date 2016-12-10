@@ -1,6 +1,8 @@
 ﻿@model int
 
-<ul>
-    <li>@Html.ActionLink("Edit forum", "Edit", "Forum", new { Id = Model }, null)</li>
-    <li>@Html.ActionLink("Delete forum", "Delete", "Forum", new { Id = Model }, null)</li>
-</ul>
+<section>
+    <div class="btn-group">
+        @Html.ActionLink("Edit forum", "Edit", "Forum", new { Id = Model }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Delete forum", "Delete", "Forum", new { Id = Model }, new { @class = "btn btn-primary" })
+    </div>
+</section>
