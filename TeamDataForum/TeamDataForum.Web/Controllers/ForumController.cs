@@ -87,8 +87,7 @@
 
             this.UnitOfWork.SaveChanges();
 
-            // to do change
-            return this.RedirectToAction("Home", "Home", null);
+            return this.RedirectToAction("View", "Home", new { Id = forum.ForumId });
         }
 
         /// <summary>
@@ -172,8 +171,7 @@
 
             this.UnitOfWork.SaveChanges();
 
-            // to do
-            return this.RedirectToAction("Home", "Home");
+            return this.RedirectToAction("View", "Home", new { editForum.ForumId });
         }
 
         /// <summary>

@@ -139,7 +139,7 @@
             this.UnitOfWork.SaveChanges();
 
             // to do
-            return this.RedirectToAction("Home", "Home");
+            return this.RedirectToAction("View", "Post", new { Id = newPost.PostId });
         }
 
         /// <summary>
@@ -208,7 +208,7 @@
             this.UnitOfWork.SaveChanges();
 
             // to do
-            return this.RedirectToAction("Home", "Home");
+            return this.RedirectToAction("View", "Post", new { Id = editPost.PostId });
         }
 
         /// <summary>
@@ -271,7 +271,6 @@
 
             this.UnitOfWork.SaveChanges();
 
-            // to do
             return this.RedirectToAction("Home", "Home");
         }
 
