@@ -41,3 +41,7 @@ textarea {
 .post_user_post {
     width: 75%;
 }
+
+.post_edit {
+    color: #aaa;
+}
