@@ -139,7 +139,7 @@
         [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int id, EditForumBindingModel model)
         {
-            Forum editForum = this.GetForumNoModerators(id);
+            Forum editForum = this.GetForum(id);
 
             if (editForum == default(Forum) || editForum.IsDeleted || id != model.Id)
             {
@@ -161,9 +161,28 @@
                 .UserRepository
                 .Select(u => moderatorsIds.Contains(u.Id) && u.Roles.Any(r => r.RoleId == role.Id));
 
+            string[] addedModerators = editForum.Moderators
+                .Select(u => u.UserName)
+                .ToArray();
+
+            foreach (string userName in addedModerators)
+            {
+                if (!users.Any(u => u.UserName == userName))
+                {
+                    editForum.Moderators.Remove(editForum.Moderators.First(u => u.UserName == userName));
+                }
+            }
+
+            foreach (User user in users)
+            {
+                if (!editForum.Moderators.Any(u => u.UserName == user.UserName))
+                {
+                    editForum.Moderators.Add(user);
+                }
+            }
+
             editForum.Title = model.Title;
             editForum.Description = model.Description;
-            editForum.Moderators = users;
 
             editForum = this.UnitOfWork
                 .ForumRepository
@@ -171,7 +190,7 @@
 
             this.UnitOfWork.SaveChanges();
 
-            return this.RedirectToAction("View", "Home", new { editForum.ForumId });
+            return this.RedirectToAction("View", "Home", new { Id = editForum.ForumId });
         }
 
         /// <summary>

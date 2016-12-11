@@ -202,8 +202,8 @@
                     Image = u.Image,
                     Town = u.Town.Name,
                     Country = u.Town.Country.Name,
-                    PostsCount = u.Posts.Count,
-                    Posts = u.Posts.Select(p => new UserPostViewModel()
+                    PostsCount = u.Posts.Count(p => !p.IsDeleted),
+                    Posts = u.Posts.Where(p => !p.IsDeleted).Select(p => new UserPostViewModel()
                     {
                         PostId = p.PostId,
                         ThreadId = p.Thread.ThreadId,
@@ -243,8 +243,8 @@
                     Image = u.Image,
                     Town = u.Town.Name,
                     Country = u.Town.Country.Name,
-                    PostsCount = u.Posts.Count,
-                    Posts = u.Posts.Select(p => new UserPostViewModel()
+                    PostsCount = u.Posts.Count(p => !p.IsDeleted),
+                    Posts = u.Posts.Where(p => !p.IsDeleted).Select(p => new UserPostViewModel()
                     {
                         PostId = p.PostId,
                         ThreadId = p.Thread.ThreadId,

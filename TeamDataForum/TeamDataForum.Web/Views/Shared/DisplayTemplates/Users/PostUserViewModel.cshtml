@@ -7,5 +7,5 @@
 
 <div>
     <div><img src="@imagePath" alt="@Model.Username" /></div>
-    <div>@Html.ActionLink(Model.Username, "User", "View", new { Id = Model.Id }, null)</div>
+    <div>@Html.ActionLink(Model.Username, "ViewUser", "Account", new { Id = Model.Id }, null)</div>
 </div>

@@ -2,6 +2,7 @@
 @model PostFullViewModel
 
 @{ 
+    var isEdited = Model.ChangeDate != null;
     var changeDate = Model.ChangeDate != null ? ((DateTime)Model.ChangeDate).ToString("dd.MM.yyyy HH:mm") : string.Empty;
 }
 
@@ -13,7 +14,10 @@
     </div>
     <div class="post_item post_user_post">
         <div>@Model.Text</div>
-        <div class="post_edit">Edited on: @changeDate</div>
-        <div class="post_edit">Edited by: @Model.Changer</div>
+        @if (isEdited)
+        {
+            <div class="post_edit">Edited on: @changeDate</div>
+            <div class="post_edit">Edited by: @Model.Changer</div>
+        }
     </div>
 </div>

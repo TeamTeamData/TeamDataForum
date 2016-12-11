@@ -40,8 +40,9 @@
                     Date = f.Date,
                     Moderators = f.Moderators.Select(u => new UserViewModel() { Id = u.Id, Username = u.UserName }),
                     Threads = f.Threads.Count(t => !t.IsDeleted),
-                    Posts = f.Threads.Where(p => !p.IsDeleted).SelectMany(t => t.Posts).Count(p => !p.IsDeleted),
+                    Posts = f.Threads.Where(t => !t.IsDeleted).SelectMany(t => t.Posts).Count(p => !p.IsDeleted),
                     LatestPost = f.Threads
+                    .Where(t => !t.IsDeleted)
                     .SelectMany(t => t.Posts)
                     .Where(p => !p.IsDeleted)
                     .OrderByDescending(p => p.PostId)

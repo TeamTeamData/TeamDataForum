@@ -9,6 +9,7 @@
     /// <summary>
     /// Subforum model for Entity framework
     /// </summary>
+    [Table("Forums")]
     public class Forum
     {
         private ICollection<Thread> threads;

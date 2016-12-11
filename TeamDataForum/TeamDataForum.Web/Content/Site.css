@@ -45,3 +45,10 @@ textarea {
 .post_edit {
     color: #aaa;
 }
+
+img {
+    width: 200px;
+    height: 240px;
+    max-width: 200px;
+    max-height: 240px;
+}
