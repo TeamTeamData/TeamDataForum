@@ -1,11 +1,19 @@
 ﻿@using TeamDataForum.Web.Models.ViewModels.Posts
 @model PostFullViewModel
 
-<div id="post_@Model.Id">
-    <div>@Model.Number</div>
-    <div>@Html.DisplayFor(m => m.Author, "Users/PostUserViewModel")</div>
-    <div>@Model.Date</div>
-    <div>@Model.Text</div>
-    <div>@Model.ChangeDate</div>
-    <div>@Model.Changer</div>
+@{ 
+    var changeDate = Model.ChangeDate != null ? ((DateTime)Model.ChangeDate).ToString("dd.MM.yyyy HH:mm") : string.Empty;
+}
+
+<div id="post_@Model.Id" class="post">
+    <div class="post_number">@Html.Raw("#")@Model.Number</div>
+    <div class="post_item post_user_data">
+        <div>@Html.DisplayFor(m => m.Author, "Users/PostUserViewModel")</div>
+        <div>@Model.Date.ToString("dd.MM.yyyy HH:mm")</div>
+    </div>
+    <div class="post_item post_user_post">
+        <div>@Model.Text</div>
+        <div>@changeDate</div>
+        <div>@Model.Changer</div>
+    </div>
 </div>
