@@ -7,7 +7,7 @@
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAACAgAAABARAAAAQAAAAEAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAQAAAAEAAAAAAAAAA=</HashCode>
       <FileName>Country.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -25,17 +25,16 @@
       </MemberNameLabel>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAEAAAABAABEAAAAAAAAACAIAAAACEAAACSAAAAA=</HashCode>
+      <HashCode>AAAAAEAAAQBAABEAAAAAAAAACAIBAAACEAAACQAAAAA=</HashCode>
       <FileName>Post.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Creator" />
-      <Property Name="Topic" />
       <Property Name="ResponseTo" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Property Name="Responses" />
       <Property Name="Likes" />
+      <Property Name="Responses" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="TeamDataForum.DBModels.PostText">
@@ -44,46 +43,12 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAACACAAAAAAAAIAACAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAIAACAAAAAA=</HashCode>
       <FileName>PostText.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Post" />
     </ShowAsAssociation>
-  </Class>
-  <Class Name="TeamDataForum.DBModels.Subforum">
-    <Position X="0.75" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>IAAAIAAAACAiAEAIAAAgAAAAAAhAgAABEAAAASAAAAA=</HashCode>
-      <FileName>Subforum.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Creator" />
-    </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="Moderators" />
-      <Property Name="Topics" />
-    </ShowAsCollectionAssociation>
-  </Class>
-  <Class Name="TeamDataForum.DBModels.Topic">
-    <Position X="3.25" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Fields" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAEAEAIBAAAAAACAAAAAAiBEAAAEwIAAAA=</HashCode>
-      <FileName>Topic.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Creator" />
-      <Property Name="Subforum" />
-    </ShowAsAssociation>
-    <ShowAsCollectionAssociation>
-      <Property Name="Posts" />
-    </ShowAsCollectionAssociation>
   </Class>
   <Class Name="TeamDataForum.DBModels.Town">
     <Position X="4.5" Y="5.5" Width="1.5" />
@@ -91,7 +56,7 @@
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>AAACAAgAACAAAAAAAAAAAAQAAAIAAAAAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAIAAAAAAAAAAABAAAA=</HashCode>
       <FileName>Town.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -99,20 +64,19 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="TeamDataForum.DBModels.User">
-    <Position X="2.25" Y="4" Width="1.5" />
+    <Position X="1.5" Y="4.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Methods" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
-      <HashCode>QgAAAEAACgAEAAAIBAAAAAAAAAIAAAACACAAkAIAAAA=</HashCode>
+      <HashCode>AAAAAEgQCgAMEAAIBAAAAAAAAAIAABACAAAAAgAAAAI=</HashCode>
       <FileName>User.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Property Name="Town" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Property Name="Subforums" />
       <Property Name="Posts" />
     </ShowAsCollectionAssociation>
   </Class>
@@ -123,9 +87,41 @@
       <FileName>Like.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Post" />
       <Property Name="User" />
+      <Property Name="Post" />
     </ShowAsAssociation>
   </Class>
+  <Class Name="TeamDataForum.DBModels.Thread">
+    <Position X="3.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAkAEAABAAAAAAAAAAAAAgBEAAAAwAAAAA=</HashCode>
+      <FileName>Thread.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Forum" />
+      <Property Name="Creator" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Posts" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="TeamDataForum.DBModels.Forum">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAgAICAoAEAAAAAAAAAAAAAAAAABEAAAAQAAAAA=</HashCode>
+      <FileName>Forum.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Creator" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Moderators" />
+      <Property Name="Threads" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Interface Name="System.Collections.Generic.ICollection&lt;T&gt;" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
