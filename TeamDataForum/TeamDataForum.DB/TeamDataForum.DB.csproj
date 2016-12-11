@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Database-Frameworks-Teamwork-Assignment-October-2016.docx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

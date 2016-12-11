@@ -98,8 +98,8 @@
       <FileName>Thread.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="Forum" />
       <Property Name="Creator" />
+      <Property Name="Forum" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="Posts" />
@@ -115,13 +115,9 @@
       <Property Name="Creator" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
-      <Property Name="Moderators" />
       <Property Name="Threads" />
+      <Property Name="Moderators" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Interface Name="System.Collections.Generic.ICollection&lt;T&gt;" Collapsed="true">
-    <Position X="4.25" Y="0.5" Width="1.5" />
-    <TypeIdentifier />
-  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
