@@ -98,9 +98,9 @@ namespace TeamDataForum.DB
                 .WithMany(u => u.ForumModerators)
                 .Map(m =>
                 {
-                    m.MapLeftKey("SubforumId");
+                    m.MapLeftKey("ForumId");
                     m.MapRightKey("UserId");
-                    m.ToTable("SubforumsModerators");
+                    m.ToTable("ForumsModerators");
                 });
 
             modelBuilder.Entity<Thread>()
