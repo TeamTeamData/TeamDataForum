@@ -77,29 +77,45 @@ namespace TeamDataForum.DB.Migrations
                 var userMananger = new UserManager<User>(new UserStore<User>());
                 var passwordHashers = new PasswordHasher();
 
-                User user = new User()
+                Town town = new Town()
+                {
+                    Name = "Sofia",
+                    Country = new Country() { Name = "Bulgaria" }
+                };
+
+                User administrator = new User()
                 {
                     Firstname = "Admin",
-                    Lastname = "Administrator",
+                    Lastname = admin,
                     UserName = admin,
-                    Email = "Admin@TeamForumData.com",
+                    Email = "Admin@TeamDataForum.com",
                     SecurityStamp = Guid.NewGuid().ToString(),
-                    Town = new Town()
-                    {
-                        Name = "Sofia",
-                        Country = new Country() { Name = "Bulgaria" }
-                    },
+                    Town = town,
                     PasswordHash = passwordHashers.HashPassword("123456")
                 };
 
-                context.Users.Add(user);
+                User moderator = new User()
+                {
+                    Firstname = "Moderator",
+                    Lastname = "Moderator",
+                    UserName = "Moderator",
+                    Email = "Moderator@TeamDataForum.com",
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    Town = town,
+                    PasswordHash = passwordHashers.HashPassword("123456")
+                };
 
-                user.Roles.Add(new IdentityUserRole() { UserId = user.Id, RoleId = adminRole.Id });
-                user.Roles.Add(new IdentityUserRole() { UserId = user.Id, RoleId = moderatorRole.Id });
+                context.Users.AddOrUpdate(administrator);
+                context.Users.AddOrUpdate(moderator);
+
+                administrator.Roles.Add(new IdentityUserRole() { UserId = administrator.Id, RoleId = adminRole.Id });
+                administrator.Roles.Add(new IdentityUserRole() { UserId = administrator.Id, RoleId = moderatorRole.Id });
+
+                moderator.Roles.Add(new IdentityUserRole() { UserId = administrator.Id, RoleId = moderatorRole.Id });
 
                 context.SaveChanges();
 
-                return user;
+                return administrator;
             }
 
             return context.Users

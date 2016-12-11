@@ -2,9 +2,9 @@
 @model ThreadFullViewModel
 
 <div>
-    <div>@Model.Title</div>
-    <div>@Html.DisplayFor(m => m.Creator, "Users/UserViewModel")</div>
-    <div>@Model.CreationDate</div>
+    <h3>@Model.Title</h3>
+    <div>Creator: @Html.DisplayFor(m => m.Creator, "Users/UserViewModel")</div>
+    <div>Created on: @Model.CreationDate</div>
     <div>
         @foreach (var post in Model.Posts)
         {
